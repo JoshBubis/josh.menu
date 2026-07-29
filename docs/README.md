@@ -13,11 +13,12 @@ work rail carries **Visit** links only — the old **Source** links pointed at
 
 ### Structure
 
-- `index.html` — hero (print-registration treatment: ruled grid, red margin rule, crosshairs, maker's line — no canvas; brand letters lift on hover), work rail (native scroll-snap; arrows/dots/keyboard/drag are user-initiated, no auto-drift), approach, process (5-step "how it goes down" timeline; red spine inks in on scroll via #process-rail-fill), about, CTA
+- `index.html` — hero (two-column: copy left, a framed live product screenshot right; ruled grid, emerald margin rule, maker's line, static "4 systems live" strip; brand wordmark mask-reveals, letters lift on hover), work rail (native scroll-snap; arrows/dots/keyboard/drag are user-initiated, no auto-drift), approach, process (5-step "how it goes down" timeline; emerald spine inks in on scroll via #process-rail-fill), about, CTA
 - `contact.html` + `contact.js` — form UI → Hub `/webhooks/contact` on `api.josh.menu`
 - `chat.js` — concierge chat widget → Hub `/webhooks/chat` (polling, no websockets). **Beta-gated:** renders only when `localStorage.jm_chat_beta === "1"`; flip `BETA_GATE` to false in `chat.js` to open it to everyone
-- `style.css` / `studio.css` — keep `studio.css` a copy of `style.css`
-- `script.js` — reveals (hero + section-head cascades), work-rail scroll/dots/drag
+- `style.css` / `studio.css` — keep `studio.css` a copy of `style.css`. Design tokens are the `:root` block at the top; the visual direction they encode is documented in [`AGENTS.md`](../AGENTS.md) § Design language
+- `script.js` — reveals (hero + section-head cascades), work-rail scroll/dots/drag, hero cursor light, parallax on `[data-parallax]`
+- `scripts/verify-live.mjs` — pre-flight sweep (desktop/mobile/reduced-motion; surname, overflow, JS errors). Pass a local origin to run it before pushing; the `api.josh.menu` assertions are skipped off the live origin
 - `images/work/*.jpg` — manual Playwright captures (`npm run capture-work`)
 - `AGENTS.md` — agent routing + shipping rules
 - `scripts/rebrand.py` — one-shot record of the 2026-07-29 joshbubis.com → josh.menu
@@ -25,8 +26,8 @@ work rail carries **Visit** links only — the old **Source** links pointed at
 
 Work-rail panels use flat "plate" labels (JM maker's mark + domain) instead of
 browser chrome; screenshots stay clickable through `.work-shot-link`. The
-`.jm-mark` chip (ink block, red J, paper M — the favicon in type) is the brand
-mark; reuse it rather than inventing new label motifs.
+`.jm-mark` chip (bone block, emerald J, ground M — the favicon in type) is the
+brand mark; reuse it rather than inventing new label motifs.
 
 ### Backend endpoints
 
@@ -39,6 +40,12 @@ its page source. Hub 404s everything on that hostname except `/webhooks/*`.
 | `GET /webhooks/contact/site_config` | Turnstile sitekey for this origin (widgets are domain-scoped) |
 | `POST /webhooks/contact` | Contact form → email + Lead record |
 | `POST /webhooks/chat` | Concierge chat turns |
+
+**Not built yet:** the hero's live status strip wants `GET /webhooks/status`
+returning `uptime_30d` and `latency_p95_ms` across the four products, with
+`Access-Control-Allow-Origin: https://josh.menu`. Until Hub serves it, the strip
+stays static text — a fetch to a missing endpoint logs a console error and fails
+`scripts/verify-live.mjs`. Wiring instructions are in `script.js`.
 
 ### Boundaries
 

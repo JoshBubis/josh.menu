@@ -50,7 +50,7 @@
       }
       widgetId = turnstile.render("#turnstile-container", {
         sitekey: sitekey,
-        theme: "light",
+        theme: "dark",
         "refresh-expired": "auto",
         callback: function (token) {
           tokenInput.value = token;

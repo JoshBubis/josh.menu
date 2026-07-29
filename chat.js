@@ -311,7 +311,7 @@
       }
       turnstile.render(tsContainer, {
         sitekey: sitekey,
-        theme: "light",
+        theme: "dark",
         "refresh-expired": "auto",
         callback: function (t) {
           turnstileToken = t;

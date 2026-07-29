@@ -8,7 +8,7 @@
     <meta name="description"
         content="Josh Menu designs and builds custom websites — portfolios, small-business sites, product landings, and full web systems when the job calls for it.">
     <link rel="canonical" href="https://josh.menu/">
-    <meta name="theme-color" content="#f3f4f6">
+    <meta name="theme-color" content="#080b0a">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://josh.menu/">
     <meta property="og:title" content="Josh Menu — Custom websites">
@@ -19,10 +19,10 @@
     <meta name="twitter:title" content="Josh Menu — Custom websites">
     <meta name="twitter:description"
         content="Custom websites with craft — and full web systems when the work needs to grow.">
-    <link rel="icon" href="/favicon.svg?v=jm1" type="image/svg+xml">
+    <link rel="icon" href="/favicon.svg?v=jm2" type="image/svg+xml">
 
     <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="style.css?v=jm1">
+    <link rel="stylesheet" href="style.css?v=jm2">
 </head>
 
 <body>
@@ -42,24 +42,42 @@
 
     <main id="main">
         <section class="hero" aria-label="Introduction">
-            <div class="hero-plate" aria-hidden="true">
-                <span class="hero-orb"></span>
-                <p class="hero-specimen"><span class="jm-mark"><span class="jm-mark__j">J</span>M</span><span>Every pixel, one person — no templates</span></p>
-            </div>
+            <div class="hero-light" aria-hidden="true"></div>
+            <div class="hero-rule" aria-hidden="true"></div>
             <div class="hero-inner">
-                <h1 class="brand reveal" data-reveal aria-label="Josh Menu">
-                    <span class="brand-line" aria-hidden="true"><span class="brand-ch">J</span><span class="brand-ch">o</span><span class="brand-ch">s</span><span class="brand-ch">h</span></span>
-                    <span class="brand-line" aria-hidden="true"><span class="brand-ch">M</span><span class="brand-ch">e</span><span class="brand-ch">n</span><span class="brand-ch">u</span></span>
-                </h1>
-                <p class="hero-headline reveal" data-reveal>
-                    Sites with craft you can <em class="hero-feel">feel</em>.
-                </p>
-                <p class="hero-sub reveal" data-reveal>
-                    Custom sites for small businesses and personal brands — shipped in days, built to last, and yours outright.
-                </p>
-                <div class="hero-actions reveal" data-reveal>
-                    <a href="#work" class="btn btn-primary btn-arrow">See the work</a>
-                    <a href="contact.html" class="btn btn-ghost">Start a project</a>
+                <div class="hero-copy">
+                    <p class="hero-specimen reveal" data-reveal><span class="jm-mark"><span class="jm-mark__j">J</span>M</span><span>Every pixel, one person — no templates</span></p>
+                    <h1 class="brand reveal-mask" data-reveal aria-label="Josh Menu">
+                        <span class="brand-line mask-line" aria-hidden="true"><span class="brand-inner"><span class="brand-ch">J</span><span class="brand-ch">o</span><span class="brand-ch">s</span><span class="brand-ch">h</span></span></span>
+                        <span class="brand-line mask-line" aria-hidden="true"><span class="brand-inner"><span class="brand-ch">M</span><span class="brand-ch">e</span><span class="brand-ch">n</span><span class="brand-ch">u</span></span></span>
+                    </h1>
+                    <p class="hero-headline reveal" data-reveal>
+                        Sites with craft you can <em class="hero-feel">feel</em>.
+                    </p>
+                    <p class="hero-sub reveal" data-reveal>
+                        Custom sites for small businesses and personal brands — shipped in days, built to last, and yours outright.
+                    </p>
+                    <div class="hero-actions reveal" data-reveal>
+                        <a href="#work" class="btn btn-primary btn-arrow">See the work</a>
+                        <a href="contact.html" class="btn btn-ghost">Start a project</a>
+                    </div>
+                    <!-- Uptime figures are filled in from Hub at runtime; the strip
+                         never claims a number it hasn't been given. -->
+                    <p class="hero-status reveal" id="hero-status" data-reveal>
+                        <span class="status-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                        <span class="status-label">4 systems live</span>
+                        <span class="status-meta" id="status-meta"></span>
+                    </p>
+                </div>
+
+                <!-- Reveal on the wrapper, parallax on the anchor: the reveal's
+                     transform would otherwise cancel the parallax offset. -->
+                <div class="hero-frame-wrap reveal" data-reveal>
+                    <a class="hero-frame" data-parallax href="https://catamist.com" target="_blank" rel="noopener noreferrer">
+                        <span class="hero-frame__plate"><span class="jm-mark" aria-hidden="true"><span class="jm-mark__j">J</span>M</span><span>catamist.com</span></span>
+                        <img src="images/work/catamist.jpg?v=filled1" alt="The Catamist homepage — an AI news platform Josh designed, built, and runs" width="1440" height="900" loading="eager" decoding="async" draggable="false">
+                        <span class="hero-frame__cue"><span>Catamist — AI news platform</span><span aria-hidden="true">Visit ↗</span></span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -283,8 +301,8 @@
         </div>
     </footer>
 
-    <script src="script.js?v=jm1"></script>
-    <script src="chat.js?v=jm1" defer></script>
+    <script src="script.js?v=jm2"></script>
+    <script src="chat.js?v=jm2" defer></script>
 </body>
 
 </html>

@@ -8,6 +8,9 @@ import { chromium, devices } from "playwright";
 
 const ORIGIN = process.argv[2] || "https://josh.menu";
 const FORBIDDEN = [/bubis/i, /hub\.josh\.menu/i];
+// api.josh.menu only allows the real origin, so a local build can't reach it.
+// Run against localhost to check layout/motion/errors before pushing.
+const LIVE_ORIGIN = /^https:\/\/josh\.menu/.test(ORIGIN);
 
 let failures = 0;
 const check = (ok, label, detail = "") => {
@@ -30,6 +33,9 @@ for (const [profile, opts] of [
         if (m.type() !== "error") return;
         // Turnstile's own script logs styled console noise; only our code counts.
         if ((m.location().url || "").includes("challenges.cloudflare.com")) return;
+        // Against a local build, api.josh.menu calls fail CORS by design — both
+        // the CORS message and the generic resource-load failure behind it.
+        if (!LIVE_ORIGIN && /api\.josh\.menu|net::ERR_FAILED/.test(m.text())) return;
         errors.push(m.text());
     });
 
@@ -71,15 +77,19 @@ for (const [profile, opts] of [
         // Turnstile deliberately refuses to auto-pass a headless browser, so we
         // can only assert the widget was configured and asked to render — that it
         // actually solves and unlocks the button is a real-browser check.
-        const cfg = await page.evaluate(() =>
-            fetch("https://api.josh.menu/webhooks/contact/site_config").then((r) => r.json())
-        );
-        check(cfg.configured === true, "site_config reports a configured widget");
-        check(cfg.mode === "managed", "widget is in managed mode", cfg.mode);
-        check(
-            (cfg.sitekey || "").startsWith("0x"),
-            "site_config returns a josh.menu sitekey"
-        );
+        if (LIVE_ORIGIN) {
+            const cfg = await page.evaluate(() =>
+                fetch("https://api.josh.menu/webhooks/contact/site_config").then((r) => r.json())
+            );
+            check(cfg.configured === true, "site_config reports a configured widget");
+            check(cfg.mode === "managed", "widget is in managed mode", cfg.mode);
+            check(
+                (cfg.sitekey || "").startsWith("0x"),
+                "site_config returns a josh.menu sitekey"
+            );
+        } else {
+            console.log("  skip  site_config checks (needs the live origin)");
+        }
     }
 
     await ctx.close();

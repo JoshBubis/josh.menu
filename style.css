@@ -1,12 +1,28 @@
 :root {
-    --paper: #f3f4f6;
-    --paper-deep: #e8eaee;
-    --ink: #0b0b0c;
-    --muted: #4a4f56;
-    --accent: #c81e1e;
-    --accent-soft: rgba(200, 30, 30, 0.12);
-    --line: rgba(11, 11, 12, 0.12);
-    --focus: rgba(200, 30, 30, 0.45);
+    /* Visual direction v2 (2026-07): Signal Emerald on a tinted ground.
+       The ground is a green-cast black, not neutral — the accent has to read as
+       native to the surface rather than applied on top of it. */
+    --ground: #080b0a;
+    --surface: #0f1412;
+    --surface-high: #161c19;
+    --bone: #edebe6;
+    --accent: #10d592;
+    --accent-deep: #0bb87e;
+    --accent-soft: rgba(16, 213, 146, 0.13);
+    /* Errors only. Never decorative — green now means healthy, so a failed
+       field has to be unmistakably not-the-brand. */
+    --danger: #e5544b;
+
+    /* Semantic aliases. --ink is type and light fills, --paper is the field:
+       inverted from the pre-v2 paper direction, so the rules below still hold. */
+    --paper: var(--ground);
+    --paper-deep: var(--surface);
+    --ink: var(--bone);
+    --muted: #97a5a0;
+    --support: #6b7b74;
+    --line: rgba(237, 235, 230, 0.13);
+    --line-strong: rgba(237, 235, 230, 0.28);
+    --focus: rgba(16, 213, 146, 0.5);
     /* Fixed header clearance for in-page jumps (padding only — do not also set scroll-margin) */
     --header-offset: 4.25rem;
 
@@ -50,12 +66,19 @@ body {
 
 ::selection {
     background: var(--accent);
-    color: #fff;
+    color: var(--ground);
 }
 
 :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
+}
+
+/* Prose links inherit the accent. Without this, a bare mailto falls back to
+   browser blue, which is unreadable on the ground. Components that style their
+   own anchors (nav, buttons, work links, footer) all win on specificity. */
+a {
+    color: var(--accent);
 }
 
 .sr-only {
@@ -76,8 +99,8 @@ body {
     top: 0.75rem;
     z-index: 200;
     padding: 0.55rem 0.9rem;
-    background: var(--ink);
-    color: #fff;
+    background: var(--accent);
+    color: var(--ground);
     font-weight: 600;
     font-size: 0.9rem;
     text-decoration: none;
@@ -119,7 +142,6 @@ body {
 
 .site-header.is-scrolled {
     border-bottom-color: var(--line);
-    box-shadow: 0 10px 30px rgba(11, 11, 12, 0.05);
 }
 
 .wordmark {
@@ -157,13 +179,13 @@ body {
     padding: 0.4rem 0.8rem;
     border: 1px solid var(--line);
     border-radius: 2px;
-    background: rgba(255, 255, 255, 0.55);
+    background: rgba(237, 235, 230, 0.05);
 }
 
 .nav-cta:hover {
-    color: var(--ink) !important;
-    border-color: var(--ink);
-    background: #fff;
+    color: var(--ground) !important;
+    border-color: var(--accent);
+    background: var(--accent);
 }
 
 /* —— Buttons —— */
@@ -191,25 +213,23 @@ body {
 }
 
 .btn-primary {
-    background: var(--ink);
-    color: var(--paper);
-    box-shadow: 0 8px 20px rgba(11, 11, 12, 0.16);
+    background: var(--accent);
+    color: var(--ground);
 }
 
 .btn-primary:hover {
-    background: var(--accent);
-    box-shadow: 0 12px 26px rgba(200, 30, 30, 0.24);
+    background: var(--accent-deep);
 }
 
 .btn-ghost {
     background: transparent;
     color: var(--ink);
-    border-color: var(--line);
+    border-color: var(--line-strong);
 }
 
 .btn-ghost:hover {
-    border-color: var(--ink);
-    background: rgba(255, 255, 255, 0.6);
+    border-color: var(--accent);
+    background: rgba(237, 235, 230, 0.05);
 }
 
 /* Arrow slides forward on hover for primary CTAs */
@@ -237,8 +257,8 @@ body {
 }
 
 /* —— JM maker's mark —— */
-/* The favicon set in type: ink block, red J stroke. One mark, used everywhere
-   a signature belongs — hero, work plates, chat. */
+/* The favicon set in type: bone block, emerald J stroke. One mark, used
+   everywhere a signature belongs — hero, work plates, chat. */
 .jm-mark {
     display: inline-flex;
     align-items: center;
@@ -275,7 +295,7 @@ body {
     min-height: 100dvh;
     display: flex;
     align-items: center;
-    padding: 6.5rem var(--pad) 4rem;
+    padding: 7rem var(--pad) 3rem;
     overflow: hidden;
 }
 
@@ -288,8 +308,8 @@ body {
     pointer-events: none;
     background: repeating-linear-gradient(
         to bottom,
-        rgba(11, 11, 12, 0.05) 0,
-        rgba(11, 11, 12, 0.05) 1px,
+        rgba(237, 235, 230, 0.045) 0,
+        rgba(237, 235, 230, 0.045) 1px,
         transparent 1px,
         transparent 4rem
     );
@@ -297,17 +317,36 @@ body {
     mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 82%, transparent);
 }
 
-/* One red margin rule, drawn in on load */
-.hero::after {
-    content: "";
+/* Cursor light: the one lift allowed on a dark ground. Radius follows the
+   pointer via --mx/--my set in script.js; absent JS it never renders. */
+.hero-light {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+        22rem circle at var(--mx, 50%) var(--my, 40%),
+        rgba(16, 213, 146, 0.07),
+        transparent 70%
+    );
+    transition: opacity 0.6s var(--ease);
+}
+
+.hero:hover .hero-light {
+    opacity: 1;
+}
+
+/* One emerald margin rule, drawn in on load */
+.hero-rule {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 72%;
+    left: 58%;
     width: 1px;
     z-index: 0;
     pointer-events: none;
-    background: rgba(200, 30, 30, 0.3);
+    background: rgba(16, 213, 146, 0.24);
     transform-origin: top;
     animation: hero-rule-draw 1.2s var(--ease) 0.15s backwards;
 }
@@ -322,80 +361,201 @@ body {
     }
 }
 
-.hero-plate {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* The orb — the original hero circle, breathing slowly under the ruled grid */
-.hero-orb {
-    position: absolute;
-    right: -12%;
-    top: 8%;
-    width: min(58vw, 36rem);
-    height: min(58vw, 36rem);
-    border-radius: 50%;
-    background:
-        radial-gradient(circle at 35% 35%, rgba(200, 30, 30, 0.18), transparent 58%),
-        radial-gradient(circle at 70% 70%, rgba(11, 11, 12, 0.06), transparent 55%);
-    animation: hero-orb-breathe 7s ease-in-out infinite;
-}
-
-@keyframes hero-orb-breathe {
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.8;
-    }
-
-    50% {
-        transform: scale(1.07);
-        opacity: 1;
-    }
-}
-
-/* Maker's line — signature along the hero's bottom margin */
+/* Maker's line — signature above the fold, paired with the live strip */
 .hero-specimen {
-    position: absolute;
-    left: var(--pad);
-    right: var(--pad);
-    bottom: 1.4rem;
     display: flex;
     align-items: center;
     gap: 0.7rem;
+    margin-bottom: 1.6rem;
     font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--support);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hero::after {
+    .hero-rule {
         animation: none;
     }
 
-    .hero-orb {
-        animation: none;
+    .hero-light {
+        display: none;
     }
 }
 
 .hero-inner {
     position: relative;
     z-index: 1;
-    max-width: 52rem;
-    padding-top: 0.5rem;
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: center;
+    width: 100%;
+    max-width: var(--max);
+    margin: 0 auto;
+}
+
+@media (min-width: 62rem) {
+    .hero-inner {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+    }
+}
+
+.hero-copy {
+    min-width: 0;
+}
+
+/* —— Live status strip ——
+   Real operating data, not decoration: four products Josh runs himself. The
+   uptime figures are filled in by script.js from Hub and stay absent until
+   they arrive, so nothing here can ever claim a number it doesn't have. */
+.hero-status {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.55rem 0.9rem;
+    margin-top: 2.4rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--line);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.status-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.status-dots i {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 1px;
+    background: var(--accent);
+}
+
+/* A dot only breathes while the strip is reporting live data */
+.hero-status.is-live .status-dots i {
+    animation: status-breathe 2.6s ease-in-out infinite;
+}
+
+.hero-status.is-live .status-dots i:nth-child(2) { animation-delay: 0.2s; }
+.hero-status.is-live .status-dots i:nth-child(3) { animation-delay: 0.4s; }
+.hero-status.is-live .status-dots i:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes status-breathe {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+}
+
+.status-label {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.status-meta {
+    color: var(--support);
+}
+
+.status-meta:empty {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-status.is-live .status-dots i {
+        animation: none;
+    }
+}
+
+/* —— Hero work frame: the portfolio starts selling above the fold —— */
+.hero-frame-wrap {
+    min-width: 0;
+}
+
+.hero-frame {
+    position: relative;
+    min-width: 0;
+    display: block;
+    padding: 0.55rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.4s var(--ease);
+    /* Parallax offset written by script.js — untransitioned so it tracks the
+       scroll directly instead of lagging behind it */
+    transform: translateY(var(--shift, 0px));
+}
+
+.hero-frame:hover {
+    border-color: var(--line-strong);
+}
+
+.hero-frame__plate {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0 0.2rem 0.55rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--support);
+}
+
+.hero-frame__plate .jm-mark {
+    font-size: 0.72rem;
+}
+
+.hero-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 2px;
+    background: #fff;
+}
+
+.hero-frame__cue {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.6rem 0.2rem 0.1rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+}
+
+.hero-frame__cue span:last-child {
+    color: var(--accent);
+    font-weight: 600;
+    transition: transform 0.25s var(--ease);
+}
+
+.hero-frame:hover .hero-frame__cue span:last-child {
+    transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-frame {
+        transition: border-color 0.2s ease;
+        transform: none;
+    }
 }
 
 .brand {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(3.6rem, 13vw, 8rem);
-    line-height: 0.9;
+    /* Smaller than the pre-v2 full-bleed wordmark: it now shares the fold
+       with the work frame rather than owning the whole viewport. */
+    font-size: clamp(3.2rem, 8vw, 5.75rem);
+    line-height: 0.88;
     letter-spacing: -0.045em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.35rem;
 }
 
 .brand-line {
@@ -556,7 +716,7 @@ main > .section {
     flex: 0 0 min(82vw, 32rem);
     min-height: auto;
     padding: 0;
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--line);
     display: flex;
     flex-direction: column;
@@ -567,10 +727,10 @@ main > .section {
 }
 
 .work-panel:hover {
-    border-color: rgba(11, 11, 12, 0.3);
+    border-color: var(--line-strong);
     transform: translateY(-2px);
-    /* Red top rule on hover — the plate's index color, not a glow */
-    box-shadow: inset 0 2px 0 var(--accent), 0 10px 24px rgba(11, 11, 12, 0.06);
+    /* Emerald top rule on hover — the plate's index color, not a glow */
+    box-shadow: inset 0 2px 0 var(--accent);
 }
 
 .work-rail.is-dragging .work-panel:hover {
@@ -589,7 +749,7 @@ main > .section {
 
 .work-shot {
     padding: 1.05rem 1.05rem 0;
-    background: linear-gradient(165deg, #f7f8fa 0%, #eceef2 100%);
+    background: var(--surface-high);
 }
 
 /* Plate label — maker's mark + domain above each screenshot */
@@ -599,9 +759,9 @@ main > .section {
     justify-content: space-between;
     gap: 0.75rem;
     padding: 0.45rem 0.85rem;
-    border: 1px solid rgba(11, 11, 12, 0.07);
+    border: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
-    background: #fcfcfd;
+    background: var(--surface);
     font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.14em;
@@ -622,12 +782,11 @@ main > .section {
     /* Generous mat so the full homepage (corners included) reads as a miniature */
     padding: 1.15rem;
     overflow: hidden;
-    border: 1px solid rgba(11, 11, 12, 0.07);
+    border: 1px solid var(--line);
     border-top: 0;
     border-radius: 0;
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent 40%),
-        #d9dce2;
+    /* Dark mat: the screenshot is the only lit thing in the frame */
+    background: var(--ground);
 }
 
 .work-shot__frame img {
@@ -638,9 +797,7 @@ main > .section {
     object-position: top center;
     border-radius: 2px;
     background: #fff;
-    box-shadow:
-        0 0 0 1px rgba(11, 11, 12, 0.06),
-        0 10px 28px rgba(11, 11, 12, 0.12);
+    box-shadow: 0 0 0 1px rgba(237, 235, 230, 0.09);
     /* No scale/zoom on hover — the page stays fully framed */
     transform: none;
 }
@@ -737,7 +894,7 @@ main > .section {
     padding: 0;
     border: 1px solid var(--line);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(237, 235, 230, 0.05);
     color: var(--ink);
     font-family: var(--font-display);
     font-size: 1.45rem;
@@ -747,10 +904,10 @@ main > .section {
 }
 
 .work-arrow:hover {
-    border-color: rgba(11, 11, 12, 0.3);
-    background: #fff;
+    border-color: var(--accent);
+    background: var(--surface-high);
+    color: var(--accent);
     transform: translateY(-1px);
-    box-shadow: 0 8px 18px rgba(11, 11, 12, 0.08);
 }
 
 .work-arrow:active {
@@ -763,13 +920,13 @@ main > .section {
     padding: 0;
     border: 0;
     border-radius: 999px;
-    background: rgba(26, 24, 20, 0.22);
+    background: rgba(237, 235, 230, 0.24);
     cursor: pointer;
     transition: width 0.45s var(--ease), background 0.35s ease;
 }
 
 .work-dot:hover {
-    background: rgba(26, 24, 20, 0.45);
+    background: rgba(237, 235, 230, 0.5);
     transform: scale(1.25);
 }
 
@@ -1073,10 +1230,51 @@ main > .section {
 }
 
 /* Hero children cascade in on load */
-.js-ready .hero-inner > .reveal { transition-duration: 0.75s; }
-.js-ready .hero-inner > .reveal:nth-child(2) { transition-delay: 0.1s; }
-.js-ready .hero-inner > .reveal:nth-child(3) { transition-delay: 0.18s; }
-.js-ready .hero-inner > .reveal:nth-child(4) { transition-delay: 0.26s; }
+.js-ready .hero-copy > .reveal { transition-duration: 0.75s; }
+.js-ready .hero-copy > .reveal:nth-child(2) { transition-delay: 0.08s; }
+.js-ready .hero-copy > .reveal:nth-child(3) { transition-delay: 0.16s; }
+.js-ready .hero-copy > .reveal:nth-child(4) { transition-delay: 0.24s; }
+.js-ready .hero-copy > .reveal:nth-child(5) { transition-delay: 0.32s; }
+.js-ready .hero-copy > .reveal:nth-child(6) { transition-delay: 0.4s; }
+.js-ready .hero-frame-wrap.reveal { transition-delay: 0.2s; }
+
+/* Mask reveal: display lines wipe up from behind a clipped edge rather than
+   fading. Only for headings — body copy still uses the plain reveal, because
+   overflow:hidden on paragraphs clips descenders. */
+.js-ready .reveal-mask {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+.js-ready .reveal-mask .mask-line {
+    display: block;
+    overflow: hidden;
+    /* Padding pushes the clip edge below the baseline so descenders survive */
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
+}
+
+.js-ready .reveal-mask .mask-line > * {
+    display: block;
+    transform: translateY(105%);
+    transition: transform 0.85s var(--ease);
+}
+
+.js-ready .reveal-mask.is-in .mask-line > * {
+    transform: none;
+}
+
+.js-ready .reveal-mask .mask-line:nth-child(2) > * {
+    transition-delay: 0.09s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js-ready .reveal-mask .mask-line > * {
+        transform: none;
+        transition: none;
+    }
+}
 
 /* Section heads: parent stays put, eyebrow → title → lead cascade instead */
 .js-ready .section-head.reveal {
@@ -1154,19 +1352,21 @@ main > .section {
     margin-bottom: 1.25rem;
     padding: 0.9rem 1rem;
     border: 1px solid var(--line);
-    background: #fff;
+    background: var(--surface);
     font-size: 0.95rem;
 }
 
 .contact-alert--ok {
-    border-color: color-mix(in srgb, var(--ink) 25%, transparent);
-    color: var(--ink);
-}
-
-.contact-alert--err {
     border-color: var(--accent);
     color: var(--accent);
     background: var(--accent-soft);
+}
+
+/* Errors use --danger, never the brand green: green now reads "healthy" */
+.contact-alert--err {
+    border-color: var(--danger);
+    color: var(--danger);
+    background: rgba(229, 84, 75, 0.1);
 }
 
 .contact-form {
@@ -1198,17 +1398,22 @@ main > .section {
     width: 100%;
     padding: 0.8rem 0.9rem;
     border: 1px solid var(--line);
-    background: #fff;
+    background: var(--surface-high);
     color: var(--ink);
     font-family: var(--font-body);
     font-size: 1rem;
     border-radius: 2px;
 }
 
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--support);
+}
+
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: var(--ink);
+    border-color: var(--accent);
 }
 
 .contact-form .hp {
@@ -1261,6 +1466,17 @@ main > .section {
 }
 
 @media (max-width: 720px) {
+    /* The header stacks into two rows here, so it is roughly twice as tall.
+       Both the anchor-jump offset and the hero's top padding have to follow it
+       or the maker's line ends up underneath the nav. */
+    :root {
+        --header-offset: 9.5rem;
+    }
+
+    .hero {
+        padding-top: calc(var(--header-offset) + 3.5rem);
+    }
+
     .site-header {
         flex-direction: column;
         align-items: flex-start;
@@ -1293,9 +1509,9 @@ main > .section {
     align-items: center;
     gap: 0.55rem;
     padding: 0.55rem 0.9rem 0.55rem 0.55rem;
-    background: var(--paper);
+    background: var(--surface);
     color: var(--ink);
-    border: 1px solid var(--ink);
+    border: 1px solid var(--line-strong);
     border-radius: 2px;
     font-family: var(--font-body);
     font-size: 0.82rem;
@@ -1303,7 +1519,6 @@ main > .section {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 0 10px 24px rgba(11, 11, 12, 0.18);
     transition: border-color 0.2s, transform 0.25s var(--ease);
 }
 
@@ -1321,10 +1536,9 @@ main > .section {
     flex-direction: column;
     width: min(24rem, calc(100vw - 2.5rem));
     max-height: min(34rem, calc(100dvh - 7rem));
-    background: var(--paper);
-    border: 1px solid var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
     border-radius: 2px;
-    box-shadow: 0 24px 56px rgba(11, 11, 12, 0.22);
 }
 
 /* display:flex above would otherwise defeat the hidden attribute */
@@ -1440,7 +1654,7 @@ main > .section {
 
 .chat-msg--assistant .chat-msg__body,
 .chat-msg--josh .chat-msg__body {
-    background: #fff;
+    background: var(--surface-high);
     border: 1px solid var(--line);
     padding: 0.5rem 0.75rem;
     border-radius: 2px;
@@ -1499,15 +1713,19 @@ main > .section {
     padding: 0.55rem 0.7rem;
     border: 1px solid var(--line);
     border-radius: 2px;
-    background: #fff;
+    background: var(--surface-high);
     color: var(--ink);
     font-family: var(--font-body);
     font-size: 0.95rem;
 }
 
+.chat-input::placeholder {
+    color: var(--support);
+}
+
 .chat-input:focus {
     outline: none;
-    border-color: var(--ink);
+    border-color: var(--accent);
 }
 
 .chat-send {

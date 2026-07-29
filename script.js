@@ -247,6 +247,59 @@
     }, true);
   }
 
+  /* Hero cursor light — the one lift allowed on a dark ground. Desktop only:
+     a touch device has no hovering pointer to follow. */
+  var hero = document.querySelector(".hero");
+  if (hero && !reduceMotion && window.matchMedia("(hover: hover)").matches) {
+    var lightQueued = false;
+    var lightX = 0;
+    var lightY = 0;
+    hero.addEventListener("pointermove", function (e) {
+      if (e.pointerType !== "mouse") return;
+      var rect = hero.getBoundingClientRect();
+      lightX = ((e.clientX - rect.left) / rect.width) * 100;
+      lightY = ((e.clientY - rect.top) / rect.height) * 100;
+      if (lightQueued) return;
+      lightQueued = true;
+      requestAnimationFrame(function () {
+        lightQueued = false;
+        hero.style.setProperty("--mx", lightX.toFixed(2) + "%");
+        hero.style.setProperty("--my", lightY.toFixed(2) + "%");
+      });
+    });
+  }
+
+  /* Parallax on framed work — a few pixels of drift, not a ride */
+  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
+  if (parallaxEls.length && !reduceMotion) {
+    var PARALLAX_RANGE = 14;
+    var parallaxQueued = false;
+    var applyParallax = function () {
+      parallaxQueued = false;
+      var mid = window.innerHeight / 2;
+      parallaxEls.forEach(function (el) {
+        var rect = el.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+        var offset = (rect.top + rect.height / 2 - mid) / window.innerHeight;
+        el.style.setProperty("--shift", (offset * PARALLAX_RANGE).toFixed(2) + "px");
+      });
+    };
+    var onScrollParallax = function () {
+      if (parallaxQueued) return;
+      parallaxQueued = true;
+      requestAnimationFrame(applyParallax);
+    };
+    onScrollParallax();
+    window.addEventListener("scroll", onScrollParallax, { passive: true });
+    window.addEventListener("resize", onScrollParallax, { passive: true });
+  }
+
+  /* The hero status strip is deliberately static for now: "4 systems live" is
+     true without asking anything. Real uptime needs a public Hub endpoint at
+     api.josh.menu/webhooks/status; until that exists a fetch here would log a
+     console error and fail scripts/verify-live.mjs. To wire it up: fill
+     #status-meta and add .is-live to #hero-status (see style.css). */
+
   /* Approach accordion (keyboard / touch; hover handled in CSS) */
   document.querySelectorAll(".approach-trigger").forEach(function (btn) {
     btn.addEventListener("click", function () {

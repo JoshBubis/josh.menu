@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Josh Menu">
-  <!-- The JM maker's mark: ink block, red J, paper M (see .jm-mark in style.css) -->
-  <rect width="32" height="32" fill="#0b0b0c"/>
+  <!-- The JM maker's mark: bone block, emerald J, ground M (see .jm-mark in style.css) -->
+  <rect width="32" height="32" fill="#edebe6"/>
   <!-- J -->
-  <path fill="#c81e1e" d="M9 8h5.5v11.5c0 2.5-2 4.5-4.5 4.5H5v-4.5h4z"/>
+  <path fill="#10d592" d="M9 8h5.5v11.5c0 2.5-2 4.5-4.5 4.5H5v-4.5h4z"/>
   <!-- M: two stems joined by a peak -->
-  <g fill="#f3f4f6">
+  <g fill="#080b0a">
     <path d="M17 24V8h3.9l2.6 5.6L26.1 8H30v16h-4.2v-8.6l-2.3 4.9h-1.2l-2.3-4.9V24z"/>
   </g>
 </svg>
