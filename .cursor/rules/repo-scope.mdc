@@ -1,0 +1,19 @@
+---
+description: Static josh.menu sales site only — Hub owns Studio, contracts, and the contact/chat backend
+alwaysApply: true
+---
+
+# josh.menu scope
+
+Edit static sales-site files here only. Studio/Client Work, Vault, SES, and
+Turnstile verification live in `/Users/jbair/Projects/hub`. See `AGENTS.md`.
+
+**Brand is surname-free by design.** No "Bubis", no links to `joshbubis.com`,
+LinkedIn, or `github.com/JoshBubis` — that separation is the whole point of this
+domain. Client mail is `josh@josh.menu`. The mark is `.jm-mark`.
+
+Form + chat post to `https://api.josh.menu`, never to `hub.joshbubis.com`.
+
+Work shots are static JPEGs (not live). Bump `?v=` when shipping and
+`cp style.css studio.css`. Do not stack `scroll-margin-top` on sections with
+`scroll-padding-top`.

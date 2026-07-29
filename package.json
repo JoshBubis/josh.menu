@@ -1,0 +1,11 @@
+{
+  "name": "josh-menu-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture-work": "node scripts/capture-work.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.61.1"
+  }
+}

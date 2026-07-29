@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start a project — Josh Menu</title>
+    <meta name="description"
+        content="Tell Josh what kind of site you need. Contact form protected by Cloudflare Turnstile.">
+    <link rel="canonical" href="https://josh.menu/contact.html">
+    <meta name="theme-color" content="#f3f4f6">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://josh.menu/contact.html">
+    <meta property="og:title" content="Start a project — Josh Menu">
+    <meta property="og:description" content="Tell Josh what kind of site you need — scope, timeline, and next steps.">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="/favicon.svg?v=jm1" type="image/svg+xml">
+    <meta name="robots" content="noindex">
+
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="style.css?v=jm1">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <a class="wordmark" href="/">Josh Menu</a>
+        <nav class="site-nav" aria-label="Primary">
+            <a href="/#work">Work</a>
+            <a href="/#approach">Approach</a>
+            <a href="/#process">Process</a>
+            <a href="/#about">About</a>
+            <a href="/contact.html" class="nav-cta">Start a project</a>
+        </nav>
+    </header>
+
+    <main id="main" class="contact-page">
+        <section class="contact-form-section">
+            <p class="eyebrow">Contact</p>
+            <h1 class="contact-page-title">Start a project</h1>
+            <p class="contact-lead">Tell me what kind of site you need, your timeline, and any examples you like. I’ll
+                reply from <a href="mailto:josh@josh.menu">josh@josh.menu</a> with scope and next steps.</p>
+
+            <div id="contact-alert" class="contact-alert" hidden></div>
+
+            <form id="contact-form" class="contact-form" method="post"
+                action="https://api.josh.menu/webhooks/contact" novalidate>
+                <input type="hidden" name="return_to" value="https://josh.menu">
+                <input type="hidden" name="form_started_at" id="form_started_at" value="">
+                <input type="hidden" name="cf_turnstile_response" id="cf-turnstile-response" value="">
+
+                <div class="hp" aria-hidden="true">
+                    <label>Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+                    <label>Website <input type="text" name="website_url" tabindex="-1" autocomplete="off"></label>
+                </div>
+
+                <label class="field">
+                    <span>Name</span>
+                    <input type="text" name="name" required maxlength="120" autocomplete="name">
+                </label>
+
+                <label class="field">
+                    <span>Email</span>
+                    <input type="email" name="email" required maxlength="200" autocomplete="email">
+                </label>
+
+                <label class="field">
+                    <span>Subject <em>(optional)</em></span>
+                    <input type="text" name="subject" maxlength="200" placeholder="Website project inquiry">
+                </label>
+
+                <label class="field">
+                    <span>Message</span>
+                    <textarea name="message" required maxlength="5000" rows="7"
+                        placeholder="What you need, timeline, examples…"></textarea>
+                </label>
+
+                <div id="turnstile-wrap" class="turnstile-wrap">
+                    <div id="turnstile-container"></div>
+                    <p id="turnstile-status" class="muted small">Loading bot check…</p>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="submit-btn" disabled>Send message</button>
+            </form>
+
+            <p class="contact-alt">Prefer email? <a
+                    href="mailto:josh@josh.menu?subject=Website%20project%20inquiry">josh@josh.menu</a></p>
+
+            <div class="social-links">
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <span>© <span id="year"></span> Josh Menu</span>
+        <div class="footer-links">
+            <a href="mailto:josh@josh.menu">josh@josh.menu</a>
+        </div>
+    </footer>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+    <script src="contact.js?v=jm1"></script>
+    <script src="chat.js?v=jm1" defer></script>
+</body>
+
+</html>
