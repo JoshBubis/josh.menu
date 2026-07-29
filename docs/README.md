@@ -13,7 +13,7 @@ work rail carries **Visit** links only — the old **Source** links pointed at
 
 ### Structure
 
-- `index.html` — hero (two-column: copy left, a framed live product screenshot right; ruled grid, emerald margin rule, maker's line, static "4 systems live" strip; brand wordmark mask-reveals, letters lift on hover), work rail (native scroll-snap; arrows/dots/keyboard/drag are user-initiated, no auto-drift), approach, process (5-step "how it goes down" timeline; emerald spine inks in on scroll via #process-rail-fill), about, CTA
+- `index.html` — hero (two-column: copy left, a framed live product screenshot right; ruled grid, emerald margin rule, maker's line, status strip; brand wordmark mask-reveals, letters lift on hover), work rail (native scroll-snap; arrows/dots/keyboard/drag are user-initiated, no auto-drift), approach, process (5-step timeline; emerald spine inks in on scroll), about (decade of craft + AI as leverage, not a substitute), CTA
 - `contact.html` + `contact.js` — form UI → Hub `/webhooks/contact` on `api.josh.menu`
 - `chat.js` — concierge chat widget → Hub `/webhooks/chat` (polling, no websockets). **Beta-gated:** renders only when `localStorage.jm_chat_beta === "1"`; flip `BETA_GATE` to false in `chat.js` to open it to everyone
 - `style.css` / `studio.css` — keep `studio.css` a copy of `style.css`. Design tokens are the `:root` block at the top; the visual direction they encode is documented in [`AGENTS.md`](../AGENTS.md) § Design language
