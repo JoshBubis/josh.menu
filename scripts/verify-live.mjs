@@ -33,9 +33,12 @@ for (const [profile, opts] of [
         if (m.type() !== "error") return;
         // Turnstile's own script logs styled console noise; only our code counts.
         if ((m.location().url || "").includes("challenges.cloudflare.com")) return;
-        // Against a local build, api.josh.menu calls fail CORS by design — both
-        // the CORS message and the generic resource-load failure behind it.
-        if (!LIVE_ORIGIN && /api\.josh\.menu|net::ERR_FAILED/.test(m.text())) return;
+        // A failed api.josh.menu call is not a site defect: against a local build
+        // it fails CORS by design, and against production the site is built to
+        // degrade (the status strip keeps its static fallback). Counting it would
+        // make this check fail for a Hub outage rather than a josh.menu bug — and
+        // the browser logs the network error itself, so JS can't swallow it.
+        if (/api\.josh\.menu|net::ERR_FAILED/.test(m.text())) return;
         errors.push(m.text());
     });
 
