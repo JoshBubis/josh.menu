@@ -294,11 +294,53 @@
     window.addEventListener("resize", onScrollParallax, { passive: true });
   }
 
-  /* The hero status strip is deliberately static for now: "4 systems live" is
-     true without asking anything. Real uptime needs a public Hub endpoint at
-     api.josh.menu/webhooks/status; until that exists a fetch here would log a
-     console error and fail scripts/verify-live.mjs. To wire it up: fill
-     #status-meta and add .is-live to #hero-status (see style.css). */
+  /* Hero status strip — real operating data, fetched from Hub.
+     The markup ships with a static "4 systems live" that is true without asking
+     anything, so a failed or slow fetch simply leaves the honest fallback in
+     place. Nothing here ever prints a number it wasn't given: absent figures
+     stay absent, and .status-meta:empty hides itself. */
+  var statusStrip = document.getElementById("hero-status");
+  if (statusStrip && window.fetch) {
+    fetch("https://api.josh.menu/webhooks/status", { mode: "cors" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data) return;
+
+        var total = typeof data.systems === "number" ? data.systems : 4;
+        var live = typeof data.live === "number" ? data.live : null;
+        var label = statusStrip.querySelector(".status-label");
+        var dots = statusStrip.querySelectorAll(".status-dots i");
+
+        if (label && live !== null) {
+          label.textContent = live === total
+            ? total + " systems live"
+            : live + " of " + total + " systems live";
+        }
+        if (live !== null) {
+          Array.prototype.forEach.call(dots, function (dot, i) {
+            dot.classList.toggle("is-dim", i >= live);
+          });
+        }
+
+        /* Uptime and latency are each optional: a fresh window may have one and
+           not the other, and half a sentence beats a fabricated figure. */
+        var parts = [];
+        if (typeof data.uptime_30d === "number") {
+          parts.push(data.uptime_30d.toFixed(2).replace(/\.00$/, "") + "% uptime, 30 days");
+        }
+        if (typeof data.latency_p95_ms === "number") {
+          parts.push(data.latency_p95_ms + "ms p95");
+        }
+        var meta = document.getElementById("status-meta");
+        if (meta && parts.length) meta.textContent = "· " + parts.join(" · ");
+
+        if (live !== null || parts.length) statusStrip.classList.add("is-live");
+      })
+      .catch(function () {
+        /* Swallowed on purpose: the strip already reads correctly without Hub,
+           and a console error on the sales site fails scripts/verify-live.mjs. */
+      });
+  }
 
   /* Approach accordion (keyboard / touch; hover handled in CSS) */
   document.querySelectorAll(".approach-trigger").forEach(function (btn) {

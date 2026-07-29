@@ -95,9 +95,11 @@ edit **this** folder for sales-site UI. Do not merge the two repos unless Josh a
 - Reveal and parallax fight each other: `.reveal.is-in` sets `transform: none`,
   which cancels a parallax offset on the same element. Put the reveal on a
   wrapper and `data-parallax` on the child (see `.hero-frame-wrap`).
-- The hero status strip is **static on purpose**. Real uptime needs a public
-  `api.josh.menu/webhooks/status` endpoint in Hub; until that exists, a fetch
-  there logs a console error and fails `scripts/verify-live.mjs`.
+- The hero status strip reads live figures from `api.josh.menu/webhooks/status`,
+  but the markup ships an honest hardcoded fallback ("4 systems live") and the
+  fetch failure is swallowed — a console error here fails `scripts/verify-live.mjs`.
+  Never print a figure the endpoint didn't return; Hub sends `null` for missing
+  data, and Hub deliberately reports a count rather than which product is down.
 - At ≤720px the header stacks into two rows, so `--header-offset` and the hero's
   top padding are both overridden in that breakpoint. Change them together.
 - Nav jumps: `scroll-padding-top` only — never also `scroll-margin-top` on sections.

@@ -441,6 +441,14 @@ a {
     animation: status-breathe 2.6s ease-in-out infinite;
 }
 
+/* Hub reports how many products are up, not which one is down — so a dim dot
+   says "one of these isn't answering" without turning a sales page into an
+   incident report. Dim rather than red: red is reserved for form errors. */
+.status-dots i.is-dim {
+    background: var(--support);
+    animation: none;
+}
+
 .hero-status.is-live .status-dots i:nth-child(2) { animation-delay: 0.2s; }
 .hero-status.is-live .status-dots i:nth-child(3) { animation-delay: 0.4s; }
 .hero-status.is-live .status-dots i:nth-child(4) { animation-delay: 0.6s; }
