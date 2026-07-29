@@ -17,7 +17,7 @@ work rail carries **Visit** links only — the old **Source** links pointed at
 - `contact.html` + `contact.js` — form UI → Hub `/webhooks/contact` on `api.josh.menu`
 - `chat.js` — concierge chat widget → Hub `/webhooks/chat` (polling, no websockets). **Beta-gated:** renders only when `localStorage.jm_chat_beta === "1"`; flip `BETA_GATE` to false in `chat.js` to open it to everyone
 - `style.css` / `studio.css` — keep `studio.css` a copy of `style.css`. Design tokens are the `:root` block at the top; the visual direction they encode is documented in [`AGENTS.md`](../AGENTS.md) § Design language
-- `script.js` — reveals (hero + section-head cascades), work-rail scroll/dots/drag, hero cursor light, parallax on `[data-parallax]`
+- `script.js` — reveals (hero + section-head cascades), work-rail scroll/dots/drag, hero cursor light, parallax on `[data-parallax]`. Motion extras (2026-07-29): nav/footer sliding underlines, approach/process stagger delays, process-num scale on reveal, button press scale — all under `prefers-reduced-motion`
 - `scripts/verify-live.mjs` — pre-flight sweep (desktop/mobile/reduced-motion; surname, overflow, JS errors). Pass a local origin to run it before pushing; the `api.josh.menu` assertions are skipped off the live origin
 - `images/work/*.jpg` — manual Playwright captures (`npm run capture-work`)
 - `AGENTS.md` — agent routing + shipping rules
