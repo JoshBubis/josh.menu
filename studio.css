@@ -317,23 +317,9 @@ a {
     overflow: hidden;
 }
 
-/* Drafting-table backdrop: ruled baselines instead of glow */
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-        to bottom,
-        rgba(237, 235, 230, 0.045) 0,
-        rgba(237, 235, 230, 0.045) 1px,
-        transparent 1px,
-        transparent 4rem
-    );
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 82%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 82%, transparent);
-}
+/* Clean ground: no backdrop pattern. The v1 paper direction's ruled baselines
+   and margin rule were retired in July 2026 — grain, the cursor light, and the
+   framed work carry the hero. */
 
 /* Cursor light: the one lift allowed on a dark ground. Radius follows the
    pointer via --mx/--my set in script.js; absent JS it never renders. */
@@ -355,30 +341,6 @@ a {
     opacity: 1;
 }
 
-/* One emerald margin rule, drawn in on load */
-.hero-rule {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 58%;
-    width: 1px;
-    z-index: 0;
-    pointer-events: none;
-    background: rgba(16, 213, 146, 0.24);
-    transform-origin: top;
-    animation: hero-rule-draw 1.2s var(--ease) 0.15s backwards;
-}
-
-@keyframes hero-rule-draw {
-    from {
-        transform: scaleY(0);
-    }
-
-    to {
-        transform: scaleY(1);
-    }
-}
-
 /* Maker's line — signature above the fold, paired with the live strip */
 .hero-specimen {
     display: flex;
@@ -393,10 +355,6 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hero-rule {
-        animation: none;
-    }
-
     .hero-light {
         display: none;
     }

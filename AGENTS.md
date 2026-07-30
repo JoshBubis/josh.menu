@@ -56,6 +56,10 @@ overriding, and update this block if it changes.**
   is a decision, not a detail.
 - Hairline rules stay structural. Shadows do nothing on this ground — the
   retheme removed them all rather than tinting them.
+- **The hero ground is clean.** The v1 paper direction's ruled baselines and
+  emerald margin rule were retired (late July 2026) because they read as
+  looseleaf paper on the dark ground. Grain, the cursor light, and the framed
+  work carry the hero — don't reintroduce backdrop patterns without asking.
 
 ## Hybrid with Hub (keep this in mind)
 
