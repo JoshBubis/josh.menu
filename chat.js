@@ -389,6 +389,12 @@
     open ? closePanel() : openPanel();
   });
   closeBtn.addEventListener("click", closePanel);
+  document.addEventListener("click", function (e) {
+    var opener = e.target.closest("[data-open-chat]");
+    if (!opener) return;
+    e.preventDefault();
+    openPanel();
+  });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && open) closePanel();
   });
