@@ -340,12 +340,82 @@ button, input, select, textarea { font: inherit; color: inherit; }
   font-size: 1.05rem;
 }
 
-.featured { background: var(--ink-2); }
+.galveston { background: var(--ink-2); }
+.galveston__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+.galveston .section-head { margin-bottom: 0; max-width: none; }
+.why-list {
+  list-style: none;
+  display: grid;
+  gap: 1.15rem;
+}
+.why-list li {
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+.why-list strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+.why-list span {
+  color: var(--foam-dim);
+  font-size: 0.95rem;
+}
+
+.lines { background: var(--ink); }
+.lines-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.15rem;
+}
+.lines-card {
+  padding: 1.45rem 1.4rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  background: var(--ink-2);
+}
+.lines-card h3 {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.lines-card p { color: var(--foam-dim); font-size: 0.95rem; }
+.lines-card__tag {
+  margin-top: 0.9rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--seafoam) !important;
+}
+
+.sailings { background: var(--ink-2); }
+.sail-card__line {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  margin-bottom: 0.45rem;
+}
+.sail-grid--three {
+  grid-template-columns: repeat(3, 1fr);
+}
 .feature-card {
   display: grid;
   grid-template-columns: minmax(0, 40%) minmax(0, 1fr);
   gap: 0;
-  align-items: start; /* don't stretch the photo to invent empty space beside copy */
+  align-items: start;
+  margin-bottom: 1.25rem;
   border: 1px solid var(--line);
   border-radius: 1rem;
   overflow: hidden;
@@ -567,7 +637,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .topbar__cta { display: none; }
   .nav-toggle { display: inline-flex; }
   .feature-card { grid-template-columns: 1fr; }
+  .galveston__grid,
+  .lines-grid,
   .sail-grid,
+  .sail-grid--three,
   .steps,
   .plan__grid { grid-template-columns: 1fr; }
   .field--half { grid-column: 1 / -1; }
