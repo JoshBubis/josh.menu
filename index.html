@@ -22,7 +22,7 @@
     <link rel="icon" href="/favicon.svg?v=jm2" type="image/svg+xml">
 
     <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="style.css?v=jm11">
+    <link rel="stylesheet" href="style.css?v=jm12">
 </head>
 
 <body>
@@ -71,14 +71,47 @@
                     </p>
                 </div>
 
-                <!-- Reveal on the wrapper, parallax on the anchor: the reveal's
-                     transform would otherwise cancel the parallax offset. -->
-                <div class="hero-frame-wrap reveal" data-reveal>
-                    <a class="hero-frame" data-parallax href="https://catamist.com" target="_blank" rel="noopener noreferrer">
-                        <span class="hero-frame__plate"><span class="jm-mark" aria-hidden="true"><span class="jm-mark__j">J</span>M</span><span>catamist.com</span></span>
-                        <img src="images/work/catamist.jpg?v=filled1" alt="The Catamist homepage — an AI news platform Josh designed, built, and runs" width="1440" height="900" loading="eager" decoding="async" draggable="false">
-                        <span class="hero-frame__cue"><span>Catamist — AI news platform</span><span aria-hidden="true">Visit ↗</span></span>
-                    </a>
+                <!-- Cartoon lander demo — decorative; Catamist lives on the work rail. -->
+                <div class="hero-stage reveal" data-reveal aria-hidden="true">
+                    <div class="hero-demo">
+                        <div class="hero-demo__chrome">
+                            <span class="hero-demo__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="hero-demo__url"><span class="jm-mark"><span class="jm-mark__j">J</span>M</span>yoursite.demo</span>
+                        </div>
+                        <div class="hero-demo__viewport">
+                            <div class="hero-demo__page">
+                                <header class="demo-nav">
+                                    <span class="demo-nav__mark"></span>
+                                    <span class="demo-nav__links"><i></i><i></i><i></i></span>
+                                    <span class="demo-nav__btn"></span>
+                                </header>
+                                <section class="demo-hero">
+                                    <span class="demo-hero__eyebrow"></span>
+                                    <span class="demo-hero__title"></span>
+                                    <span class="demo-hero__title demo-hero__title--short"></span>
+                                    <span class="demo-hero__sub"></span>
+                                    <span class="demo-hero__cta" data-demo-cta>
+                                        <span class="demo-hero__cta-label"></span>
+                                    </span>
+                                </section>
+                                <section class="demo-cards">
+                                    <span class="demo-card"><i></i><b></b><b class="is-short"></b></span>
+                                    <span class="demo-card"><i></i><b></b><b class="is-short"></b></span>
+                                    <span class="demo-card"><i></i><b></b><b class="is-short"></b></span>
+                                </section>
+                                <section class="demo-band">
+                                    <span class="demo-band__line"></span>
+                                    <span class="demo-band__line is-short"></span>
+                                </section>
+                                <section class="demo-footer">
+                                    <span></span><span></span><span></span>
+                                </section>
+                            </div>
+                            <div class="hero-demo__cursor" aria-hidden="true"></div>
+                            <div class="hero-demo__ripple" aria-hidden="true"></div>
+                        </div>
+                        <p class="hero-demo__caption">A site taking shape</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -388,7 +421,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=jm4"></script>
+    <script src="script.js?v=jm5"></script>
     <script src="chat.js?v=jm3" defer></script>
 </body>
 

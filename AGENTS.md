@@ -47,19 +47,21 @@ overriding, and update this block if it changes.**
 - Green means *live*: it belongs on the status strip, the mark, labels, links,
   and focus rings. `--danger` (`#e5544b`) is for form errors only, never
   decoration — otherwise green-as-healthy and green-as-brand contradict.
-- **The work sells above the fold.** The hero is a two-column grid: copy left,
-  a framed live product screenshot right. Dark ground exists so those bright
-  screenshots read as lit frames rather than thumbnails — don't lighten it.
+- **The hero sells the craft above the fold.** Two-column grid: copy left, a
+  cartoon browser lander demo right (scroll + click loop). Live product shots
+  live on the work rail — don't put a product screenshot back in the hero
+  unless Josh asks. Dark ground keeps the demo reading as a lit frame.
 - Motion budget, in full: mask reveals on the wordmark, the section-head
-  cascade, a few pixels of parallax on framed work, the process spine inking in,
-  and one cursor-follow light in the hero. That is the whole list. Adding to it
-  is a decision, not a detail.
+  cascade, the hero lander scroll/cursor/click loop (CSS keyframes, paused
+  under `prefers-reduced-motion`), the process spine inking in, and one
+  cursor-follow light in the hero. That is the whole list. Adding to it is a
+  decision, not a detail.
 - Hairline rules stay structural. Shadows do nothing on this ground — the
   retheme removed them all rather than tinting them.
 - **The hero ground is clean.** The v1 paper direction's ruled baselines and
   emerald margin rule were retired (late July 2026) because they read as
-  looseleaf paper on the dark ground. Grain, the cursor light, and the framed
-  work carry the hero — don't reintroduce backdrop patterns without asking.
+  looseleaf paper on the dark ground. Grain, the cursor light, and the lander
+  demo carry the hero — don't reintroduce backdrop patterns without asking.
 
 ## Hybrid with Hub (keep this in mind)
 
@@ -98,7 +100,7 @@ edit **this** folder for sales-site UI. Do not merge the two repos unless Josh a
 - Do **not** put scroll-reveal opacity on work panels (off-screen rail cards stay invisible).
 - Reveal and parallax fight each other: `.reveal.is-in` sets `transform: none`,
   which cancels a parallax offset on the same element. Put the reveal on a
-  wrapper and `data-parallax` on the child (see `.hero-frame-wrap`).
+  wrapper and `data-parallax` on the child if you reintroduce parallax.
 - The hero status strip reads live figures from `api.josh.menu/webhooks/status`,
   but the markup ships an honest hardcoded fallback ("4 systems live") and the
   fetch failure is swallowed — a console error here fails `scripts/verify-live.mjs`.
