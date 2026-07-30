@@ -326,7 +326,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .featured { background: var(--ink-2); }
 .feature-card {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); /* ~40% photo / 60% copy */
+  grid-template-columns: minmax(0, 38%) minmax(0, 1fr); /* photo ~38%, copy leads */
   gap: 0;
   align-items: stretch;
   border: 1px solid var(--line);
