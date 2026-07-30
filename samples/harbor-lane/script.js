@@ -61,7 +61,9 @@
       return;
     }
 
-    status.textContent = "Got it. On a real advisor site this would hit their inbox right away. (Demo only for now.)";
+    status.innerHTML =
+      "Got it — this is a demo form, so nothing was emailed. " +
+      '<a class="jm-credit" href="https://josh.menu/contact.html">Contact Josh.Menu →</a>';
     form.reset();
   });
 })();

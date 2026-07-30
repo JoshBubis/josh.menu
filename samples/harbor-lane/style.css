@@ -583,9 +583,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .plan-form .btn { grid-column: 1 / -1; margin-top: 0.25rem; }
 .form-status {
   grid-column: 1 / -1;
-  font-size: 0.92rem;
-  color: var(--seafoam);
+  font-size: 0.95rem;
+  color: var(--foam);
+  line-height: 1.45;
 }
+.form-status a { font-weight: 600; }
 .form-status.is-error { color: #f0a29a; }
 
 .footer {

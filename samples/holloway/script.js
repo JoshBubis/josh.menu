@@ -6,7 +6,6 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var reveals = document.querySelectorAll(".reveal");
 
-  /* Content always visible — IO only soft-animates (Telegram WebView safe). */
   if (!reduce && "IntersectionObserver" in window) {
     var io = new IntersectionObserver(
       function (entries) {
@@ -58,6 +57,7 @@
       return;
     }
 
+    /* Demo only — does not email. Point prospects at the real contact form. */
     status.innerHTML =
       "Got it — this is a demo form, so nothing was emailed. " +
       '<a class="jm-credit" href="https://josh.menu/contact.html">Contact Josh.Menu →</a>';
