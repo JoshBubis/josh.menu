@@ -462,6 +462,9 @@ a {
 .hero-stage {
     min-width: 0;
     width: 100%;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .hero-demo {
@@ -470,6 +473,21 @@ a {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 3px;
+    transition: border-color 0.35s var(--ease);
+}
+
+.hero-stage:hover .hero-demo,
+.hero-stage:focus-visible .hero-demo {
+    border-color: var(--line-strong);
+}
+
+.hero-stage:focus-visible {
+    outline: none;
+}
+
+.hero-stage:focus-visible .hero-demo {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
 }
 
 .hero-demo__chrome {
@@ -712,12 +730,6 @@ a {
     opacity: 0;
     pointer-events: none;
     will-change: transform, opacity;
-}
-
-.hero-demo__caption {
-    margin: 0.55rem 0 0.1rem;
-    font-size: 0.78rem;
-    color: var(--muted);
 }
 
 /* Loop: land on hero → cursor clicks CTA → scroll the page → return */
