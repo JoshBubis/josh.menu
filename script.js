@@ -65,33 +65,40 @@
     });
   });
 
-  /* Scroll reveals — fire once, never reverse (avoids jolt on scroll-up) */
-  if (!reduceMotion) {
-    var reveals = document.querySelectorAll("[data-reveal]");
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-in");
-              io.unobserve(entry.target);
-            }
-          });
-        },
-        { rootMargin: "0px 0px -4% 0px", threshold: 0.08 }
-      );
-      reveals.forEach(function (el) {
-        io.observe(el);
-      });
-    } else {
-      reveals.forEach(function (el) {
-        el.classList.add("is-in");
-      });
-    }
-  } else {
-    document.querySelectorAll("[data-reveal]").forEach(function (el) {
+  /* Scroll reveals — fire once, never reverse (avoids jolt on scroll-up).
+     Telegram / in-app WebViews often never fire IntersectionObserver; a
+     failsafe keeps the page from staying blank after the hero. */
+  var reveals = document.querySelectorAll("[data-reveal]");
+  function revealAll() {
+    reveals.forEach(function (el) {
       el.classList.add("is-in");
     });
+  }
+  if (reduceMotion) {
+    revealAll();
+  } else if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-in");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -4% 0px", threshold: 0.08 }
+    );
+    reveals.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.95 && r.bottom > 0) {
+        el.classList.add("is-in");
+      } else {
+        io.observe(el);
+      }
+    });
+    window.setTimeout(revealAll, 1800);
+  } else {
+    revealAll();
   }
 
   /* Work rail: native scroll-snap — movement is user-initiated only */

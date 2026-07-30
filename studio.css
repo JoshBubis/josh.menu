@@ -713,6 +713,118 @@ main > .section {
     color: var(--support);
 }
 
+/* —— Sample business sites (fictional demos) —— */
+.samples-section {
+    border-top: 1px solid var(--line);
+}
+
+.samples-grid {
+    list-style: none;
+    display: grid;
+    gap: 1.25rem;
+    max-width: var(--max);
+}
+
+@media (min-width: 48rem) {
+    .samples-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.1rem;
+    }
+}
+
+.sample-card {
+    margin: 0;
+}
+
+.sample-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.sample-card__link:hover {
+    border-color: rgba(16, 213, 146, 0.45);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .sample-card__link:hover {
+        transform: translateY(-2px);
+    }
+}
+
+.sample-card__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--ground);
+}
+
+.sample-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sample-card__badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ground);
+    background: var(--accent);
+    padding: 0.28rem 0.5rem;
+}
+
+.sample-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.15rem 1.15rem 1.25rem;
+    flex: 1;
+}
+
+.sample-card__kind {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.sample-card__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+}
+
+.sample-card__desc {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-top: 0.15rem;
+    flex: 1;
+}
+
+.sample-card__cta {
+    margin-top: 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.sample-card__link:hover .sample-card__cta {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
 /* —— Work rail —— */
 .work-section {
     padding-right: 0;

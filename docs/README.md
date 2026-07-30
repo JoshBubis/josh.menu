@@ -13,9 +13,10 @@ work rail carries **Visit** links only — the old **Source** links pointed at
 
 ### Structure
 
-- `index.html` — hero (two-column: copy left, framed product screenshot right; clean ground, maker's line, status strip), work rail, **Systems** (capabilities: chat, forms/Slack, payments, APIs — below the rail so the portfolio isn’t mistaken for the whole menu; links the Harbor Lane travel-advisor **sample**), approach, process, about, CTA
+- `index.html` — hero (two-column: copy left, framed product screenshot right; clean ground, maker's line, status strip), work rail, **Systems** (capabilities) and a **Samples** strip (Travel / Contractor / Law fictional demos — separate from Live work), approach, process, about, CTA
 - `samples/harbor-lane/` — fictional cruise-advisor demo (Galveston specialty); also in `/Users/jbair/Projects/clients/harborlanetravel.com`
 - `samples/northline/` — fictional GC demo (Unsplash stock, not Urban Contracting); also in `/Users/jbair/Projects/clients/northlinecontracting.com`
+- Homepage `#samples` — three demo cards (Travel, Contractor, Law), kept off the work rail
 - `samples/holloway/` — fictional law / professional-services demo; also in `/Users/jbair/Projects/clients/hollowaylaw.com`
 - `contact.html` + `contact.js` — form UI → Hub `/webhooks/contact` on `api.josh.menu`
 - `chat.js` — concierge chat widget → Hub `/webhooks/chat` (polling). Public (`BETA_GATE = false`). `[data-open-chat]` anywhere opens the panel (used by Systems CTA)
