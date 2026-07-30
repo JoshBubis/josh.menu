@@ -1,6 +1,6 @@
 # josh.menu
 
-Static GitHub Pages sales site for the **Josh Menu** studio.
+Static GitHub Pages sales site for the **Josh.Menu** studio.
 
 **Hub hybrid:** public marketing lives here; Studio, contracts, contact verify,
 and Vault live in `/Users/jbair/Projects/hub`. See root [`AGENTS.md`](../AGENTS.md)

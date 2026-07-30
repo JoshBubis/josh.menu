@@ -106,7 +106,24 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-bottom: 1px solid rgba(126, 200, 196, 0.25);
   color: var(--foam-dim);
 }
-.demo-ribbon a { color: var(--seafoam); font-weight: 500; }
+.jm-credit {
+  color: #10d592;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.jm-credit:hover {
+  color: #3ee6b0;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+.demo-ribbon .jm-credit { font-weight: 600; }
+.plan__credit {
+  display: block;
+  margin-top: 0.65rem;
+  font-size: 0.9rem;
+  color: var(--foam-dim);
+}
 
 /* —— Topbar —— */
 .topbar {

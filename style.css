@@ -153,6 +153,11 @@ a {
     text-decoration: none;
 }
 
+.wordmark__dot,
+.jm-name {
+    color: var(--accent);
+}
+
 .site-nav {
     display: flex;
     flex-wrap: wrap;

@@ -60,7 +60,7 @@
       return;
     }
 
-    status.textContent = "Got it — on a live advisor site this would reach Slack in seconds. (Demo mode.)";
+    status.textContent = "Got it. On a real advisor site this would hit their inbox right away. (Demo only for now.)";
     form.reset();
   });
 })();
