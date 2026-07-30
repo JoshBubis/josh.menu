@@ -102,8 +102,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
   font-size: 0.78rem;
   letter-spacing: 0.04em;
   padding: 0.45rem 1rem;
-  background: rgba(126, 200, 196, 0.12);
-  border-bottom: 1px solid rgba(126, 200, 196, 0.25);
+  /* Opaque enough that scrolled copy doesn’t ghost through the sample bar */
+  background: #0c1a22;
+  border-bottom: 1px solid rgba(126, 200, 196, 0.28);
   color: var(--foam-dim);
 }
 .jm-credit {
@@ -407,9 +408,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   color: var(--champagne);
   margin-bottom: 0.45rem;
 }
-.sail-grid--three {
-  grid-template-columns: repeat(3, 1fr);
-}
 .feature-card {
   display: grid;
   grid-template-columns: minmax(0, 40%) minmax(0, 1fr);
@@ -481,6 +479,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
+}
+/* Must follow .sail-grid so the 3-up sample row isn’t overridden back to 2 cols */
+.sail-grid--three {
+  grid-template-columns: repeat(3, 1fr);
 }
 .sail-card {
   border-radius: 1rem;
@@ -610,12 +612,22 @@ button, input, select, textarea { font: inherit; color: inherit; }
   max-width: 28rem;
 }
 
-/* —— Reveal —— */
+/* —— Sticky offset + reveal —— */
+/* Ribbon (~35px) + topbar (~65px) — keep in-page anchors / section heads clear */
+#galveston,
+#lines,
+#sailings,
+#how,
+#plan {
+  scroll-margin-top: 7rem;
+}
+
 .reveal {
   opacity: 1;
   transform: none;
 }
-.js-ready .reveal {
+/* Hero copy must paint immediately; below-fold can still cascade in */
+.js-ready .reveal:not(.hero__eyebrow):not(.hero__title):not(.hero__sub):not(.hero__actions) {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.7s ease, transform 0.7s ease;
