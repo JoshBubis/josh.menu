@@ -14,7 +14,8 @@ work rail carries **Visit** links only — the old **Source** links pointed at
 ### Structure
 
 - `index.html` — hero (two-column: copy left, framed product screenshot right; clean ground, maker's line, status strip), work rail, **Systems** (capabilities: chat, forms/Slack, payments, APIs — below the rail so the portfolio isn’t mistaken for the whole menu; links the Harbor Lane travel-advisor **sample**), approach, process, about, CTA
-- `samples/harbor-lane/` — fictional cruise-advisor demo (Liberty-class pitch); source of truth also in `/Users/jbair/Projects/clients/harborlanetravel.com`
+- `samples/harbor-lane/` — fictional cruise-advisor demo (Galveston specialty); also in `/Users/jbair/Projects/clients/harborlanetravel.com`
+- `samples/northline/` — fictional GC demo (Unsplash stock, not Urban Contracting); also in `/Users/jbair/Projects/clients/northlinecontracting.com`
 - `contact.html` + `contact.js` — form UI → Hub `/webhooks/contact` on `api.josh.menu`
 - `chat.js` — concierge chat widget → Hub `/webhooks/chat` (polling). Public (`BETA_GATE = false`). `[data-open-chat]` anywhere opens the panel (used by Systems CTA)
 - `style.css` / `studio.css` — keep `studio.css` a copy of `style.css`. Design tokens are the `:root` block at the top; the visual direction they encode is documented in [`AGENTS.md`](../AGENTS.md) § Design language
