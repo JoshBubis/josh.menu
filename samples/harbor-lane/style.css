@@ -622,25 +622,27 @@ button, input, select, textarea { font: inherit; color: inherit; }
   scroll-margin-top: 7rem;
 }
 
+/* Reveals must NEVER start at opacity: 0.
+   Telegram’s iOS WebView (and “Open in Safari” handoff from it) often never
+   fires IntersectionObserver — content would stay blank forever. Animation is
+   optional enhancement only when .is-in lands. */
 .reveal {
   opacity: 1;
   transform: none;
 }
-/* Hero copy must paint immediately; below-fold can still cascade in */
-.js-ready .reveal:not(.hero__eyebrow):not(.hero__title):not(.hero__sub):not(.hero__actions) {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+@media (prefers-reduced-motion: no-preference) {
+  .js-ready .reveal.is-in {
+    animation: hl-fade-up 0.55s ease both;
+  }
 }
-.js-ready .reveal.is-in {
-  opacity: 1;
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .js-ready .reveal {
+@keyframes hl-fade-up {
+  from {
+    opacity: 0.35;
+    transform: translateY(10px);
+  }
+  to {
     opacity: 1;
     transform: none;
-    transition: none;
   }
 }
 
