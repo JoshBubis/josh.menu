@@ -5,7 +5,18 @@
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var reveals = document.querySelectorAll(".reveal");
-  if (!reduce && "IntersectionObserver" in window) {
+  var ua = navigator.userAgent || "";
+  /* Telegram / Instagram / Facebook in-app WebViews often claim IntersectionObserver
+     but never fire callbacks on scroll — content stuck at opacity: 0. Safari is fine. */
+  var flakyIO = /Telegram|FBAN|FBAV|FBIOS|Instagram|Line\//i.test(ua);
+
+  function revealAll() {
+    reveals.forEach(function (el) { el.classList.add("is-in"); });
+  }
+
+  if (reduce || flakyIO || !("IntersectionObserver" in window)) {
+    revealAll();
+  } else {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
@@ -15,11 +26,12 @@
           }
         });
       },
-      { rootMargin: "-80px 0px -5% 0px", threshold: 0.08 }
+      /* Avoid negative top rootMargin — sticky chrome + broken IO = blank page */
+      { rootMargin: "0px 0px -4% 0px", threshold: 0.01 }
     );
     reveals.forEach(function (el) { io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add("is-in"); });
+    /* Safety net if IO stalls (other odd WebViews) */
+    window.setTimeout(revealAll, 1500);
   }
 
   var toggle = document.getElementById("nav-toggle");
