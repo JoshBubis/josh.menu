@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample sites — Josh.Menu</title>
+    <meta name="description"
+        content="Fictional demo sites by Josh.Menu — a travel advisor, a contractor, and a law firm. Three different shapes on purpose.">
+    <link rel="canonical" href="https://josh.menu/samples/">
+    <meta name="theme-color" content="#080b0a">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://josh.menu/samples/">
+    <meta property="og:title" content="Sample sites — Josh.Menu">
+    <meta property="og:description"
+        content="Browse fictional demos: travel, contractor, and law — not client case studies.">
+    <link rel="icon" href="/favicon.svg?v=jm2" type="image/svg+xml">
+
+    <link rel="stylesheet" href="../fonts.css">
+    <link rel="stylesheet" href="../style.css?v=jm14">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <a class="wordmark" href="/">Josh<span class="wordmark__dot">.</span>Menu</a>
+        <nav class="site-nav" aria-label="Primary">
+            <a href="/#work">Work</a>
+            <a href="/samples/" aria-current="page">Samples</a>
+            <a href="/#systems">Systems</a>
+            <a href="/#approach">Approach</a>
+            <a href="/#about">About</a>
+            <a href="/contact.html" class="nav-cta">Start a project</a>
+        </nav>
+    </header>
+
+    <main id="main" class="samples-index">
+        <div class="section-head">
+            <p class="eyebrow">Sample sites</p>
+            <h1 class="section-title">For businesses like yours.</h1>
+            <p class="section-lead">Fictional demos — not client case studies. Three different shapes on purpose: a browse board, a classic photo lander, and a quiet editorial firm site.</p>
+        </div>
+
+        <ul class="samples-grid">
+            <li class="sample-card">
+                <a class="sample-card__link" href="/samples/harbor-lane/">
+                    <div class="sample-card__media">
+                        <img src="/samples/harbor-lane/images/sailing-liberty.jpg?v=3" alt="" width="1400" height="900" loading="eager" decoding="async">
+                        <span class="sample-card__badge">Sample</span>
+                    </div>
+                    <div class="sample-card__body">
+                        <p class="sample-card__kind">Travel · browse-led</p>
+                        <h2 class="sample-card__name">Harbor Lane Travel</h2>
+                        <p class="sample-card__desc">Sailings board above the fold — filter by line, then plan with a person.</p>
+                        <span class="sample-card__cta">Open demo<span aria-hidden="true"> →</span></span>
+                    </div>
+                </a>
+            </li>
+            <li class="sample-card">
+                <a class="sample-card__link" href="/samples/northline/">
+                    <div class="sample-card__media">
+                        <img src="/samples/northline/images/hero.jpg" alt="" width="2000" height="1333" loading="lazy" decoding="async">
+                        <span class="sample-card__badge">Sample</span>
+                    </div>
+                    <div class="sample-card__body">
+                        <p class="sample-card__kind">Contractor · classic lander</p>
+                        <h2 class="sample-card__name">Northline Contracting</h2>
+                        <p class="sample-card__desc">Full-bleed work photo, services, estimate form — the familiar trade-site shape.</p>
+                        <span class="sample-card__cta">Open demo<span aria-hidden="true"> →</span></span>
+                    </div>
+                </a>
+            </li>
+            <li class="sample-card">
+                <a class="sample-card__link" href="/samples/holloway/">
+                    <div class="sample-card__media">
+                        <img src="/samples/holloway/images/meeting.jpg" alt="" width="1400" height="934" loading="lazy" decoding="async">
+                        <span class="sample-card__badge">Sample</span>
+                    </div>
+                    <div class="sample-card__body">
+                        <p class="sample-card__kind">Law · editorial</p>
+                        <h2 class="sample-card__name">Holloway Law</h2>
+                        <p class="sample-card__desc">Type-first, paper &amp; ink — practice as a reading list, not a card grid.</p>
+                        <span class="sample-card__cta">Open demo<span aria-hidden="true"> →</span></span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        <p class="samples-index__foot">
+            Want a site shaped like one of these — or something else entirely?
+            <a href="/contact.html">Start a project</a>
+            ·
+            <a href="/">Back home</a>
+        </p>
+    </main>
+
+    <footer class="site-footer">
+        <span>© <span id="year"></span> <span class="jm-name">Josh.Menu</span></span>
+        <div class="footer-links">
+            <a href="mailto:josh@josh.menu">josh@josh.menu</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

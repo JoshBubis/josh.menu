@@ -87,11 +87,12 @@ edit **this** folder for sales-site UI. Do not merge the two repos unless Josh a
 
 1. Bump `?v=` on `style.css` / `script.js` (and images if JPEGs changed).
 2. `cp style.css studio.css` when styles change.
-3. `node scripts/verify-live.mjs http://localhost:8899` against a local
+3. Keep root `404.html` self-contained (inline CSS) — Pages serves it for missing paths. Keep `samples/index.html` so `/samples/` is not a 404.
+4. `node scripts/verify-live.mjs http://localhost:8899` against a local
    `python3 -m http.server 8899` — covers desktop, mobile, and reduced-motion.
-4. Push `main`. CDN/HTML can lag ~10 minutes.
-5. Re-run `node scripts/verify-live.mjs` with no argument to check production.
-6. Update `docs/README.md` when structure/behavior changes.
+5. Push `main`. CDN/HTML can lag ~10 minutes.
+6. Re-run `node scripts/verify-live.mjs` with no argument to check production.
+7. Update `docs/README.md` when structure/behavior changes.
 
 ## Easy foot-guns
 

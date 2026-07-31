@@ -1843,6 +1843,39 @@ main > .section {
 }
 
 /* —— Contact page —— */
+/* Samples directory (/samples/) — same chrome as contact, full card grid */
+.samples-index {
+    min-height: 100vh;
+    padding: 7rem var(--pad) 4rem;
+    width: min(100%, var(--max));
+    margin: 0 auto;
+}
+
+.samples-index .section-head {
+    margin-bottom: 2.25rem;
+    max-width: 40rem;
+}
+
+.samples-index .section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.samples-index__foot {
+    margin-top: 2.75rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.samples-index__foot a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.samples-index__foot a:hover {
+    text-decoration: underline;
+}
+
 .contact-page {
     min-height: 100vh;
     padding: 7rem var(--pad) 4rem;

@@ -17,7 +17,8 @@ work rail carries **Visit** links only — the old **Source** links pointed at
 - `samples/harbor-lane/` — browse-led cruise demo (sailings board + filters); also in `/Users/jbair/Projects/clients/harborlanetravel.com`
 - `samples/northline/` — classic full-bleed GC lander (Unsplash stock, not Urban Contracting); also in `/Users/jbair/Projects/clients/northlinecontracting.com`
 - `samples/holloway/` — quiet type-led law/editorial demo; also in `/Users/jbair/Projects/clients/hollowaylaw.com`
-- Homepage `#samples` — three deliberately different shapes (browse / classic / editorial), kept off the work rail
+- Homepage `#samples` and `/samples/` directory — three deliberately different shapes (browse / classic / editorial), kept off the work rail
+- Root `404.html` — branded Pages 404 (GitHub’s stock page otherwise)
 - `contact.html` + `contact.js` — form UI → Hub `/webhooks/contact` on `api.josh.menu`
 - `chat.js` — concierge chat widget → Hub `/webhooks/chat` (polling). Public (`BETA_GATE = false`). `[data-open-chat]` anywhere opens the panel (used by Systems CTA)
 - `style.css` / `studio.css` — keep `studio.css` a copy of `style.css`. Design tokens are the `:root` block at the top; the visual direction they encode is documented in [`AGENTS.md`](../AGENTS.md) § Design language
