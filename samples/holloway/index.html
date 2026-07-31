@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Holloway Law — Clear counsel for real life</title>
-  <meta name="description" content="Independent attorneys for family, business, and estate matters. Straight answers, plain language, and a consult when you’re ready — not a maze of intake bots.">
-  <meta name="theme-color" content="#12151c">
+  <meta name="description" content="Independent attorneys for family, business, and estate matters. Straight answers, plain language, and a consult when you’re ready.">
+  <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=1">
+  <link rel="stylesheet" href="style.css?v=10">
   <link rel="canonical" href="https://josh.menu/samples/holloway/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Holloway Law — sample site">
-  <meta property="og:description" content="Sample law / professional-services site by Josh.Menu.">
+  <meta property="og:description" content="Sample law / professional-services site by Josh.Menu — quiet, editorial, trust-first.">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -20,21 +20,18 @@
     Sample site · Built by <a class="jm-credit" href="https://josh.menu" target="_blank" rel="noopener noreferrer">Josh.Menu</a>
   </p>
 
-  <header class="topbar" id="top">
-    <div class="shell topbar__inner">
-      <a class="brand" href="#top" aria-label="Holloway Law — home">
-        <span class="brand__mark" aria-hidden="true"></span>
-        <span class="brand__word">Holloway<em>Law</em></span>
-      </a>
-      <nav class="topbar__nav" aria-label="Primary">
+  <header class="mast" id="top">
+    <div class="shell mast__inner">
+      <a class="wordmark" href="#top">Holloway</a>
+      <nav class="mast__nav" aria-label="Primary">
         <a href="#practice">Practice</a>
         <a href="#approach">Approach</a>
         <a href="#about">About</a>
         <a href="#consult">Consult</a>
       </nav>
-      <a class="btn btn--brass topbar__cta" href="#consult">Request a consult</a>
+      <a class="text-cta" href="#consult">Request a consult</a>
       <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-        <span></span><span></span><span></span>
+        <span></span><span></span>
       </button>
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile" hidden>
@@ -47,78 +44,68 @@
 
   <main id="main">
 
-    <section class="hero" aria-label="Introduction">
-      <div class="hero__media" aria-hidden="true">
-        <img class="hero__img" src="images/hero.jpg" alt="" width="2000" height="1335" fetchpriority="high" decoding="async">
-      </div>
-      <div class="hero__veil" aria-hidden="true"></div>
-      <div class="shell hero__inner">
-        <p class="hero__eyebrow reveal">Attorneys · Texas</p>
-        <h1 class="hero__title reveal">
-          Legal help that<br>
-          <em>sounds like a person.</em>
-        </h1>
-        <p class="hero__sub reveal">
+    <!-- Type-led opening — no photo hero -->
+    <section class="lede" aria-label="Introduction">
+      <div class="shell lede__inner">
+        <p class="lede__kicker">Attorneys · Texas</p>
+        <h1 class="lede__title">Legal help that sounds like a person.</h1>
+        <p class="lede__deck">
           Family, business, and estate matters — explained in plain English.
           You’ll know what’s urgent, what’s optional, and what it might cost
           before you retain anyone.
         </p>
-        <div class="hero__actions reveal">
-          <a class="btn btn--brass btn--lg" href="#consult">Request a consult</a>
-          <a class="btn btn--ghost btn--lg" href="#practice">See practice areas</a>
-        </div>
+        <p class="lede__actions">
+          <a class="btn" href="#consult">Request a consult</a>
+          <a class="link-quiet" href="#practice">See practice areas</a>
+        </p>
       </div>
     </section>
 
     <section id="practice" class="section practice">
       <div class="shell">
-        <div class="section-head reveal">
-          <p class="eyebrow">Practice areas</p>
-          <h2 class="section-title">Where we spend most of our time.</h2>
-          <p class="section-lead">We’re not a megafirm directory. These are the matters we take on regularly — and we’re honest when something belongs with another lawyer.</p>
-        </div>
-        <ul class="practice-grid">
-          <li class="practice-card reveal">
-            <h3>Family</h3>
-            <p>Divorce, custody, and the paperwork that follows. Steady guidance when everything else feels loud.</p>
-          </li>
-          <li class="practice-card reveal">
-            <h3>Business</h3>
-            <p>Forming entities, contracts, and disputes between partners or vendors — before they get expensive.</p>
-          </li>
-          <li class="practice-card reveal">
-            <h3>Estates</h3>
-            <p>Wills, probate, and planning conversations families put off until they can’t.</p>
-          </li>
-          <li class="practice-card reveal">
-            <h3>Consults &amp; referrals</h3>
-            <p>Not sure where you fit? Start with a consult. If we’re not the right fit, we’ll say so and point you somewhere better.</p>
-          </li>
-        </ul>
+        <header class="section-head">
+          <p class="kicker">Practice areas</p>
+          <h2>Where we spend most of our time.</h2>
+        </header>
+        <dl class="defs">
+          <div class="defs__row">
+            <dt>Family</dt>
+            <dd>Divorce, custody, and the paperwork that follows. Steady guidance when everything else feels loud.</dd>
+          </div>
+          <div class="defs__row">
+            <dt>Business</dt>
+            <dd>Forming entities, contracts, and disputes between partners or vendors — before they get expensive.</dd>
+          </div>
+          <div class="defs__row">
+            <dt>Estates</dt>
+            <dd>Wills, probate, and planning conversations families put off until they can’t.</dd>
+          </div>
+          <div class="defs__row">
+            <dt>Consults &amp; referrals</dt>
+            <dd>Not sure where you fit? Start with a consult. If we’re not the right fit, we’ll say so and point you somewhere better.</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
     <section id="approach" class="section approach">
-      <div class="shell approach__grid">
-        <div class="section-head reveal">
-          <p class="eyebrow">Approach</p>
-          <h2 class="section-title">No maze. No mystery billables on day one.</h2>
-          <p class="section-lead">You get a clear next step after we talk — retain, wait, or go elsewhere. That’s the product.</p>
-        </div>
-        <ol class="steps">
-          <li class="steps__item reveal">
-            <span class="steps__num">01</span>
-            <h3>Tell us what’s going on</h3>
+      <div class="shell approach__inner">
+        <header class="section-head">
+          <p class="kicker">Approach</p>
+          <h2>No maze. No mystery billables on day one.</h2>
+          <p class="deck">You get a clear next step after we talk — retain, wait, or go elsewhere.</p>
+        </header>
+        <ol class="prose-steps">
+          <li>
+            <h3><span>1.</span> Tell us what’s going on</h3>
             <p>A short note is enough. Deadlines matter — mention anything with a court date or filing window.</p>
           </li>
-          <li class="steps__item reveal">
-            <span class="steps__num">02</span>
-            <h3>We scope the consult</h3>
+          <li>
+            <h3><span>2.</span> We scope the consult</h3>
             <p>You’ll know if we can help, roughly what engagement looks like, and what to bring.</p>
           </li>
-          <li class="steps__item reveal">
-            <span class="steps__num">03</span>
-            <h3>Decide with eyes open</h3>
+          <li>
+            <h3><span>3.</span> Decide with eyes open</h3>
             <p>Retain if it’s a fit. If not, you leave with a clearer map — not a guilt trip.</p>
           </li>
         </ol>
@@ -127,12 +114,9 @@
 
     <section id="about" class="section about">
       <div class="shell about__grid">
-        <div class="about__media reveal">
-          <img src="images/meeting.jpg" alt="Professional meeting over documents" width="1400" height="934" loading="lazy" decoding="async">
-        </div>
-        <div class="about__copy reveal">
-          <p class="eyebrow">The firm</p>
-          <h2 class="section-title">Small enough to answer the phone.</h2>
+        <div class="about__copy">
+          <p class="kicker">The firm</p>
+          <h2>Small enough to answer the phone.</h2>
           <p>
             Holloway is a fictional sample practice for a Josh.Menu demo — the kind of
             site a solo or small firm would use to look credible, explain practice areas,
@@ -140,31 +124,28 @@
           </p>
           <p>
             On a live firm site, this block would carry your bio, bar admissions, and
-            the languages or counties you actually serve.
+            the counties you actually serve.
           </p>
         </div>
-      </div>
-    </section>
-
-    <section class="band reveal">
-      <div class="shell band__inner">
-        <img src="images/courthouse.jpg" alt="" width="1400" height="933" loading="lazy" decoding="async">
-        <p>Independent counsel. Not a call center. Not a legal marketplace.</p>
+        <figure class="about__figure">
+          <img src="images/meeting.jpg" alt="Quiet meeting over documents" width="1400" height="934" loading="lazy" decoding="async">
+          <figcaption>Independent counsel. Not a call center.</figcaption>
+        </figure>
       </div>
     </section>
 
     <section id="consult" class="section consult">
       <div class="shell consult__grid">
-        <div class="consult__copy reveal">
-          <p class="eyebrow">Consult request</p>
-          <h2 class="section-title">Start with the facts you have.</h2>
-          <p class="section-lead">
+        <div class="consult__copy">
+          <p class="kicker">Consult request</p>
+          <h2>Start with the facts you have.</h2>
+          <p class="deck">
             This sample form does not email anyone — it’s here to show the flow.
             Want a site like this for your practice?
-            <span class="plan__credit"><a class="jm-credit" href="https://josh.menu/contact.html">Contact Josh.Menu →</a></span>
+            <a class="jm-credit" href="https://josh.menu/contact.html">Contact Josh.Menu →</a>
           </p>
         </div>
-        <form class="plan-form reveal" id="plan-form" novalidate>
+        <form class="form" id="plan-form" novalidate>
           <div class="field">
             <label for="name">Name</label>
             <input id="name" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Alex Morgan">
@@ -190,7 +171,7 @@
             <label for="notes">What’s going on</label>
             <textarea id="notes" name="notes" rows="4" maxlength="800" placeholder="Brief summary, any deadlines, county if known…"></textarea>
           </div>
-          <button class="btn btn--brass btn--lg btn--block" type="submit">Send consult request</button>
+          <button class="btn btn--block" type="submit">Send consult request</button>
           <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
         </form>
       </div>
@@ -200,18 +181,15 @@
 
   <footer class="footer">
     <div class="shell footer__inner">
-      <div>
-        <p class="footer__brand">Holloway Law</p>
-        <p class="footer__fine">Fictional sample firm for Josh.Menu demos. Not a real law practice. Not legal advice.</p>
-      </div>
+      <p class="footer__brand">Holloway Law</p>
+      <p class="footer__fine">Fictional sample firm for Josh.Menu demos. Not a real law practice. Not legal advice.</p>
       <p class="footer__demo">
-        Sample site by
+        Sample by
         <a class="jm-credit" href="https://josh.menu" target="_blank" rel="noopener noreferrer">Josh.Menu</a>
-        — ask about a site like this for your practice.
       </p>
     </div>
   </footer>
 
-  <script src="script.js?v=1" defer></script>
+  <script src="script.js?v=2" defer></script>
 </body>
 </html>

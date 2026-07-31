@@ -4,15 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Harbor Lane Travel — Galveston cruise advisors</title>
-  <meta name="description" content="Independent cruise advisors specializing in sailings from Galveston — Royal Caribbean, Carnival, Disney, and more. Drive to the pier, Western Caribbean favorites, and help when plans change.">
-  <meta name="theme-color" content="#0a1628">
+  <meta name="description" content="Independent cruise advisors specializing in sailings from Galveston — browse sample trips, compare lines, and plan with a real person.">
+  <meta name="theme-color" content="#f4f7f8">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="stylesheet" href="style.css?v=20">
   <link rel="canonical" href="https://josh.menu/samples/harbor-lane/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Harbor Lane Travel — Galveston cruise advisors">
-  <meta property="og:description" content="We specialize in cruises out of Galveston — and we’ll still help if you’re sailing from somewhere else.">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:description" content="Browse sailings, compare lines, plan with a person — not a booking engine.">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -25,24 +24,22 @@
     <div class="shell topbar__inner">
       <a class="brand" href="#top" aria-label="Harbor Lane Travel — home">
         <span class="brand__mark" aria-hidden="true"></span>
-        <span class="brand__word">Harbor Lane<em>Travel</em></span>
+        Harbor Lane
       </a>
       <nav class="topbar__nav" aria-label="Primary">
-        <a href="#galveston">Galveston</a>
-        <a href="#lines">Cruise lines</a>
-        <a href="#sailings">Sailings</a>
+        <a href="#board">Sailings</a>
+        <a href="#lines">Lines</a>
         <a href="#how">How it works</a>
         <a href="#plan">Plan a trip</a>
       </nav>
-      <a class="btn btn--gold topbar__cta" href="#plan">Plan my trip</a>
+      <a class="btn btn--teal topbar__cta" href="#plan">Plan my trip</a>
       <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile" hidden>
-      <a href="#galveston">Galveston</a>
-      <a href="#lines">Cruise lines</a>
-      <a href="#sailings">Sailings</a>
+      <a href="#board">Sailings</a>
+      <a href="#lines">Lines</a>
       <a href="#how">How it works</a>
       <a href="#plan">Plan a trip</a>
     </nav>
@@ -50,191 +47,131 @@
 
   <main id="main">
 
-    <section class="hero" aria-label="Introduction">
-      <div class="hero__media" aria-hidden="true">
-        <img
-          class="hero__img"
-          src="images/hero.jpg"
-          alt=""
-          width="2000"
-          height="1333"
-          fetchpriority="high"
-          decoding="async">
-      </div>
-      <div class="hero__veil" aria-hidden="true"></div>
-      <div class="shell hero__inner">
-        <p class="hero__eyebrow reveal">Independent cruise advisors · Galveston specialists</p>
-        <h1 class="hero__title reveal">
-          Cruises out of Galveston,<br>
-          <em>without guessing which ship.</em>
-        </h1>
-        <p class="hero__sub reveal">
-          Most of our clients drive to the Port of Galveston and hop a Western
-          Caribbean sailing — Royal Caribbean, Carnival, Disney, and friends.
-          Need Miami, Port Canaveral, or a Mediterranean week? We book those too.
-          Galveston is just where we live and breathe.
-        </p>
-        <div class="hero__actions reveal">
-          <a class="btn btn--gold btn--lg" href="#plan">Plan my trip</a>
-          <a class="btn btn--ghost btn--lg" href="#sailings">See sample sailings</a>
+    <!-- Browse-led hero: pitch + live-feeling sailings board above the fold -->
+    <section class="intro" aria-label="Introduction">
+      <div class="shell intro__grid">
+        <div class="intro__copy">
+          <p class="eyebrow">Galveston specialists · multi-line</p>
+          <h1 class="intro__title">Find a sailing.<br>Then talk to a person.</h1>
+          <p class="intro__sub">
+            Browse the kinds of Galveston trips we book every week — then tell us
+            your dates. We compare Royal, Carnival, Disney, and beyond.
+          </p>
+          <div class="intro__actions">
+            <a class="btn btn--teal btn--lg" href="#board">Browse sailings</a>
+            <a class="btn btn--ghost btn--lg" href="#plan">Skip to plan</a>
+          </div>
+          <p class="intro__note">Schedules move — this board is sample shapes, not live inventory.</p>
         </div>
+
+        <aside class="board-panel" id="board" aria-label="Sample sailings board">
+          <div class="board-panel__head">
+            <h2 class="board-panel__title">Sailings board</h2>
+            <p class="board-panel__hint">Filter by line</p>
+          </div>
+          <div class="chips" role="group" aria-label="Filter sailings">
+            <button type="button" class="chip is-active" data-filter="all">All</button>
+            <button type="button" class="chip" data-filter="royal">Royal</button>
+            <button type="button" class="chip" data-filter="carnival">Carnival</button>
+            <button type="button" class="chip" data-filter="disney">Disney</button>
+            <button type="button" class="chip" data-filter="other">Beyond TX</button>
+          </div>
+          <ul class="sail-board">
+            <li class="sail-row" data-line="royal">
+              <img src="images/sailing-liberty.jpg?v=3" alt="" width="280" height="180" loading="eager" decoding="async">
+              <div class="sail-row__body">
+                <p class="sail-row__line">Royal Caribbean · Galveston</p>
+                <h3>Liberty of the Seas · Western Caribbean</h3>
+                <p class="sail-row__meta">3–7 nights · Cozumel · Roatán · Costa Maya</p>
+              </div>
+              <a class="sail-row__ask" href="#plan">Ask</a>
+            </li>
+            <li class="sail-row" data-line="carnival">
+              <img src="images/sailing-caribbean.jpg" alt="" width="280" height="180" loading="eager" decoding="async">
+              <div class="sail-row__body">
+                <p class="sail-row__line">Carnival · Galveston</p>
+                <h3>Western Caribbean week</h3>
+                <p class="sail-row__meta">4–7 nights · Jubilee · Breeze · Dream</p>
+              </div>
+              <a class="sail-row__ask" href="#plan">Ask</a>
+            </li>
+            <li class="sail-row" data-line="disney">
+              <img src="images/sailing-disney.jpg" alt="" width="280" height="180" loading="lazy" decoding="async">
+              <div class="sail-row__body">
+                <p class="sail-row__line">Disney · seasonal Galveston</p>
+                <h3>Disney Magic weekends &amp; weeks</h3>
+                <p class="sail-row__meta">4–7 nights · Progreso · Cozumel</p>
+              </div>
+              <a class="sail-row__ask" href="#plan">Ask</a>
+            </li>
+            <li class="sail-row" data-line="other">
+              <img src="images/sailing-med.jpg" alt="" width="280" height="180" loading="lazy" decoding="async">
+              <div class="sail-row__body">
+                <p class="sail-row__line">Beyond Galveston</p>
+                <h3>Other homeports &amp; longer trips</h3>
+                <p class="sail-row__meta">Med · Alaska · Florida · river</p>
+              </div>
+              <a class="sail-row__ask" href="#plan">Ask</a>
+            </li>
+          </ul>
+        </aside>
       </div>
     </section>
 
-    <section id="galveston" class="section galveston">
-      <div class="shell galveston__grid">
-        <div class="section-head reveal">
-          <p class="eyebrow">Why Galveston</p>
-          <h2 class="section-title">Texas’s homeport — short flights, easy drives, real Caribbean.</h2>
-          <p class="section-lead">
-            For a lot of Texas and Gulf Coast families, Galveston beats flying to
-            Florida just to get on a ship. Three- to seven-night Western Caribbean
-            sailings are the bread and butter: Cozumel, Costa Maya, Roatán, Belize,
-            Progresso — plus weekend getaways when you only have a few days.
-          </p>
-        </div>
-        <ul class="why-list reveal">
-          <li>
-            <strong>Drive-up embarkation</strong>
-            <span>Park near the pier (or we’ll help with hotels + transfers) and skip the airport scramble.</span>
-          </li>
-          <li>
-            <strong>Houston-area airports</strong>
-            <span>Flying in? IAH and HOU are close enough that pre-cruise nights are easy to plan.</span>
-          </li>
-          <li>
-            <strong>Lineup that actually rotates</strong>
-            <span>Carnival keeps several ships here year-round. Royal and Disney rotate favorites like Liberty, Mariner, Symphony, and Magic seasonally.</span>
-          </li>
-          <li>
-            <strong>We still book elsewhere</strong>
-            <span>Alaska, Mediterranean, Bahamas from Florida — say the word. Galveston is the specialty, not the cage.</span>
-          </li>
-        </ul>
+    <section class="strip" aria-label="Why Galveston">
+      <div class="shell strip__inner">
+        <p><strong>Why Galveston?</strong> Drive to the pier, skip the Florida airport scramble, still get the Western Caribbean. We book elsewhere when that’s the better trip.</p>
       </div>
     </section>
 
     <section id="lines" class="section lines">
       <div class="shell">
-        <div class="section-head reveal">
+        <div class="section-head">
           <p class="eyebrow">Who we book</p>
           <h2 class="section-title">Multi-line on purpose.</h2>
-          <p class="section-lead">
-            Cruise agents who only push one brand leave money (and better-fit ships)
-            on the table. We compare across the lines that sail Galveston most —
-            then go wider when your trip calls for it.
-          </p>
         </div>
-        <ul class="lines-grid">
-          <li class="lines-card reveal">
+        <ul class="lines-row">
+          <li>
             <h3>Royal Caribbean</h3>
-            <p>Liberty, Mariner, Symphony, and whatever Oasis-class heat is calling Galveston that season. Surf simulators, ice rink, Perfect Day add-ons when the itinerary allows.</p>
-            <p class="lines-card__tag">Galveston regular</p>
+            <p>Liberty, Mariner, Symphony — Oasis heat when it’s calling Galveston.</p>
           </li>
-          <li class="lines-card reveal">
+          <li>
             <h3>Carnival</h3>
-            <p>Usually the deepest Galveston bench — Breeze, Jubilee, Dream, Horizon, and friends. Fun ships, flexible lengths, strong value for families and first-timers.</p>
-            <p class="lines-card__tag">Year-round presence</p>
+            <p>Deepest year-round Galveston bench. Strong value for families.</p>
           </li>
-          <li class="lines-card reveal">
-            <h3>Disney Cruise Line</h3>
-            <p>Disney Magic and seasonal Galveston returns. Worth it when the kids (or the adults who never grew up) want character breakfasts and a calmer pace.</p>
-            <p class="lines-card__tag">Seasonal favorite</p>
+          <li>
+            <h3>Disney</h3>
+            <p>Magic when she’s in Texas. Character sailings, calmer pace.</p>
           </li>
-          <li class="lines-card reveal">
+          <li>
             <h3>And the rest</h3>
-            <p>MSC, Norwegian, Princess, and luxury lines when they touch Texas — or when you’re departing Miami, Barcelona, Seattle, you name it. One advisor either way.</p>
-            <p class="lines-card__tag">Ask us</p>
+            <p>MSC, Norwegian, Princess, luxury — one advisor either way.</p>
           </li>
         </ul>
       </div>
     </section>
 
-    <section id="sailings" class="section sailings">
-      <div class="shell">
-        <div class="section-head reveal">
-          <p class="eyebrow">Sample Galveston sailings</p>
-          <h2 class="section-title">A few shapes we book all the time.</h2>
-          <p class="section-lead">
-            Schedules move. These are the kinds of trips — not a live inventory.
-            Tell us your dates and we’ll match what’s actually sailing.
-          </p>
-        </div>
-
-        <article class="feature-card reveal">
-          <div class="feature-card__media">
-            <img src="images/sailing-liberty.jpg?v=3" alt="Cruise ships at the Port of Galveston area" width="1400" height="900" loading="lazy" decoding="async">
-          </div>
-          <div class="feature-card__body">
-            <p class="feature-card__line">Royal Caribbean · from Galveston</p>
-            <h3 class="feature-card__name">Liberty of the Seas · Western Caribbean</h3>
-            <ul class="feature-card__meta">
-              <li><span>Length</span> 3–7 nights (short hops + week-long)</li>
-              <li><span>Ports</span> Often Cozumel · Roatán · Costa Maya</li>
-              <li><span>Best for</span> First-timers &amp; multi-gen groups</li>
-            </ul>
-            <p class="feature-card__note">
-              One of the Royal ships Texas families already know. We’ll still check
-              Mariner or Symphony if those fit your dates better.
-            </p>
-            <a class="btn btn--gold" href="#plan">Ask about Royal from Galveston</a>
-          </div>
-        </article>
-
-        <div class="sail-grid sail-grid--three">
-          <article class="sail-card reveal">
-            <img src="images/sailing-caribbean.jpg" alt="" width="1400" height="900" loading="lazy" decoding="async">
-            <div class="sail-card__body">
-              <p class="sail-card__line">Carnival · from Galveston</p>
-              <h3>Western Caribbean week</h3>
-              <p>Jubilee, Breeze, Dream — pick the vibe. Same homeport, different energy on board. Great when you want value without flying to Florida.</p>
-              <p class="sail-card__tag">4–7 nights · Family favorite</p>
-            </div>
-          </article>
-          <article class="sail-card reveal">
-            <img src="images/sailing-disney.jpg" alt="" width="1400" height="900" loading="lazy" decoding="async">
-            <div class="sail-card__body">
-              <p class="sail-card__line">Disney · seasonal Galveston</p>
-              <h3>Disney Magic weekends &amp; weeks</h3>
-              <p>When Magic is in Texas, we treat those sailings like gold. Progreso and Cozumel short hops are popular with younger kids.</p>
-              <p class="sail-card__tag">4–7 nights · Character sailings</p>
-            </div>
-          </article>
-          <article class="sail-card reveal">
-            <img src="images/sailing-med.jpg" alt="" width="1400" height="900" loading="lazy" decoding="async">
-            <div class="sail-card__body">
-              <p class="sail-card__line">Beyond Galveston</p>
-              <h3>Other homeports &amp; longer trips</h3>
-              <p>Mediterranean, Alaska, Bahamas from Florida, river and luxury — we book those when Galveston isn’t the right fit. Same process, same advisor.</p>
-              <p class="sail-card__tag">Wherever you’re sailing</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section id="how" class="section how">
-      <div class="shell">
-        <div class="section-head reveal">
+      <div class="shell how__grid">
+        <div class="section-head">
           <p class="eyebrow">How it works</p>
-          <h2 class="section-title">You’re not talking to a booking engine.</h2>
-          <p class="section-lead">One advisor learns the trip, compares lines, and stays reachable after you pay the deposit.</p>
+          <h2 class="section-title">Board first. Person second.</h2>
         </div>
         <ol class="steps">
-          <li class="steps__item reveal">
-            <span class="steps__num">01</span>
-            <h3>Tell us the constraints</h3>
-            <p>School calendars, who’s coming, budget ballpark, Galveston vs flying out — whatever actually matters.</p>
+          <li>
+            <span>01</span>
+            <h3>Browse or skip ahead</h3>
+            <p>Poke the board, or just tell us dates and who’s traveling.</p>
           </li>
-          <li class="steps__item reveal">
-            <span class="steps__num">02</span>
+          <li>
+            <span>02</span>
             <h3>We compare for real</h3>
-            <p>Ship, cabin category, dining, and the “is this sailing worth it?” question. Usually a couple of clear options, not a spreadsheet dump.</p>
+            <p>Ship, cabin, dining — a couple of clear options, not a spreadsheet dump.</p>
           </li>
-          <li class="steps__item reveal">
-            <span class="steps__num">03</span>
+          <li>
+            <span>03</span>
             <h3>Book &amp; lean on us</h3>
-            <p>We handle the booking path. Price drops, cabin moves, pre-cruise hotel — you’ve got a person, not a chat bot.</p>
+            <p>Price drops, cabin moves, pre-cruise hotel — you’ve got a person.</p>
           </li>
         </ol>
       </div>
@@ -242,17 +179,15 @@
 
     <section id="plan" class="section plan">
       <div class="shell plan__grid">
-        <div class="plan__copy reveal">
+        <div class="plan__copy">
           <p class="eyebrow">Plan a trip</p>
-          <h2 class="section-title">Start with Galveston — or tell us you’re sailing elsewhere.</h2>
+          <h2 class="section-title">Start with Galveston — or say you’re sailing elsewhere.</h2>
           <p class="section-lead">
-            Rough dates and who’s traveling are enough. On a live advisor site, this
-            form would hit their phone right away.
+            Rough dates are enough.
             <span class="plan__credit">(<a class="jm-credit" href="https://josh.menu" target="_blank" rel="noopener noreferrer">Josh.Menu</a> sample · demo form.)</span>
           </p>
         </div>
-
-        <form class="plan-form reveal" id="plan-form" novalidate>
+        <form class="plan-form" id="plan-form" novalidate>
           <div class="field">
             <label for="name">Name</label>
             <input id="name" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Jordan Lee">
@@ -282,9 +217,9 @@
           </div>
           <div class="field">
             <label for="notes">Anything else</label>
-            <textarea id="notes" name="notes" rows="4" maxlength="800" placeholder="Rough dates, kids’ ages, balcony vs interior, group of 8, anniversary…"></textarea>
+            <textarea id="notes" name="notes" rows="4" maxlength="800" placeholder="Rough dates, kids’ ages, balcony vs interior…"></textarea>
           </div>
-          <button class="btn btn--gold btn--lg btn--block" type="submit">Send trip request</button>
+          <button class="btn btn--teal btn--lg btn--block" type="submit">Send trip request</button>
           <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
         </form>
       </div>
@@ -309,6 +244,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=4" defer></script>
+  <script src="script.js?v=5" defer></script>
 </body>
 </html>

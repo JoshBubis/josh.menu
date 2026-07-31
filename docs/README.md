@@ -14,10 +14,10 @@ work rail carries **Visit** links only — the old **Source** links pointed at
 ### Structure
 
 - `index.html` — hero (two-column: copy left, cartoon browser lander demo right — scroll/click loop; Catamist & live work live on the rail), work rail, **Systems** (capabilities) and a **Samples** strip (Travel / Contractor / Law fictional demos — separate from Live work), approach, process, about, CTA
-- `samples/harbor-lane/` — fictional cruise-advisor demo (Galveston specialty); also in `/Users/jbair/Projects/clients/harborlanetravel.com`
-- `samples/northline/` — fictional GC demo (Unsplash stock, not Urban Contracting); also in `/Users/jbair/Projects/clients/northlinecontracting.com`
-- Homepage `#samples` — three demo cards (Travel, Contractor, Law), kept off the work rail
-- `samples/holloway/` — fictional law / professional-services demo; also in `/Users/jbair/Projects/clients/hollowaylaw.com`
+- `samples/harbor-lane/` — browse-led cruise demo (sailings board + filters); also in `/Users/jbair/Projects/clients/harborlanetravel.com`
+- `samples/northline/` — classic full-bleed GC lander (Unsplash stock, not Urban Contracting); also in `/Users/jbair/Projects/clients/northlinecontracting.com`
+- `samples/holloway/` — quiet type-led law/editorial demo; also in `/Users/jbair/Projects/clients/hollowaylaw.com`
+- Homepage `#samples` — three deliberately different shapes (browse / classic / editorial), kept off the work rail
 - `contact.html` + `contact.js` — form UI → Hub `/webhooks/contact` on `api.josh.menu`
 - `chat.js` — concierge chat widget → Hub `/webhooks/chat` (polling). Public (`BETA_GATE = false`). `[data-open-chat]` anywhere opens the panel (used by Systems CTA)
 - `style.css` / `studio.css` — keep `studio.css` a copy of `style.css`. Design tokens are the `:root` block at the top; the visual direction they encode is documented in [`AGENTS.md`](../AGENTS.md) § Design language

@@ -3,26 +3,6 @@
 
   document.documentElement.classList.add("js-ready");
 
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var reveals = document.querySelectorAll(".reveal");
-
-  /* Content is always visible in CSS. IO only triggers a soft animation class —
-     never required for readability (Telegram / in-app WebViews break IO). */
-  if (!reduce && "IntersectionObserver" in window) {
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-in");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: "0px 0px -4% 0px", threshold: 0.01 }
-    );
-    reveals.forEach(function (el) { io.observe(el); });
-  }
-
   var toggle = document.getElementById("nav-toggle");
   var menu = document.getElementById("mobile-menu");
   if (toggle && menu) {
@@ -41,6 +21,20 @@
     });
   }
 
+  /* Sailings board filter chips */
+  var chips = document.querySelectorAll(".chip[data-filter]");
+  var rows = document.querySelectorAll(".sail-row[data-line]");
+  chips.forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      var filter = chip.getAttribute("data-filter") || "all";
+      chips.forEach(function (c) { c.classList.toggle("is-active", c === chip); });
+      rows.forEach(function (row) {
+        var line = row.getAttribute("data-line");
+        row.hidden = filter !== "all" && line !== filter;
+      });
+    });
+  });
+
   var form = document.getElementById("plan-form");
   var status = document.getElementById("form-status");
   if (!form || !status) return;
@@ -50,10 +44,8 @@
     status.hidden = false;
     status.classList.remove("is-error");
 
-    var name = (form.elements.namedItem("name") || {}).value || "";
-    var email = (form.elements.namedItem("email") || {}).value || "";
-    name = String(name).trim();
-    email = String(email).trim();
+    var name = String((form.elements.namedItem("name") || {}).value || "").trim();
+    var email = String((form.elements.namedItem("email") || {}).value || "").trim();
 
     if (!name || !email || email.indexOf("@") < 1) {
       status.classList.add("is-error");
