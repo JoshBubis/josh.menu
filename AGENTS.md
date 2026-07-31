@@ -16,8 +16,9 @@ employment, so treat these as bugs, not style preferences:
 - The mark is `.jm-mark` — bone block, emerald J, ground M. Reuse it; don't invent
   new label motifs.
 
-`joshbubis.com` still exists as a plain résumé site for job applications. It must
-never link here, and this site must never link there.
+`joshbubis.com` is the personal résumé site. It may link here (Josh.Menu in
+Selected work). This sales site stays surname-free and does **not** link to the
+résumé — clients shouldn’t land on employment branding.
 
 ## Design language
 

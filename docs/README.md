@@ -6,10 +6,9 @@ Static GitHub Pages sales site for the **Josh.Menu** studio.
 and Vault live in `/Users/jbair/Projects/hub`. See root [`AGENTS.md`](../AGENTS.md)
 and Hub [`AGENTS.md`](/Users/jbair/Projects/hub/AGENTS.md) § Sibling projects.
 
-**Brand:** surname-free by design. This site is the studio; `joshbubis.com` is a
-separate résumé site for job applications. Neither links to the other, and the
-work rail carries **Visit** links only — the old **Source** links pointed at
-`github.com/JoshBubis` and put the surname back in the page. See `AGENTS.md`.
+**Brand:** surname-free by design. This site is the studio; `joshbubis.com` is
+the personal résumé (it may link here). Work rail carries **Visit** links only —
+no **Source** links to `github.com/JoshBubis`. See `AGENTS.md`.
 
 ### Structure
 
