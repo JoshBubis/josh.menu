@@ -22,11 +22,12 @@
     <link rel="icon" href="/favicon.svg?v=jm2" type="image/svg+xml">
 
     <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="style.css?v=jm14">
+    <link rel="stylesheet" href="style.css?v=jm15">
 </head>
 
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page-light" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
 
     <header class="site-header">
@@ -44,7 +45,6 @@
 
     <main id="main">
         <section class="hero" aria-label="Introduction">
-            <div class="hero-light" aria-hidden="true"></div>
             <div class="hero-inner">
                 <div class="hero-copy">
                     <p class="hero-specimen reveal" data-reveal><span class="jm-mark"><span class="jm-mark__j">J</span>M</span><span>Every pixel, one person — no templates</span></p>
@@ -62,12 +62,9 @@
                         <a href="#work" class="btn btn-primary btn-arrow">See the work</a>
                         <a href="contact.html" class="btn btn-ghost">Start a project</a>
                     </div>
-                    <!-- Uptime figures are filled in from Hub at runtime; the strip
-                         never claims a number it hasn't been given. -->
-                    <p class="hero-status reveal" id="hero-status" data-reveal>
+                    <!-- Quiet live signal — green dots only, no uptime theatre. -->
+                    <p class="hero-status is-live reveal" data-reveal aria-label="Online">
                         <span class="status-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                        <span class="status-label">4 systems live</span>
-                        <span class="status-meta" id="status-meta"></span>
                     </p>
                 </div>
 
@@ -420,7 +417,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=jm5"></script>
+    <script src="script.js?v=jm6"></script>
     <script src="chat.js?v=jm3" defer></script>
 </body>
 

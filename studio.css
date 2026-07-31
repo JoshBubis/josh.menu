@@ -64,6 +64,13 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Keep page content above the fixed cursor light */
+main,
+.site-footer {
+    position: relative;
+    z-index: 1;
+}
+
 ::selection {
     background: var(--accent);
     color: var(--ground);
@@ -120,6 +127,31 @@ a {
     z-index: 999;
     opacity: 0.04;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Cursor light — follows the pointer across the whole page (desktop only). */
+.page-light {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+        28rem circle at var(--mx, 50%) var(--my, 40%),
+        rgba(16, 213, 146, 0.07),
+        transparent 70%
+    );
+    transition: opacity 0.6s var(--ease);
+}
+
+body.is-lit .page-light {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page-light {
+        display: none;
+    }
 }
 
 /* —— Header —— */
@@ -323,28 +355,8 @@ a {
 }
 
 /* Clean ground: no backdrop pattern. The v1 paper direction's ruled baselines
-   and margin rule were retired in July 2026 — grain, the cursor light, and the
-   framed work carry the hero. */
-
-/* Cursor light: the one lift allowed on a dark ground. Radius follows the
-   pointer via --mx/--my set in script.js; absent JS it never renders. */
-.hero-light {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0;
-    background: radial-gradient(
-        22rem circle at var(--mx, 50%) var(--my, 40%),
-        rgba(16, 213, 146, 0.07),
-        transparent 70%
-    );
-    transition: opacity 0.6s var(--ease);
-}
-
-.hero:hover .hero-light {
-    opacity: 1;
-}
+   and margin rule were retired in July 2026 — grain, the page cursor light,
+   and the framed work carry atmosphere. */
 
 /* Maker's line — signature above the fold, paired with the live strip */
 .hero-specimen {
@@ -357,12 +369,6 @@ a {
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--support);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .hero-light {
-        display: none;
-    }
 }
 
 .hero-inner {
@@ -386,22 +392,14 @@ a {
     min-width: 0;
 }
 
-/* —— Live status strip ——
-   Real operating data, not decoration: four products Josh runs himself. The
-   uptime figures are filled in by script.js from Hub and stay absent until
-   they arrive, so nothing here can ever claim a number it doesn't have. */
+/* —— Live signal ——
+   Four green dots. No uptime copy — green means on. */
 .hero-status {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.55rem 0.9rem;
     margin-top: 2.4rem;
     padding-top: 1.1rem;
     border-top: 1px solid var(--line);
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
 }
 
 .status-dots {
@@ -417,17 +415,8 @@ a {
     background: var(--accent);
 }
 
-/* A dot only breathes while the strip is reporting live data */
 .hero-status.is-live .status-dots i {
     animation: status-breathe 2.6s ease-in-out infinite;
-}
-
-/* Hub reports how many products are up, not which one is down — so a dim dot
-   says "one of these isn't answering" without turning a sales page into an
-   incident report. Dim rather than red: red is reserved for form errors. */
-.status-dots i.is-dim {
-    background: var(--support);
-    animation: none;
 }
 
 .hero-status.is-live .status-dots i:nth-child(2) { animation-delay: 0.2s; }
@@ -437,19 +426,6 @@ a {
 @keyframes status-breathe {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.45; }
-}
-
-.status-label {
-    color: var(--accent);
-    font-weight: 600;
-}
-
-.status-meta {
-    color: var(--support);
-}
-
-.status-meta:empty {
-    display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -849,9 +825,42 @@ a {
     transition: transform 0.3s var(--ease), color 0.3s var(--ease);
 }
 
+/* White → emerald on hover — used on headings / labels sitewide */
+.ink-hover,
+.section-title,
+.hero-headline,
+.process-title,
+.systems-name,
+.sample-card__name,
+.close-title,
+.work-plate__domain,
+.wordmark {
+    transition: color 0.3s var(--ease);
+}
+
 @media (hover: hover) {
     .brand-ch:hover {
         transform: translateY(-0.07em);
+        color: var(--accent);
+    }
+
+    .ink-hover:hover,
+    .section-title:hover,
+    .hero-headline:hover,
+    .process-title:hover,
+    .systems-name:hover,
+    .sample-card__name:hover,
+    .close-title:hover,
+    .work-plate__domain:hover,
+    .wordmark:hover {
+        color: var(--accent);
+    }
+
+    /* Card / step hover lights the title even if the pointer isn't on the letters */
+    .systems-card:hover .systems-name,
+    .sample-card__link:hover .sample-card__name,
+    .process-step:hover .process-title,
+    .work-panel:hover .work-plate__domain {
         color: var(--accent);
     }
 }

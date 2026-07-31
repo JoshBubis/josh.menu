@@ -254,24 +254,23 @@
     }, true);
   }
 
-  /* Hero cursor light — the one lift allowed on a dark ground. Desktop only:
-     a touch device has no hovering pointer to follow. */
-  var hero = document.querySelector(".hero");
-  if (hero && !reduceMotion && window.matchMedia("(hover: hover)").matches) {
+  /* Page cursor light — follows the pointer across the whole viewport.
+     Desktop only: a touch device has no hovering pointer to follow. */
+  if (!reduceMotion && window.matchMedia("(hover: hover)").matches) {
     var lightQueued = false;
-    var lightX = 0;
-    var lightY = 0;
-    hero.addEventListener("pointermove", function (e) {
+    var lightX = 50;
+    var lightY = 40;
+    document.addEventListener("pointermove", function (e) {
       if (e.pointerType !== "mouse") return;
-      var rect = hero.getBoundingClientRect();
-      lightX = ((e.clientX - rect.left) / rect.width) * 100;
-      lightY = ((e.clientY - rect.top) / rect.height) * 100;
+      lightX = (e.clientX / window.innerWidth) * 100;
+      lightY = (e.clientY / window.innerHeight) * 100;
+      document.body.classList.add("is-lit");
       if (lightQueued) return;
       lightQueued = true;
       requestAnimationFrame(function () {
         lightQueued = false;
-        hero.style.setProperty("--mx", lightX.toFixed(2) + "%");
-        hero.style.setProperty("--my", lightY.toFixed(2) + "%");
+        document.documentElement.style.setProperty("--mx", lightX.toFixed(2) + "%");
+        document.documentElement.style.setProperty("--my", lightY.toFixed(2) + "%");
       });
     });
   }
@@ -299,54 +298,6 @@
     onScrollParallax();
     window.addEventListener("scroll", onScrollParallax, { passive: true });
     window.addEventListener("resize", onScrollParallax, { passive: true });
-  }
-
-  /* Hero status strip — real operating data, fetched from Hub.
-     The markup ships with a static "4 systems live" that is true without asking
-     anything, so a failed or slow fetch simply leaves the honest fallback in
-     place. Nothing here ever prints a number it wasn't given: absent figures
-     stay absent, and .status-meta:empty hides itself. */
-  var statusStrip = document.getElementById("hero-status");
-  if (statusStrip && window.fetch) {
-    fetch("https://api.josh.menu/webhooks/status", { mode: "cors" })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) {
-        if (!data) return;
-
-        var total = typeof data.systems === "number" ? data.systems : 4;
-        var live = typeof data.live === "number" ? data.live : null;
-        var label = statusStrip.querySelector(".status-label");
-        var dots = statusStrip.querySelectorAll(".status-dots i");
-
-        if (label && live !== null) {
-          label.textContent = live === total
-            ? total + " systems live"
-            : live + " of " + total + " systems live";
-        }
-        if (live !== null) {
-          Array.prototype.forEach.call(dots, function (dot, i) {
-            dot.classList.toggle("is-dim", i >= live);
-          });
-        }
-
-        /* Uptime and latency are each optional: a fresh window may have one and
-           not the other, and half a sentence beats a fabricated figure. */
-        var parts = [];
-        if (typeof data.uptime_30d === "number") {
-          parts.push(data.uptime_30d.toFixed(2).replace(/\.00$/, "") + "% uptime, 30 days");
-        }
-        if (typeof data.latency_p95_ms === "number") {
-          parts.push(data.latency_p95_ms + "ms p95");
-        }
-        var meta = document.getElementById("status-meta");
-        if (meta && parts.length) meta.textContent = "· " + parts.join(" · ");
-
-        if (live !== null || parts.length) statusStrip.classList.add("is-live");
-      })
-      .catch(function () {
-        /* Swallowed on purpose: the strip already reads correctly without Hub,
-           and a console error on the sales site fails scripts/verify-live.mjs. */
-      });
   }
 
   /* Approach accordion (keyboard / touch; hover handled in CSS) */

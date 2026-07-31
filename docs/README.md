@@ -23,7 +23,7 @@ no **Source** links to `github.com/JoshBubis`. See `AGENTS.md`.
 - `contact.html` + `contact.js` — form UI → Hub `/webhooks/contact` on `api.josh.menu`
 - `chat.js` — concierge chat widget → Hub `/webhooks/chat` (polling). Public (`BETA_GATE = false`). `[data-open-chat]` anywhere opens the panel (used by Systems CTA)
 - `style.css` / `studio.css` — keep `studio.css` a copy of `style.css`. Design tokens are the `:root` block at the top; the visual direction they encode is documented in [`AGENTS.md`](../AGENTS.md) § Design language
-- `script.js` — reveals (hero + section-head cascades), work-rail scroll/dots/drag, hero cursor light, parallax on `[data-parallax]` (work rail if present). Hero lander demo is CSS-only keyframes in `style.css`. Motion extras: nav/footer sliding underlines, approach/process stagger, process-num scale, button press — all under `prefers-reduced-motion`
+- `script.js` — reveals (hero + section-head cascades), work-rail scroll/dots/drag, page-wide cursor light, parallax on `[data-parallax]` (work rail if present). Hero lander demo is CSS-only keyframes in `style.css`. Motion extras: nav/footer sliding underlines, approach/process stagger, process-num scale, button press, white→emerald heading hover — all under `prefers-reduced-motion`
 - `scripts/verify-live.mjs` — pre-flight sweep (desktop/mobile/reduced-motion; surname, overflow, JS errors). Pass a local origin to run it before pushing; the `api.josh.menu` assertions are skipped off the live origin
 - `images/work/*.jpg` — manual Playwright captures (`npm run capture-work`)
 - `AGENTS.md` — agent routing + shipping rules
@@ -47,11 +47,7 @@ its page source. Hub 404s everything on that hostname except `/webhooks/*`.
 | `POST /webhooks/contact` | Contact form → email + Lead record |
 | `POST /webhooks/chat` | Concierge chat turns |
 
-**Not built yet:** the hero's live status strip wants `GET /webhooks/status`
-returning `uptime_30d` and `latency_p95_ms` across the four products, with
-`Access-Control-Allow-Origin: https://josh.menu`. Until Hub serves it, the strip
-stays static text — a fetch to a missing endpoint logs a console error and fails
-`scripts/verify-live.mjs`. Wiring instructions are in `script.js`.
+Hero live signal is four green dots only (no Hub status/uptime fetch).
 
 ### Boundaries
 

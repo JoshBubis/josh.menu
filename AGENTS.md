@@ -45,24 +45,25 @@ overriding, and update this block if it changes.**
 - **Signal Emerald on a tinted ground.** Ground `#080b0a` (a green-cast black,
   not neutral — the accent has to look native to the surface), surface `#0f1412`,
   bone type `#edebe6`, accent `#10d592`. Tokens live at the top of `style.css`.
-- Green means *live*: it belongs on the status strip, the mark, labels, links,
-  and focus rings. `--danger` (`#e5544b`) is for form errors only, never
-  decoration — otherwise green-as-healthy and green-as-brand contradict.
+- Green means *live*: it belongs on the hero’s green dots, the mark, labels,
+  links, focus rings, and white→emerald hover on headings. `--danger`
+  (`#e5544b`) is for form errors only, never decoration — otherwise
+  green-as-healthy and green-as-brand contradict.
 - **The hero sells the craft above the fold.** Two-column grid: copy left, a
   cartoon browser lander demo right (scroll + click loop). Live product shots
   live on the work rail — don't put a product screenshot back in the hero
   unless Josh asks. Dark ground keeps the demo reading as a lit frame.
 - Motion budget, in full: mask reveals on the wordmark, the section-head
   cascade, the hero lander scroll/cursor/click loop (CSS keyframes, paused
-  under `prefers-reduced-motion`), the process spine inking in, and one
-  cursor-follow light in the hero. That is the whole list. Adding to it is a
-  decision, not a detail.
+  under `prefers-reduced-motion`), the process spine inking in, a page-wide
+  cursor-follow light, and white→emerald text hover on headings/labels. That
+  is the whole list. Adding to it is a decision, not a detail.
 - Hairline rules stay structural. Shadows do nothing on this ground — the
   retheme removed them all rather than tinting them.
 - **The hero ground is clean.** The v1 paper direction's ruled baselines and
   emerald margin rule were retired (late July 2026) because they read as
   looseleaf paper on the dark ground. Grain, the cursor light, and the lander
-  demo carry the hero — don't reintroduce backdrop patterns without asking.
+  demo carry atmosphere — don't reintroduce backdrop patterns without asking.
 
 ## Hybrid with Hub (keep this in mind)
 
@@ -103,11 +104,8 @@ edit **this** folder for sales-site UI. Do not merge the two repos unless Josh a
 - Reveal and parallax fight each other: `.reveal.is-in` sets `transform: none`,
   which cancels a parallax offset on the same element. Put the reveal on a
   wrapper and `data-parallax` on the child if you reintroduce parallax.
-- The hero status strip reads live figures from `api.josh.menu/webhooks/status`,
-  but the markup ships an honest hardcoded fallback ("4 systems live") and the
-  fetch failure is swallowed — a console error here fails `scripts/verify-live.mjs`.
-  Never print a figure the endpoint didn't return; Hub sends `null` for missing
-  data, and Hub deliberately reports a count rather than which product is down.
+- The hero live signal is four green dots only (no uptime copy, no Hub fetch).
+  Don’t reintroduce status stats unless Josh asks.
 - At ≤720px the header stacks into two rows, so `--header-offset` and the hero's
   top padding are both overridden in that breakpoint. Change them together.
 - Nav jumps: `scroll-padding-top` only — never also `scroll-margin-top` on sections.
