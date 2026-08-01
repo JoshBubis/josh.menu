@@ -35,8 +35,10 @@ no **Source** links to `github.com/JoshBubis`. See `AGENTS.md`.
 
 Work-rail panels use flat "plate" labels (JM maker's mark + domain) instead of
 browser chrome; screenshots stay clickable through `.work-shot-link`. The
-`.jm-mark` chip (bone block, emerald J, ground M — the favicon in type) is the
-brand mark; reuse it rather than inventing new label motifs.
+`.jm-mark` chip (black field, bone border, emerald J, bone M — the favicon in
+type) is the brand mark; reuse it rather than inventing new label motifs.
+Share previews use `images/og.jpg` (`og:image` / `twitter:image`); regenerate
+with `npm run render-og` after editing `og/card.html`.
 
 ### Backend endpoints
 

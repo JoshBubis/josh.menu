@@ -13,8 +13,8 @@ employment, so treat these as bugs, not style preferences:
 - No links to `joshbubis.com`, `linkedin.com/in/joshbubis`, or `github.com/JoshBubis`
   (that last one is why the work rail has **Visit** links but no **Source** links).
 - Client mail is `josh@josh.menu`. Never `josh@joshbubis.com`.
-- The mark is `.jm-mark` — bone block, emerald J, ground M. Reuse it; don't invent
-  new label motifs.
+- The mark is `.jm-mark` — black field, bone border, emerald J, bone M. Reuse it;
+  don't invent new label motifs. Favicon + OG card (`images/og.jpg`) match.
 
 `joshbubis.com` is the personal résumé site. It may link here (Josh.Menu in
 Selected work). This sales site stays surname-free and does **not** link to the
@@ -95,9 +95,11 @@ edit **this** folder for sales-site UI. Do not merge the two repos unless Josh a
    `python3 -m http.server 8899` — covers desktop, mobile, and reduced-motion.
 5. `npm run audit-a11y -- http://localhost:8899` for contrast/ARIA (axe). Against
    production: `npm run audit-a11y` (also hits `contracts.josh.menu`).
-6. Push `main`. CDN/HTML can lag ~10 minutes.
-7. Re-run `node scripts/verify-live.mjs` with no argument to check production.
-8. Update `docs/README.md` when structure/behavior changes.
+6. After mark / OG card edits: `npm run render-og` (writes `images/og.jpg`).
+7. Push `main`. CDN/HTML can lag ~10 minutes. Link-preview caches (iMessage,
+   Slack, Facebook) can lag longer — bump `images/og.jpg?v=` when the card changes.
+8. Re-run `node scripts/verify-live.mjs` with no argument to check production.
+9. Update `docs/README.md` when structure/behavior changes.
 
 ## Easy foot-guns
 

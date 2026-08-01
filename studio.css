@@ -313,24 +313,37 @@ body.is-lit .page-light {
 }
 
 /* —— JM maker's mark —— */
-/* The favicon set in type: bone block, emerald J stroke. One mark, used
-   everywhere a signature belongs — hero, work plates, chat. */
+/* Black field, bone border, emerald J, bone M. One mark everywhere a
+   signature belongs — hero, work plates, chat fab, close. */
 .jm-mark {
+    --jm-mark-bg: #080b0a;
+    --jm-mark-border: rgba(244, 241, 234, 0.92);
+    --jm-mark-m: #f4f1ea;
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 2em;
-    height: 2em;
-    padding: 0 0.45em;
+    gap: 0.02em;
+    min-width: 2.05em;
+    height: 2.05em;
+    padding: 0 0.42em;
     flex-shrink: 0;
-    background: var(--ink);
-    color: var(--paper);
-    border-radius: 2px;
+    background:
+        linear-gradient(165deg, rgba(16, 213, 146, 0.14) 0%, transparent 42%),
+        var(--jm-mark-bg);
+    color: var(--jm-mark-m);
+    border: 1px solid var(--jm-mark-border);
+    border-radius: 3px;
+    box-shadow:
+        0 0 0 1px rgba(16, 213, 146, 0.22),
+        0 0 18px rgba(16, 213, 146, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.35);
     font-family: var(--font-display);
     font-weight: 800;
     font-size: 1em;
     line-height: 1;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.045em;
     text-transform: none;
     user-select: none;
     -webkit-user-select: none;
@@ -338,10 +351,31 @@ body.is-lit .page-light {
 
 .jm-mark__j {
     color: var(--accent);
+    text-shadow:
+        0 0 10px rgba(16, 213, 146, 0.55),
+        0 0 2px rgba(16, 213, 146, 0.35);
+}
+
+.jm-mark__m {
+    color: var(--jm-mark-m);
 }
 
 .jm-mark--lg {
-    font-size: 1.15rem;
+    font-size: 1.35rem;
+    min-width: 2.15em;
+    height: 2.15em;
+    border-radius: 4px;
+    box-shadow:
+        0 0 0 1px rgba(16, 213, 146, 0.28),
+        0 0 28px rgba(16, 213, 146, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jm-mark__j {
+        text-shadow: none;
+    }
 }
 
 /* —— Hero —— */
@@ -2178,24 +2212,30 @@ main > .section {
     z-index: 150;
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
-    padding: 0.55rem 0.9rem 0.55rem 0.55rem;
-    background: var(--surface);
+    gap: 0.65rem;
+    padding: 0.45rem 0.95rem 0.45rem 0.45rem;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
     color: var(--ink);
     border: 1px solid var(--line-strong);
-    border-radius: 2px;
+    border-radius: 3px;
     font-family: var(--font-body);
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: border-color 0.2s, transform 0.25s var(--ease);
+    backdrop-filter: blur(10px);
+    transition: border-color 0.2s, transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.chat-fab .jm-mark {
+    font-size: 0.95rem;
 }
 
 .chat-fab:hover {
-    border-color: var(--accent);
+    border-color: rgba(16, 213, 146, 0.55);
     transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(16, 213, 146, 0.12);
 }
 
 .chat-panel {

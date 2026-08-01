@@ -5,7 +5,8 @@
   "scripts": {
     "capture-work": "node scripts/capture-work.mjs",
     "capture-samples": "node scripts/capture-samples.mjs",
-    "audit-a11y": "node scripts/audit-a11y.mjs"
+    "audit-a11y": "node scripts/audit-a11y.mjs",
+    "render-og": "node scripts/render-og.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.12.1",

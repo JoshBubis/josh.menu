@@ -50,7 +50,7 @@
   fab.type = "button";
   fab.setAttribute("aria-label", "Open studio chat");
   fab.setAttribute("aria-expanded", "false");
-  fab.innerHTML = '<span class="jm-mark" aria-hidden="true"><span class="jm-mark__j">J</span>M</span><span aria-hidden="true">Chat</span>';
+  fab.innerHTML = '<span class="jm-mark" aria-hidden="true"><span class="jm-mark__j">J</span><span class="jm-mark__m">M</span></span><span aria-hidden="true">Chat</span>';
 
   var panel = el("aside", "chat-panel");
   panel.hidden = true;
@@ -58,7 +58,7 @@
 
   var head = el("header", "chat-panel__head");
   var headTitle = el("p", "chat-panel__title");
-  headTitle.innerHTML = '<span class="jm-mark" aria-hidden="true"><span class="jm-mark__j">J</span>M</span><span>Studio chat</span>';
+  headTitle.innerHTML = '<span class="jm-mark" aria-hidden="true"><span class="jm-mark__j">J</span><span class="jm-mark__m">M</span></span><span>Studio chat</span>';
   var headStatus = el("p", "chat-panel__status", "Scoping questions welcome — Josh can join live.");
   var closeBtn = el("button", "chat-panel__close");
   closeBtn.type = "button";
