@@ -55,7 +55,8 @@ overriding, and update this block if it changes.**
   unless Josh asks. Dark ground keeps the demo reading as a lit frame.
 - Motion budget, in full: mask reveals on the wordmark, the section-head
   cascade, the hero lander scroll/cursor/click loop (CSS keyframes, paused
-  under `prefers-reduced-motion`), the process spine inking in, a page-wide
+  under `prefers-reduced-motion`), sample-card tallshot scroll previews
+  (pause on hover / reduced-motion), the process spine inking in, a page-wide
   cursor-follow light, and white→emerald text hover on headings/labels. That
   is the whole list. Adding to it is a decision, not a detail.
 - Hairline rules stay structural. Shadows do nothing on this ground — the

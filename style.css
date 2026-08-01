@@ -1071,10 +1071,116 @@ main > .section {
     object-fit: cover;
 }
 
+/* Tall-page scroll preview — browser plate + slow vertical pan */
+.sample-scroll {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+}
+
+.sample-scroll__chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-shrink: 0;
+    padding: 0.45rem 0.65rem;
+    background: var(--surface-high);
+    border-bottom: 1px solid var(--line);
+}
+
+.sample-scroll__dots {
+    display: flex;
+    gap: 4px;
+}
+
+.sample-scroll__dots i {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--support);
+    opacity: 0.55;
+}
+
+.sample-scroll__dots i:nth-child(1) { background: #e5544b; opacity: 0.7; }
+.sample-scroll__dots i:nth-child(2) { background: #d4a84b; opacity: 0.7; }
+.sample-scroll__dots i:nth-child(3) { background: var(--accent); opacity: 0.75; }
+
+.sample-scroll__url {
+    flex: 1;
+    min-width: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    background: var(--ground);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 0.22rem 0.45rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sample-scroll__viewport {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    background: var(--ground);
+}
+
+.sample-scroll__viewport::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 2.5rem;
+    pointer-events: none;
+    background: linear-gradient(to top, var(--ground), transparent);
+    opacity: 0.55;
+    z-index: 1;
+}
+
+.sample-scroll__page {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    object-position: top center;
+    transform: translateY(0);
+    will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .js-ready .sample-scroll__page {
+        animation: sample-page-scroll 18s var(--ease) infinite;
+    }
+
+    .samples-grid .sample-card:nth-child(2) .sample-scroll__page {
+        animation-delay: -6s;
+    }
+
+    .samples-grid .sample-card:nth-child(3) .sample-scroll__page {
+        animation-delay: -12s;
+    }
+
+    .sample-card__link:hover .sample-scroll__page,
+    .sample-card__link:focus-visible .sample-scroll__page {
+        animation-play-state: paused;
+    }
+}
+
+/* Pan most of a tall capture, pause at ends so it reads as a deliberate scroll */
+@keyframes sample-page-scroll {
+    0%, 8% { transform: translateY(0); }
+    46%, 54% { transform: translateY(calc(-100% + 11rem)); }
+    92%, 100% { transform: translateY(0); }
+}
+
 .sample-card__badge {
     position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
+    top: 2.35rem;
+    left: 0.65rem;
+    z-index: 2;
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -1082,6 +1188,10 @@ main > .section {
     color: var(--ground);
     background: var(--accent);
     padding: 0.28rem 0.5rem;
+}
+
+.sample-scroll .sample-card__badge {
+    top: 2.35rem;
 }
 
 .sample-card__body {

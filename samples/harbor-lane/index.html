@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Harbor Lane Travel — Galveston cruise advisors</title>
   <meta name="description" content="Independent cruise advisors specializing in sailings from Galveston — browse sample trips, compare lines, and plan with a real person.">
-  <meta name="theme-color" content="#f4f7f8">
+  <meta name="theme-color" content="#ebe4d6">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=20">
+  <link rel="stylesheet" href="style.css?v=21">
   <link rel="canonical" href="https://josh.menu/samples/harbor-lane/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Harbor Lane Travel — Galveston cruise advisors">
@@ -32,7 +32,7 @@
         <a href="#how">How it works</a>
         <a href="#plan">Plan a trip</a>
       </nav>
-      <a class="btn btn--teal topbar__cta" href="#plan">Plan my trip</a>
+      <a class="btn btn--primary topbar__cta" href="#plan">Plan my trip</a>
       <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -47,18 +47,17 @@
 
   <main id="main">
 
-    <!-- Browse-led hero: pitch + live-feeling sailings board above the fold -->
     <section class="intro" aria-label="Introduction">
       <div class="shell intro__grid">
         <div class="intro__copy">
           <p class="eyebrow">Galveston specialists · multi-line</p>
-          <h1 class="intro__title">Find a sailing.<br>Then talk to a person.</h1>
+          <h1 class="intro__title">Find a sailing.<br><em>Then talk to a person.</em></h1>
           <p class="intro__sub">
             Browse the kinds of Galveston trips we book every week — then tell us
             your dates. We compare Royal, Carnival, Disney, and beyond.
           </p>
           <div class="intro__actions">
-            <a class="btn btn--teal btn--lg" href="#board">Browse sailings</a>
+            <a class="btn btn--primary btn--lg" href="#board">Browse sailings</a>
             <a class="btn btn--ghost btn--lg" href="#plan">Skip to plan</a>
           </div>
           <p class="intro__note">Schedules move — this board is sample shapes, not live inventory.</p>
@@ -118,9 +117,18 @@
       </div>
     </section>
 
+    <div class="atmosphere" aria-hidden="true">
+      <img src="images/sailing-liberty.jpg?v=3" alt="" width="1600" height="900" loading="lazy" decoding="async">
+      <div class="atmosphere__veil">
+        <div class="shell">
+          <p>Drive to the pier. Skip the Florida airport scramble.</p>
+        </div>
+      </div>
+    </div>
+
     <section class="strip" aria-label="Why Galveston">
       <div class="shell strip__inner">
-        <p><strong>Why Galveston?</strong> Drive to the pier, skip the Florida airport scramble, still get the Western Caribbean. We book elsewhere when that’s the better trip.</p>
+        <p><strong>Why Galveston?</strong> Still get the Western Caribbean — and we book elsewhere when that’s the better trip.</p>
       </div>
     </section>
 
@@ -219,7 +227,7 @@
             <label for="notes">Anything else</label>
             <textarea id="notes" name="notes" rows="4" maxlength="800" placeholder="Rough dates, kids’ ages, balcony vs interior…"></textarea>
           </div>
-          <button class="btn btn--teal btn--lg btn--block" type="submit">Send trip request</button>
+          <button class="btn btn--brass btn--lg btn--block" type="submit">Send trip request</button>
           <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
         </form>
       </div>

@@ -26,6 +26,8 @@ no **Source** links to `github.com/JoshBubis`. See `AGENTS.md`.
 - `script.js` — reveals (hero + section-head cascades), work-rail scroll/dots/drag, page-wide cursor light, parallax on `[data-parallax]` (work rail if present). Hero lander demo is CSS-only keyframes in `style.css`. Motion extras: nav/footer sliding underlines, approach/process stagger, process-num scale, button press, white→emerald heading hover — all under `prefers-reduced-motion`
 - `scripts/verify-live.mjs` — pre-flight sweep (desktop/mobile/reduced-motion; surname, overflow, JS errors). Pass a local origin to run it before pushing; the `api.josh.menu` assertions are skipped off the live origin
 - `images/work/*.jpg` — manual Playwright captures (`npm run capture-work`)
+- `images/samples/*.jpg` — tall full-page captures for sample-card scroll
+  previews (`npm run capture-samples` against a local server)
 - `AGENTS.md` — agent routing + shipping rules
 - `scripts/rebrand.py` — one-shot record of the 2026-07-29 joshbubis.com → josh.menu
   conversion. Safe to delete once the site settles.

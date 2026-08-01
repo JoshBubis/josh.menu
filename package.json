@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "capture-work": "node scripts/capture-work.mjs"
+    "capture-work": "node scripts/capture-work.mjs",
+    "capture-samples": "node scripts/capture-samples.mjs"
   },
   "devDependencies": {
     "playwright": "^1.61.1"
