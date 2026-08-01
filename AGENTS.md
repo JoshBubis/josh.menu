@@ -93,9 +93,11 @@ edit **this** folder for sales-site UI. Do not merge the two repos unless Josh a
 3. Keep root `404.html` self-contained (inline CSS) — Pages serves it for missing paths. Keep `samples/index.html` so `/samples/` is not a 404.
 4. `node scripts/verify-live.mjs http://localhost:8899` against a local
    `python3 -m http.server 8899` — covers desktop, mobile, and reduced-motion.
-5. Push `main`. CDN/HTML can lag ~10 minutes.
-6. Re-run `node scripts/verify-live.mjs` with no argument to check production.
-7. Update `docs/README.md` when structure/behavior changes.
+5. `npm run audit-a11y -- http://localhost:8899` for contrast/ARIA (axe). Against
+   production: `npm run audit-a11y` (also hits `contracts.josh.menu`).
+6. Push `main`. CDN/HTML can lag ~10 minutes.
+7. Re-run `node scripts/verify-live.mjs` with no argument to check production.
+8. Update `docs/README.md` when structure/behavior changes.
 
 ## Easy foot-guns
 

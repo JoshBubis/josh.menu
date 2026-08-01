@@ -19,7 +19,8 @@
     --paper-deep: var(--surface);
     --ink: var(--bone);
     --muted: #97a5a0;
-    --support: #6b7b74;
+    /* Support labels must clear WCAG AA on --ground (#080b0a); #6b7b74 was ~4.4:1. */
+    --support: #85948d;
     --line: rgba(237, 235, 230, 0.13);
     --line-strong: rgba(237, 235, 230, 0.28);
     --focus: rgba(16, 213, 146, 0.5);
