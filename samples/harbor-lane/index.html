@@ -7,7 +7,7 @@
   <meta name="description" content="Independent cruise advisors specializing in sailings from Galveston — browse sample trips, compare lines, and plan with a real person.">
   <meta name="theme-color" content="#ebe4d6">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=22">
+  <link rel="stylesheet" href="style.css?v=23">
   <link rel="canonical" href="https://josh.menu/samples/harbor-lane/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Harbor Lane Travel — Galveston cruise advisors">
@@ -28,8 +28,8 @@
       </a>
       <nav class="topbar__nav" aria-label="Primary">
         <a href="#board">Sailings</a>
+        <a href="#why">Why Galveston</a>
         <a href="#lines">Lines</a>
-        <a href="#how">How it works</a>
         <a href="#plan">Plan a trip</a>
       </nav>
       <a class="btn btn--primary topbar__cta" href="#plan">Plan my trip</a>
@@ -39,8 +39,8 @@
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile" hidden>
       <a href="#board">Sailings</a>
+      <a href="#why">Why Galveston</a>
       <a href="#lines">Lines</a>
-      <a href="#how">How it works</a>
       <a href="#plan">Plan a trip</a>
     </nav>
   </header>
@@ -65,8 +65,10 @@
 
         <aside class="board-panel" id="board" aria-label="Sample sailings board">
           <div class="board-panel__head">
-            <h2 class="board-panel__title">Sailings board</h2>
-            <p class="board-panel__hint">Filter by line</p>
+            <div>
+              <h2 class="board-panel__title">Sailings board</h2>
+              <p class="board-panel__hint">Filter by line · sample shapes</p>
+            </div>
           </div>
           <div class="chips" role="group" aria-label="Filter sailings">
             <button type="button" class="chip is-active" data-filter="all">All</button>
@@ -117,18 +119,39 @@
       </div>
     </section>
 
-    <div class="atmosphere" aria-hidden="true">
-      <img src="images/sailing-liberty.jpg?v=3" alt="" width="1600" height="900" loading="lazy" decoding="async">
-      <div class="atmosphere__veil">
-        <div class="shell">
-          <p>Drive to the pier. Skip the Florida airport scramble.</p>
+    <!-- Photo beside copy — no full-bleed quote overlay (reads like a '90s banner). -->
+    <section class="why" id="why" aria-labelledby="why-title">
+      <div class="shell why__grid">
+        <figure class="why__media">
+          <img src="images/sailing-liberty.jpg?v=3" alt="Cruise ship at a sunny pier" width="900" height="1100" loading="lazy" decoding="async">
+          <figcaption class="why__cap">
+            <span class="why__cap-kicker">Homeport</span>
+            <span>Galveston · drive-up embarkation</span>
+          </figcaption>
+        </figure>
+        <div class="why__copy">
+          <p class="eyebrow">Why Galveston</p>
+          <h2 class="section-title" id="why-title">Drive to the pier. Keep the Caribbean.</h2>
+          <p class="why__lead">
+            Same Western Caribbean water — without the Florida airport scramble.
+            When another homeport is the better trip, we book that too.
+          </p>
+          <ul class="why__points">
+            <li>
+              <strong>No flight tax on every sailing</strong>
+              <span>Park, walk on, sail. Useful for families and short breaks.</span>
+            </li>
+            <li>
+              <strong>Real multi-line advice</strong>
+              <span>Royal, Carnival, Disney, and the rest — one person comparing for you.</span>
+            </li>
+            <li>
+              <strong>Still book elsewhere</strong>
+              <span>Alaska, Med, Florida, river. Galveston is the specialty, not a cage.</span>
+            </li>
+          </ul>
+          <a class="btn btn--ghost" href="#plan">Tell us your dates</a>
         </div>
-      </div>
-    </div>
-
-    <section class="strip" aria-label="Why Galveston">
-      <div class="shell strip__inner">
-        <p><strong>Why Galveston?</strong> Still get the Western Caribbean — and we book elsewhere when that’s the better trip.</p>
       </div>
     </section>
 
@@ -137,6 +160,7 @@
         <div class="section-head">
           <p class="eyebrow">Who we book</p>
           <h2 class="section-title">Multi-line on purpose.</h2>
+          <p class="section-lead">We don’t push one brand. We match the ship to the trip.</p>
         </div>
         <ul class="lines-row">
           <li>

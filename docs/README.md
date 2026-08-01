@@ -13,7 +13,7 @@ no **Source** links to `github.com/JoshBubis`. See `AGENTS.md`.
 ### Structure
 
 - `index.html` — hero (two-column: copy left, cartoon browser lander demo right — scroll/click loop; Catamist & live work live on the rail), work rail, **Systems** (capabilities) and a **Samples** strip (Travel / Contractor / Law fictional demos — separate from Live work), approach, process, about, CTA
-- `samples/harbor-lane/` — browse-led cruise demo (sailings board + filters); also in `/Users/jbair/Projects/clients/harborlanetravel.com`
+- `samples/harbor-lane/` — browse-led cruise demo (sailings board + Why Galveston split with caption bar, not a full-bleed photo quote); also in `/Users/jbair/Projects/clients/harborlanetravel.com`
 - `samples/northline/` — classic full-bleed GC lander (Unsplash stock, not Urban Contracting); also in `/Users/jbair/Projects/clients/northlinecontracting.com`
 - `samples/holloway/` — quiet type-led law/editorial demo; also in `/Users/jbair/Projects/clients/hollowaylaw.com`
 - Homepage `#samples` and `/samples/` directory — three deliberately different shapes (browse / classic / editorial), kept off the work rail
