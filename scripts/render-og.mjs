@@ -1,7 +1,8 @@
 /**
  * Render the Open Graph share card (1200×630) from og/card.html.
+ * 1× JPEG kept lean for iMessage / Slack (deviceScaleFactor: 1).
  *
- *   node scripts/render-og.mjs
+ *   npm run render-og
  */
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
@@ -17,14 +18,14 @@ mkdirSync(dirname(out), { recursive: true });
 const browser = await chromium.launch();
 const page = await browser.newPage({
   viewport: { width: 1200, height: 630 },
-  deviceScaleFactor: 2,
+  deviceScaleFactor: 1,
 });
 await page.goto(html, { waitUntil: "networkidle" });
-await page.waitForTimeout(200);
+await page.waitForTimeout(150);
 await page.locator(".card").screenshot({
   path: out,
   type: "jpeg",
-  quality: 92,
+  quality: 78,
 });
 await browser.close();
 console.log(`Wrote ${out}`);

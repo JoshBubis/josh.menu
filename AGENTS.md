@@ -13,8 +13,9 @@ employment, so treat these as bugs, not style preferences:
 - No links to `joshbubis.com`, `linkedin.com/in/joshbubis`, or `github.com/JoshBubis`
   (that last one is why the work rail has **Visit** links but no **Source** links).
 - Client mail is `josh@josh.menu`. Never `josh@joshbubis.com`.
-- The mark is `.jm-mark` — black field, bone border, emerald J, bone M. Reuse it;
-  don't invent new label motifs. Favicon + OG card (`images/og.jpg`) match.
+- The mark is `.jm-mark` — black field, bone border, emerald J, bone M. Quiet
+  chip (no glow stack). Reuse it; don't invent new label motifs. Favicon + OG
+  card (`images/og.jpg`) match. Keep OG at 1200×630 / 1× for fast link previews.
 
 `joshbubis.com` is the personal résumé site. It may link here (Josh.Menu in
 Selected work). This sales site stays surname-free and does **not** link to the

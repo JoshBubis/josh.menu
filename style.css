@@ -313,37 +313,25 @@ body.is-lit .page-light {
 }
 
 /* —— JM maker's mark —— */
-/* Black field, bone border, emerald J, bone M. One mark everywhere a
-   signature belongs — hero, work plates, chat fab, close. */
+/* Black field, bone border, emerald J, bone M. Quiet chip — no glow stack. */
 .jm-mark {
-    --jm-mark-bg: #080b0a;
-    --jm-mark-border: rgba(244, 241, 234, 0.92);
-    --jm-mark-m: #f4f1ea;
-    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.02em;
-    min-width: 2.05em;
-    height: 2.05em;
-    padding: 0 0.42em;
+    min-width: 2em;
+    height: 2em;
+    padding: 0 0.4em;
     flex-shrink: 0;
-    background:
-        linear-gradient(165deg, rgba(16, 213, 146, 0.14) 0%, transparent 42%),
-        var(--jm-mark-bg);
-    color: var(--jm-mark-m);
-    border: 1px solid var(--jm-mark-border);
+    background: #080b0a;
+    color: #f4f1ea;
+    border: 1px solid rgba(244, 241, 234, 0.9);
     border-radius: 3px;
-    box-shadow:
-        0 0 0 1px rgba(16, 213, 146, 0.22),
-        0 0 18px rgba(16, 213, 146, 0.16),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.35);
     font-family: var(--font-display);
     font-weight: 800;
     font-size: 1em;
     line-height: 1;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.04em;
     text-transform: none;
     user-select: none;
     -webkit-user-select: none;
@@ -351,31 +339,14 @@ body.is-lit .page-light {
 
 .jm-mark__j {
     color: var(--accent);
-    text-shadow:
-        0 0 10px rgba(16, 213, 146, 0.55),
-        0 0 2px rgba(16, 213, 146, 0.35);
 }
 
 .jm-mark__m {
-    color: var(--jm-mark-m);
+    color: #f4f1ea;
 }
 
 .jm-mark--lg {
-    font-size: 1.35rem;
-    min-width: 2.15em;
-    height: 2.15em;
-    border-radius: 4px;
-    box-shadow:
-        0 0 0 1px rgba(16, 213, 146, 0.28),
-        0 0 28px rgba(16, 213, 146, 0.22),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .jm-mark__j {
-        text-shadow: none;
-    }
+    font-size: 1.3rem;
 }
 
 /* —— Hero —— */
@@ -2233,9 +2204,8 @@ main > .section {
 }
 
 .chat-fab:hover {
-    border-color: rgba(16, 213, 146, 0.55);
+    border-color: var(--accent);
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(16, 213, 146, 0.12);
 }
 
 .chat-panel {
