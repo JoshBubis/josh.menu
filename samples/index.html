@@ -22,7 +22,7 @@
     <link rel="icon" href="/favicon.svg?v=jm4" type="image/svg+xml">
 
     <link rel="stylesheet" href="../fonts.css">
-    <link rel="stylesheet" href="../style.css?v=jm19">
+    <link rel="stylesheet" href="../style.css?v=jm20">
 </head>
 
 <body>
@@ -32,7 +32,10 @@
 
     <header class="site-header">
         <a class="wordmark" href="/">Josh<span class="wordmark__dot">.</span>Menu</a>
-        <nav class="site-nav" aria-label="Primary">
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
             <a href="/#work">Work</a>
             <a href="/samples/" aria-current="page">Samples</a>
             <a href="/#systems">Systems</a>
@@ -127,7 +130,7 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=jm6"></script>
+    <script src="../script.js?v=jm7"></script>
 </body>
 
 </html>

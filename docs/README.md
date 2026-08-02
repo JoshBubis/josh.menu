@@ -39,7 +39,9 @@ browser chrome; screenshots stay clickable through `.work-shot-link`. The
 stack) is the brand mark; reuse it rather than inventing new label motifs.
 Share previews use a lean `images/og.jpg` (`npm run render-og` after editing
 `og/card.html`). Keep the JPEG ~1200×630 at 1× so iMessage/Slack load fast.
-Hero pitch: outcome-first (“earn trust”), not craft poetry.
+Hero pitch: outcome-first (“earn trust”), not craft poetry. On phones (≤720px):
+hamburger full-screen nav, stacked hero CTAs, chat as an icon chip + bottom
+sheet — not a wrapped desktop nav.
 
 ### Backend endpoints
 

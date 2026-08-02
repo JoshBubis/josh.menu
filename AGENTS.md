@@ -112,8 +112,8 @@ edit **this** folder for sales-site UI. Do not merge the two repos unless Josh a
   wrapper and `data-parallax` on the child if you reintroduce parallax.
 - The hero live signal is four green dots only (no uptime copy, no Hub fetch).
   Don’t reintroduce status stats unless Josh asks.
-- At ≤720px the header stacks into two rows, so `--header-offset` and the hero's
-  top padding are both overridden in that breakpoint. Change them together.
+- At ≤720px the header is a single row + hamburger (full-screen nav sheet). Keep
+  `--header-offset` in sync with that bar height if you change header padding.
 - Nav jumps: `scroll-padding-top` only — never also `scroll-margin-top` on sections.
 - The chat widget is beta-gated (`BETA_GATE` in `chat.js`, `localStorage.jm_chat_beta`).
   Don't flip it in the same change as anything else.

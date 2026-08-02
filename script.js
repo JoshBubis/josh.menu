@@ -20,6 +20,30 @@
   onScrollHeader();
   window.addEventListener("scroll", onScrollHeader, { passive: true });
 
+  /* Phone nav — hamburger opens a full-screen sheet with large tap targets */
+  var navToggle = document.getElementById("nav-toggle");
+  var siteNav = document.getElementById("site-nav");
+  function setNavOpen(open) {
+    if (!header || !navToggle) return;
+    header.classList.toggle("is-nav-open", open);
+    document.body.classList.toggle("is-nav-open", open);
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+  if (navToggle && siteNav) {
+    navToggle.addEventListener("click", function () {
+      setNavOpen(!header.classList.contains("is-nav-open"));
+    });
+    siteNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        setNavOpen(false);
+      });
+    });
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setNavOpen(false);
+    });
+  }
+
   /* Process spine inks in as the steps pass — plain scroll math, rAF-throttled */
   var processFlow = document.querySelector(".process-flow");
   var processFill = document.getElementById("process-rail-fill");
