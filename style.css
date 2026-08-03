@@ -451,9 +451,8 @@ body.is-nav-open {
 .hero-status {
     display: flex;
     align-items: center;
-    margin-top: 2.4rem;
-    padding-top: 1.1rem;
-    border-top: 1px solid var(--line);
+    margin-top: 2.6rem;
+    padding-top: 0.25rem;
 }
 
 .status-dots {
@@ -955,10 +954,8 @@ body.is-nav-open {
     z-index: 1;
 }
 
-/* Hairline rules delineate sections — print margins, not glow washes */
-main > .section {
-    border-top: 1px solid var(--line);
-}
+/* Sections separate with air + the eyebrow accent tick — not full-width
+   hairlines (those read as page-break rules on this dark ground). */
 
 .section-head {
     max-width: 40rem;
@@ -982,7 +979,7 @@ main > .section {
     width: 1.6rem;
     height: 2px;
     border-radius: 2px;
-    background: var(--accent);
+    background: linear-gradient(90deg, var(--accent), transparent);
     flex-shrink: 0;
 }
 
@@ -1004,9 +1001,7 @@ main > .section {
 .systems-grid {
     list-style: none;
     display: grid;
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
+    gap: 0.85rem;
     max-width: var(--max);
 }
 
@@ -1017,8 +1012,9 @@ main > .section {
 }
 
 .systems-card {
-    background: var(--paper);
+    background: var(--surface);
     padding: clamp(1.35rem, 3vw, 1.85rem);
+    border-radius: 3px;
 }
 
 .systems-name {
@@ -1069,9 +1065,6 @@ main > .section {
 }
 
 /* —— Sample business sites (fictional demos) —— */
-.samples-section {
-    border-top: 1px solid var(--line);
-}
 
 .samples-grid {
     list-style: none;
@@ -1469,9 +1462,8 @@ main > .section {
 .work-links {
     display: flex;
     gap: 1.35rem;
-    margin: 1.1rem 0 0;
-    padding-top: 0.95rem;
-    border-top: 1px solid var(--line);
+    margin: 1.25rem 0 0;
+    padding-top: 0.15rem;
 }
 
 .work-links a {
@@ -1583,11 +1575,13 @@ main > .section {
 .approach-list {
     list-style: none;
     max-width: 48rem;
-    border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
 }
 
 .approach-item {
-    border-bottom: 1px solid var(--line);
+    border-radius: 3px;
 }
 
 .approach-trigger {
@@ -1596,13 +1590,20 @@ main > .section {
     grid-template-columns: 3rem 1fr auto;
     align-items: center;
     gap: 1rem;
-    padding: 1.35rem 0;
+    padding: 1.2rem 0.35rem 1.2rem 0;
     background: none;
     border: none;
     font: inherit;
     color: inherit;
     text-align: left;
     cursor: pointer;
+    border-radius: 3px;
+    transition: background 0.25s var(--ease);
+}
+
+.approach-trigger:hover,
+.approach-item.is-open .approach-trigger {
+    background: linear-gradient(90deg, rgba(16, 213, 146, 0.06), transparent 55%);
 }
 
 .approach-num {
@@ -1798,7 +1799,6 @@ main > .section {
 /* —— Close —— */
 .close-section {
     text-align: center;
-    border-top: 1px solid var(--line);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1823,8 +1823,8 @@ main > .section {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1.5rem var(--pad) 2.5rem;
-    border-top: 1px solid var(--line);
+    padding: 0.5rem var(--pad) 2.75rem;
+    margin-top: 0.5rem;
     font-size: 0.85rem;
     color: var(--muted);
 }

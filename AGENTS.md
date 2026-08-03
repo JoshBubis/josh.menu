@@ -60,8 +60,11 @@ overriding, and update this block if it changes.**
   (pause on hover / reduced-motion), the process spine inking in, a page-wide
   cursor-follow light, and white→emerald text hover on headings/labels. That
   is the whole list. Adding to it is a decision, not a detail.
-- Hairline rules stay structural. Shadows do nothing on this ground — the
-  retheme removed them all rather than tinting them.
+- No full-width hairline “page breaks” between sections — separate with
+  spacing; eyebrows already carry a short accent tick. Keep borders on real
+  UI chrome (nav scroll state, demo browser chrome, chat panel, form fields).
+  Shadows do nothing on this ground — the retheme removed them all rather
+  than tinting them.
 - **The hero ground is clean.** The v1 paper direction's ruled baselines and
   emerald margin rule were retired (late July 2026) because they read as
   looseleaf paper on the dark ground. Grain, the cursor light, and the lander
