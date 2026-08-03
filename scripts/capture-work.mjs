@@ -17,6 +17,12 @@ fs.mkdirSync(outDir, { recursive: true });
  */
 const sites = [
   {
+    slug: "relayra",
+    url: "https://www.relayra.com/",
+    ready: "h1",
+    minTextLen: 20,
+  },
+  {
     slug: "catamist",
     url: "https://catamist.com/",
     ready: "h1",
@@ -31,16 +37,16 @@ const sites = [
     minBytes: 120000,
   },
   {
-    slug: "relayra",
-    url: "https://www.relayra.com/",
-    ready: "h1",
-    minTextLen: 20,
-  },
-  {
     slug: "calledfrom",
     url: "https://calledfrom.com/",
     ready: "h1",
     minTextLen: 10,
+  },
+  {
+    slug: "josh-finance",
+    url: "https://josh.finance/",
+    ready: "h1",
+    minTextLen: 20,
   },
 ];
 

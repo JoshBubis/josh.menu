@@ -17,6 +17,7 @@ no **Source** links to `github.com/JoshBubis`. See `AGENTS.md`.
 - `samples/northline/` — classic full-bleed GC lander (Unsplash stock, not Urban Contracting); also in `/Users/jbair/Projects/clients/northlinecontracting.com`
 - `samples/holloway/` — quiet type-led law/editorial demo; also in `/Users/jbair/Projects/clients/hollowaylaw.com`
 - Homepage `#samples` and `/samples/` directory — three deliberately different shapes (browse / classic / editorial), kept off the work rail
+- Work rail order: Relayra → Catamist → HackyChat → CalledFrom → josh.finance (`npm run capture-work` refreshes JPEGs; includes josh-finance)
 - Root `404.html` — branded Pages 404 (GitHub’s stock page otherwise)
 - Security headers (CSP, HSTS, frame deny, nosniff) — set at Cloudflare edge via
   Hub `bin/rails cloudflare:static_security_headers` (Pages cannot set them)
