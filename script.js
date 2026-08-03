@@ -144,10 +144,18 @@
       }
     }
 
+    function maxScrollLeft() {
+      return Math.max(0, rail.scrollWidth - rail.clientWidth);
+    }
+
+    function clampScrollLeft(left) {
+      return Math.max(0, Math.min(maxScrollLeft(), left));
+    }
+
     function scrollToPanel(i) {
       i = Math.max(0, Math.min(count - 1, i));
       var left = panels[i].offsetLeft - panels[0].offsetLeft;
-      rail.scrollTo({ left: left, behavior: reduceMotion ? "auto" : "smooth" });
+      rail.scrollTo({ left: clampScrollLeft(left), behavior: reduceMotion ? "auto" : "smooth" });
     }
 
     function buildDots() {
@@ -256,7 +264,8 @@
         } catch (_) {}
       }
       e.preventDefault();
-      rail.scrollLeft = startScroll - dx;
+      // Clamp — unbounded scrollLeft during drag is what leaves a huge blank tail.
+      rail.scrollLeft = clampScrollLeft(startScroll - dx);
     });
     function endDrag(e) {
       if (!dragCandidate && !dragging) return;
@@ -269,6 +278,7 @@
       try {
         if (wasDragging) rail.releasePointerCapture(e.pointerId);
       } catch (_) {}
+      if (wasDragging) rail.scrollLeft = clampScrollLeft(rail.scrollLeft);
     }
     rail.addEventListener("pointerup", endDrag);
     rail.addEventListener("pointercancel", endDrag);

@@ -1308,6 +1308,8 @@ body.is-nav-open {
     position: relative;
     overflow-x: auto;
     overflow-y: hidden;
+    /* Kill elastic / chained overscroll past the first/last panel (trackpad & touch). */
+    overscroll-behavior-x: contain;
     padding: 0.25rem 0 1.5rem;
     cursor: grab;
     scroll-snap-type: x proximity;
