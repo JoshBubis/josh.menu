@@ -12,7 +12,7 @@ no **Source** links to `github.com/JoshBubis`. See `AGENTS.md`.
 
 ### Structure
 
-- `index.html` — hero (two-column: copy left, cartoon browser lander demo right — scroll/click loop; Catamist & live work live on the rail), work rail, **Systems** (capabilities) and a **Samples** strip (Travel / Contractor / Law fictional demos — separate from Live work), approach, process, about, CTA
+- `index.html` — hero (two-column: copy left, cartoon browser lander demo right), then **Samples** first (easy lander get), approach, **Systems**, live **Work** rail lower (depth proof), process, about, CTA. Pitch is broader than “I build websites” without listing every capability.
 - `samples/harbor-lane/` — browse-led cruise demo (sailings board + Why Galveston split with caption bar, not a full-bleed photo quote); also in `/Users/jbair/Projects/clients/harborlanetravel.com`
 - `samples/northline/` — classic full-bleed GC lander (Unsplash stock, not Urban Contracting); also in `/Users/jbair/Projects/clients/northlinecontracting.com`
 - `samples/holloway/` — quiet type-led law/editorial demo; also in `/Users/jbair/Projects/clients/hollowaylaw.com`
@@ -39,9 +39,10 @@ browser chrome; screenshots stay clickable through `.work-shot-link`. The
 stack) is the brand mark; reuse it rather than inventing new label motifs.
 Share previews use a lean `images/og.jpg` (`npm run render-og` after editing
 `og/card.html`). Keep the JPEG ~1200×630 at 1× so iMessage/Slack load fast.
-Hero pitch: outcome-first (“earn trust”), not craft poetry. On phones (≤720px):
-hamburger full-screen nav, stacked hero CTAs, chat as an icon chip + bottom
-sheet — not a wrapped desktop nav.
+Hero pitch: outcome-first (“look the part / run like you mean it”), landers
+before product apps in the scroll. On phones (≤720px): hamburger full-screen
+nav, stacked hero CTAs, chat as an icon chip + bottom sheet — not a wrapped
+desktop nav.
 
 ### Backend endpoints
 

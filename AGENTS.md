@@ -51,9 +51,10 @@ overriding, and update this block if it changes.**
   (`#e5544b`) is for form errors only, never decoration — otherwise
   green-as-healthy and green-as-brand contradict.
 - **The hero sells the craft above the fold.** Two-column grid: copy left, a
-  cartoon browser lander demo right (scroll + click loop). Live product shots
-  live on the work rail — don't put a product screenshot back in the hero
-  unless Josh asks. Dark ground keeps the demo reading as a lit frame.
+  cartoon browser lander demo right (scroll + click loop). **Sample landers
+  come next** (the cheap/easy get); live product shots stay on the work rail
+  **lower on the page** as depth proof — don't lead with Catamist/etc. unless
+  Josh asks. Dark ground keeps the demo reading as a lit frame.
 - Motion budget, in full: mask reveals on the wordmark, the section-head
   cascade, the hero lander scroll/cursor/click loop (CSS keyframes, paused
   under `prefers-reduced-motion`), sample-card tallshot scroll previews

@@ -957,6 +957,12 @@ body.is-nav-open {
 /* Sections separate with air + the eyebrow accent tick — not full-width
    hairlines (those read as page-break rules on this dark ground). */
 
+/* Samples lead the page (easy get) — pull them closer under the hero so the
+   offer reads first; live products sit lower as depth proof. */
+.samples-section--lead {
+    padding-top: clamp(2.75rem, 7vh, 4.5rem);
+}
+
 .section-head {
     max-width: 40rem;
     margin-bottom: clamp(2rem, 5vh, 3.5rem);
