@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Josh.Menu — Design &amp; build for businesses that need to show up</title>
+    <title>Josh.Menu — Landing pages &amp; small-business sites you own</title>
     <meta name="description"
-        content="Solo studio for focused sites and the systems around them — forms, chat, payments, launch. Designed and built by one person. You own it.">
+        content="Solo studio for focused landing pages and small-business sites. One-time projects with handoff into hosting you control — plus forms, chat, and payments when you need them. Designed and built by one person.">
     <link rel="canonical" href="https://josh.menu/">
     <meta name="theme-color" content="#080b0a">
     <meta name="author" content="Josh.Menu">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Josh.Menu">
     <meta property="og:url" content="https://josh.menu/">
-    <meta property="og:title" content="Josh.Menu — Design &amp; build for businesses that need to show up">
+    <meta property="og:title" content="Josh.Menu — Landing pages &amp; small-business sites you own">
     <meta property="og:description"
-        content="Focused sites and the quieter systems around them. Designed and built by one person — you own everything.">
+        content="Focused landing pages and small-business sites. One-time build, handoff into hosting you control — designed and built by one person.">
     <meta property="og:image" content="https://josh.menu/images/og.jpg?v=jm3">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
@@ -23,27 +23,98 @@
     <meta property="og:image:alt" content="Josh.Menu — design and build studio">
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Josh.Menu — Design &amp; build for businesses that need to show up">
+    <meta name="twitter:title" content="Josh.Menu — Landing pages &amp; small-business sites you own">
     <meta name="twitter:description"
-        content="Focused sites and the quieter systems around them. Designed and built by one person — you own everything.">
+        content="Focused landing pages and small-business sites. One-time build, handoff into hosting you control — designed and built by one person.">
     <meta name="twitter:image" content="https://josh.menu/images/og.jpg?v=jm3">
     <link rel="icon" href="/favicon.svg?v=jm4" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=jm2">
 
     <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="style.css?v=jm24">
+    <link rel="stylesheet" href="style.css?v=jm25">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Josh.Menu",
-      "url": "https://josh.menu/",
-      "email": "josh@josh.menu",
-      "description": "Solo studio for focused sites and the systems around them — designed and built by one person.",
-      "image": "https://josh.menu/images/og.jpg?v=jm3",
-      "areaServed": "US",
-      "serviceType": ["Web design", "Web development", "Product landing pages", "Custom web systems"],
-      "priceRange": "$$"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://josh.menu/#website",
+          "url": "https://josh.menu/",
+          "name": "Josh.Menu",
+          "description": "Solo studio for focused landing pages and small-business sites — designed and built by one person.",
+          "publisher": { "@id": "https://josh.menu/#studio" }
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://josh.menu/#studio",
+          "name": "Josh.Menu",
+          "url": "https://josh.menu/",
+          "email": "josh@josh.menu",
+          "description": "Solo studio for focused landing pages, small-business sites, and the systems around them — forms, chat, payments, launch. Designed and built by one person.",
+          "image": "https://josh.menu/images/og.jpg?v=jm3",
+          "areaServed": "US",
+          "serviceType": [
+            "Landing page design",
+            "Small business website design",
+            "Web development",
+            "Custom web systems"
+          ],
+          "priceRange": "$$",
+          "knowsAbout": [
+            "Landing pages",
+            "Small business websites",
+            "Cloudflare Pages handoff",
+            "Stripe payments",
+            "Contract e-sign"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://josh.menu/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is a focused landing page a one-time project?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Usually yes — a fixed price for design and build, then handoff into hosting you control. Ongoing care, or us hosting for you, only happens if we write that into the agreement. Bigger systems are scoped separately."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who hosts the site after launch?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "For most landers, the site goes into a hosting account you control — often free-tier Cloudflare Pages — with the source files handed over. You are not locked into a website-builder subscription to keep the site up."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does a focused site take?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Days, not months, for a focused lander once scope is clear. You get a private preview while it takes shape and a revision round before launch."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are the sample sites real client work?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. The samples are fictional demos that show different shapes — browse-led, classic trade lander, editorial. Live product apps appear separately on the Work rail."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you only build brochure sites?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Focused sites are the default engagement. The same studio also builds quieter systems — forms, chat, payments, contracts — and has shipped live product apps when the work calls for it."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
 </head>
@@ -64,6 +135,7 @@
             <a href="#systems">Systems</a>
             <a href="#work">Work</a>
             <a href="#process">Process</a>
+            <a href="#faq">FAQ</a>
             <a href="#about">About</a>
             <a href="contact.html" class="nav-cta">Start a project</a>
         </nav>
@@ -82,7 +154,7 @@
                         Look the part. <em class="hero-feel">Run like you mean it.</em>
                     </p>
                     <p class="hero-sub reveal" data-reveal>
-                        Focused sites — and the quieter systems around them. Designed and built by one person, shipped fast, yours to keep.
+                        Landing pages and small-business sites — plus the quieter systems around them. Designed and built by one person, shipped fast, yours to keep.
                     </p>
                     <div class="hero-actions reveal" data-reveal>
                         <a href="#samples" class="btn btn-primary btn-arrow">See sample sites</a>
@@ -448,6 +520,36 @@
                         </div>
                     </li>
                 </ol>
+            </div>
+        </section>
+
+        <section id="faq" class="section faq-section" aria-labelledby="faq-title">
+            <div class="section-head reveal" data-reveal>
+                <p class="eyebrow">FAQ</p>
+                <h2 class="section-title" id="faq-title">Straight answers before you write.</h2>
+                <p class="section-lead">The questions people actually ask about focused sites — price shape, hosting, and what the samples are.</p>
+            </div>
+            <div class="faq-list reveal" data-reveal>
+                <details class="faq-item">
+                    <summary>Is a focused landing page a one-time project?</summary>
+                    <p>Usually yes — a fixed price for design and build, then handoff into hosting you control. Ongoing care, or us hosting for you, only happens if we write that into the agreement. Bigger systems are scoped separately.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Who hosts the site after launch?</summary>
+                    <p>For most landers, the site goes into a hosting account you control — often free-tier Cloudflare Pages — with the source files handed over. You’re not locked into a website-builder subscription to keep the site up.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>How long does a focused site take?</summary>
+                    <p>Days, not months, once scope is clear. You get a private preview while it takes shape and a revision round before launch.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Are the sample sites real client work?</summary>
+                    <p>No — fictional demos on purpose, so you can compare shapes (browse-led, classic trade, editorial). Live product apps sit lower on the page under Work.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Do you only build brochure sites?</summary>
+                    <p>Focused sites are the default. Same studio for forms, chat, payments, and contracts — and we’ve shipped live product apps when the work calls for it.</p>
+                </details>
             </div>
         </section>
 

@@ -52,6 +52,17 @@ periods, or larger systems may be monthly — only when written into the
 agreement. Prefer “not a website-builder subscription” / “optional care if
 we agree” over absolute no-fees language.
 
+### SEO (keep honest)
+
+- Homepage title/description/JSON-LD target **landing pages / small-business
+  sites / one-time handoff** — not generic “web design agency” spam.
+- Visible `#faq` + matching `FAQPage` schema; answers must stay aligned with
+  the pricing caution above.
+- `sitemap.xml` lists only crawl-worthy URLs (`/` and `/samples/`). Contact is
+  `noindex`; individual sample demos are `noindex,follow` so fictional
+  businesses don’t rank as real firms. The `/samples/` index stays indexable.
+- Surname never appears in public markup (verify-live checks).
+
 ### Backend endpoints
 
 Both public endpoints live on `api.josh.menu`, which is the same Hub app behind the

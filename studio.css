@@ -1802,6 +1802,65 @@ body.is-nav-open {
     font-size: 0.95rem;
 }
 
+/* —— FAQ —— */
+.faq-list {
+    max-width: 40rem;
+    margin: 0 auto;
+    border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.faq-item {
+    border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.1rem 0;
+    font-weight: 600;
+    font-size: 1.02rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+    flex: none;
+    font-weight: 500;
+    color: var(--accent);
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.faq-item[open] summary::after {
+    content: "–";
+}
+
+.faq-item summary:hover {
+    color: var(--accent);
+}
+
+.faq-item p {
+    margin: 0 0 1.15rem;
+    color: var(--muted);
+    max-width: 48ch;
+    line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .faq-item summary {
+        transition: color 0.15s ease;
+    }
+}
+
 /* —— Close —— */
 .close-section {
     text-align: center;

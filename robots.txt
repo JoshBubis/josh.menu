@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Fictional sample demos are noindex in their HTML; keep the samples index crawlable.
+# Contact form is noindex (lead page — not meant to rank).
+
 Sitemap: https://josh.menu/sitemap.xml

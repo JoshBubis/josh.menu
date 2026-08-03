@@ -59,6 +59,10 @@ overriding, and update this block if it changes.**
   usually one-time + handoff to hosting the client controls (often Cloudflare
   Pages). Care plans, Josh-hosted periods, or bigger systems may be monthly —
   only when contracted. Prefer “not a website-builder subscription.”
+- **SEO:** keep homepage meta + `#faq` / FAQPage schema offer-specific
+  (landers, small-business sites, handoff). Individual `/samples/*/` demos stay
+  `noindex` (fictional firms); `/samples/` index + homepage stay indexable.
+  Don’t put contact or demos back in `sitemap.xml` without asking.
 - Motion budget, in full: mask reveals on the wordmark, the section-head
   cascade, the hero lander scroll/cursor/click loop (CSS keyframes, paused
   under `prefers-reduced-motion`), sample-card tallshot scroll previews
