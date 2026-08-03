@@ -198,7 +198,11 @@
     }, { passive: true });
 
     function step(dir) {
-      scrollToPanel(nearestIndex() + dir);
+      if (!count) return;
+      // Wrap at the ends — Next on the last panel returns to the first (and Prev the reverse).
+      var next = (nearestIndex() + dir) % count;
+      if (next < 0) next += count;
+      scrollToPanel(next);
     }
 
     var prevBtn = document.getElementById("work-prev");
