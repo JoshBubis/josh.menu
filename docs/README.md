@@ -45,6 +45,13 @@ before product apps in the scroll. On phones (≤720px): hamburger full-screen
 nav, stacked hero CTAs, chat as an icon chip + bottom sheet — not a wrapped
 desktop nav.
 
+**Pricing copy caution:** don’t promise blanket “no monthly fees.” Focused
+landers are usually one-time + handoff to hosting the client controls
+(Cloudflare Pages free tier is the common path). Ongoing care, Josh-hosted
+periods, or larger systems may be monthly — only when written into the
+agreement. Prefer “not a website-builder subscription” / “optional care if
+we agree” over absolute no-fees language.
+
 ### Backend endpoints
 
 Both public endpoints live on `api.josh.menu`, which is the same Hub app behind the

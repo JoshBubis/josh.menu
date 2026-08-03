@@ -55,6 +55,10 @@ overriding, and update this block if it changes.**
   come next** (the cheap/easy get); live product shots stay on the work rail
   **lower on the page** as depth proof — don't lead with Catamist/etc. unless
   Josh asks. Dark ground keeps the demo reading as a lit frame.
+- **Pricing copy:** never promise blanket “no monthly fees.” Landers are
+  usually one-time + handoff to hosting the client controls (often Cloudflare
+  Pages). Care plans, Josh-hosted periods, or bigger systems may be monthly —
+  only when contracted. Prefer “not a website-builder subscription.”
 - Motion budget, in full: mask reveals on the wordmark, the section-head
   cascade, the hero lander scroll/cursor/click loop (CSS keyframes, paused
   under `prefers-reduced-motion`), sample-card tallshot scroll previews
