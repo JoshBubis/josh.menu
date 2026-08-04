@@ -1210,11 +1210,11 @@ body.is-nav-open {
     }
 }
 
-/* Pan most of a tall capture, pause at ends so it reads as a deliberate scroll */
+/* Pan most of a tall capture; brief bottom pause, quicker return to the top */
 @keyframes sample-page-scroll {
     0%, 8% { transform: translateY(0); }
-    46%, 54% { transform: translateY(calc(-100% + 11rem)); }
-    92%, 100% { transform: translateY(0); }
+    46%, 49% { transform: translateY(calc(-100% + 11rem)); }
+    84%, 100% { transform: translateY(0); }
 }
 
 .sample-card__badge {
