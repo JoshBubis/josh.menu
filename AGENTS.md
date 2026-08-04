@@ -76,8 +76,9 @@ overriding, and update this block if it changes.**
   than tinting them.
 - **The hero ground is clean.** The v1 paper direction's ruled baselines and
   emerald margin rule were retired (late July 2026) because they read as
-  looseleaf paper on the dark ground. Grain, the cursor light, and the lander
-  demo carry atmosphere — don't reintroduce backdrop patterns without asking.
+  looseleaf paper on the dark ground. Film grain was removed (read as monitor
+  smudge). Atmosphere is the cursor light + lander demo — don't reintroduce
+  noise/grain overlays without asking.
 
 ## Hybrid with Hub (keep this in mind)
 

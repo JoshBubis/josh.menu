@@ -121,18 +121,6 @@ a {
     transform: translateY(0);
 }
 
-.grain {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0.04;
-    /* One stretched sheet — repeating a 200×200 SVG noise tile shows a grid of seams. */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 /* Cursor light — follows the pointer across the whole page (desktop only). */
 .page-light {
     position: fixed;
@@ -408,9 +396,9 @@ body.is-nav-open {
     overflow: hidden;
 }
 
-/* Clean ground: no backdrop pattern. The v1 paper direction's ruled baselines
-   and margin rule were retired in July 2026 — grain, the page cursor light,
-   and the framed work carry atmosphere. */
+/* Clean ground: no backdrop pattern / film grain. The v1 paper direction's
+   ruled baselines and margin rule were retired in July 2026 — the page cursor
+   light and the framed work carry atmosphere. */
 
 /* Maker's line — signature above the fold, paired with the live strip */
 .hero-specimen {
