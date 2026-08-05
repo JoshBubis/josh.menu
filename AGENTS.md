@@ -50,21 +50,23 @@ overriding, and update this block if it changes.**
   links, focus rings, and white→emerald hover on headings. `--danger`
   (`#e5544b`) is for form errors only, never decoration — otherwise
   green-as-healthy and green-as-brand contradict.
-- **The hero sells the craft above the fold.** Two-column grid: copy left, a
-  cartoon browser lander demo right (scroll + click loop). Primary CTA points
-  at **`/menu/`** (the carte). **Sample landers come next** on the homepage;
-  live product shots stay on the work rail **lower on the page**. Don't lead
-  with Catamist/etc. unless Josh asks. Dark ground keeps the demo reading as
-  a lit frame. The Menu metaphor stays classy (tasting notes / courses) — never
-  restaurant clipart.
+- **Pitch hierarchy (Aug 2026):** the **kitchen is the product** — chat,
+  booking/scheduling, intake, payments, custom systems — tailored for anyone’s
+  business. Landers / Pages handoff remain a valid *course*, not the whole
+  offer. Don’t claim a live scheduling product until it exists; sell “we build
+  booking for you” honestly.
+- **The hero sells craft + the stack above the fold.** Two-column grid: copy
+  left, cartoon browser demo right. Primary CTA → **`/menu/`**. Homepage scroll:
+  **Kitchen (`#systems`) next**, then sample plates, then Work rail lower.
+  Menu page: kitchen notes first, plates second. Metaphor stays classy
+  (tasting notes / courses) — never restaurant clipart.
 - **Pricing copy:** never promise blanket “no monthly fees.” Landers are
   usually one-time + handoff to hosting the client controls (often Cloudflare
   Pages). Care plans, Josh-hosted periods, or bigger systems may be monthly —
   only when contracted. Prefer “not a website-builder subscription.”
-- **SEO:** keep homepage meta + `#faq` / FAQPage schema offer-specific
-  (landers, small-business sites, handoff). Individual `/samples/*/` demos stay
-  `noindex` (fictional firms); `/samples/` index + homepage stay indexable.
-  Don’t put contact or demos back in `sitemap.xml` without asking.
+- **SEO:** homepage meta + `#faq` / FAQPage target **systems + sites** (chat,
+  booking, intake, landers/handoff) — not generic “web design agency” spam.
+  Individual `/samples/*/` demos stay `noindex`; `/samples/` + homepage indexable.
 - Motion budget, in full: mask reveals on the wordmark, the section-head
   cascade, the hero lander scroll/cursor/click loop (CSS keyframes, paused
   under `prefers-reduced-motion`), sample-card tallshot scroll previews

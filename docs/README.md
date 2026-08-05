@@ -12,9 +12,10 @@ no **Source** links to `github.com/JoshBubis`. See `AGENTS.md`.
 
 ### Structure
 
-- `index.html` — hero (two-column: copy left, cartoon browser lander demo right), then **From the Menu** samples, approach, **Systems**, live **Work** rail lower, process, about, CTA.
-- `menu/` — visual **plates** (demo tallshots) + kitchen-note carte (shapes / sides). Classy menu metaphor — not restaurant kitsch. Indexable.
-- `samples/demo-chat.js` + `demo-chat.css` — proactive sample chat (no Turnstile, canned reply). Wired on Marlowe, Ridgewood, Elena Voss.
+- `index.html` — hero (craft + stack pitch), then **Kitchen** (`#systems`), then sample **plates**, approach, **Work** rail, process, about, CTA. Pitch: kitchen is the product; landers are a course.
+- `menu/` — **kitchen first** (how it runs / how it looks), then visual **plates**. Classy menu metaphor — not restaurant kitsch. Indexable.
+- `samples/demo-chat.js` + `demo-chat.css` — proactive sample chat (no Turnstile, canned reply). Wired on Marlowe, Ridgewood, Elena Voss, Mora.
+- `samples/mora/` — small-batch ceramics maker (lookbook + reserve hold)
 - `samples/harbor-lane/` — browse-led cruise demo; also in `/Users/jbair/Projects/clients/harborlanetravel.com`
 - `samples/northline/` — classic full-bleed GC lander; also in `/Users/jbair/Projects/clients/northlinecontracting.com`
 - `samples/holloway/` — quiet type-led law/editorial demo; also in `/Users/jbair/Projects/clients/hollowaylaw.com`
@@ -45,10 +46,10 @@ browser chrome; screenshots stay clickable through `.work-shot-link`. The
 stack) is the brand mark; reuse it rather than inventing new label motifs.
 Share previews use a lean `images/og.jpg` (`npm run render-og` after editing
 `og/card.html`). Keep the JPEG ~1200×630 at 1× so iMessage/Slack load fast.
-Hero pitch: outcome-first (“look the part / run like you mean it”), landers
-before product apps in the scroll. On phones (≤720px): hamburger full-screen
-nav, stacked hero CTAs, chat as an icon chip + bottom sheet — not a wrapped
-desktop nav.
+Hero pitch: outcome-first (“look the part / run like you mean it”) with the
+**stack** in the subhead; Kitchen section before sample plates; Work rail
+proves shipped product. On phones (≤720px): hamburger full-screen nav, stacked
+hero CTAs, chat as an icon chip + bottom sheet — not a wrapped desktop nav.
 
 **Pricing copy caution:** don’t promise blanket “no monthly fees.” Focused
 landers are usually one-time + handoff to hosting the client controls
@@ -59,8 +60,8 @@ we agree” over absolute no-fees language.
 
 ### SEO (keep honest)
 
-- Homepage title/description/JSON-LD target **landing pages / small-business
-  sites / one-time handoff** — not generic “web design agency” spam.
+- Homepage title/description/JSON-LD target **systems + sites** (chat, booking,
+  intake, payments, landers/handoff) — not generic “web design agency” spam.
 - Visible `#faq` + matching `FAQPage` schema; answers must stay aligned with
   the pricing caution above.
 - `sitemap.xml` lists crawl-worthy URLs (`/`, `/menu/`, `/samples/`). Contact is

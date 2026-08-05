@@ -945,8 +945,8 @@ body.is-nav-open {
 /* Sections separate with air + the eyebrow accent tick — not full-width
    hairlines (those read as page-break rules on this dark ground). */
 
-/* Samples lead the page (easy get) — pull them closer under the hero so the
-   offer reads first; live products sit lower as depth proof. */
+/* Kitchen (systems) leads under the hero — samples follow as “how it looks.” */
+.systems-section--lead,
 .samples-section--lead {
     padding-top: clamp(2.75rem, 7vh, 4.5rem);
 }
@@ -1002,6 +1002,12 @@ body.is-nav-open {
 @media (min-width: 48rem) {
     .systems-grid {
         grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1100px) {
+    .systems-grid {
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
@@ -2291,6 +2297,33 @@ body.is-nav-open {
     border-top: 1px solid var(--line);
     padding-top: 2.25rem;
     margin-bottom: 2.5rem;
+}
+
+.menu-carte--lead {
+    border-top: none;
+    padding: 1.75rem 1.5rem 2rem;
+    margin-bottom: 3rem;
+    background: var(--surface);
+    border-radius: 0.85rem;
+    border: 1px solid var(--line);
+}
+
+.menu-carte__foot {
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.menu-carte__foot a {
+    color: var(--bone);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.menu-carte__foot a:hover {
+    color: var(--accent);
 }
 
 .menu-carte__intro {

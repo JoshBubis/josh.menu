@@ -24,6 +24,7 @@ const samples = [
   { slug: "marlowe", path: "/samples/marlowe/", ready: "h1" },
   { slug: "ridgewood", path: "/samples/ridgewood/", ready: "h1" },
   { slug: "elena-voss", path: "/samples/elena-voss/", ready: "h1" },
+  { slug: "mora", path: "/samples/mora/", ready: "h1" },
 ];
 
 const browser = await chromium.launch();

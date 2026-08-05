@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample: Mora — Josh.Menu</title>
+  <meta name="description" content="Fictional small-batch ceramics atelier demo by Josh.Menu — not a real shop. Product-led maker shape you can hire the studio to tailor.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#1c1713">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="../demo-chat.css?v=1">
+  <link rel="canonical" href="https://josh.menu/samples/mora/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sample: Mora — Josh.Menu">
+  <meta property="og:description" content="Fictional demo by Josh.Menu — small-batch ceramics, lookbook first.">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <p class="demo-ribbon" role="note">
+    Sample site · Built by <a class="jm-credit" href="https://josh.menu" target="_blank" rel="noopener noreferrer">Josh.Menu</a>
+  </p>
+
+  <header class="mast" id="top">
+    <div class="shell mast__inner">
+      <a class="wordmark" href="#top">Mora</a>
+      <nav class="mast__nav" aria-label="Primary">
+        <a href="#collection">Collection</a>
+        <a href="#drops">Drops</a>
+        <a href="#studio">Studio</a>
+        <a href="#inquire">Inquire</a>
+      </nav>
+      <a class="btn btn--ghost mast__cta" href="#inquire">Reserve a piece</a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile" hidden>
+      <a href="#collection">Collection</a>
+      <a href="#drops">Drops</a>
+      <a href="#studio">Studio</a>
+      <a href="#inquire">Inquire</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section class="hero" aria-label="Introduction">
+      <div class="hero__copy">
+        <p class="kicker">Small-batch ceramics · Pacific Northwest</p>
+        <h1 class="hero__title">Thrown by hand.<br><em>Kept for years.</em></h1>
+        <p class="hero__deck">
+          Mora makes limited vessels for daily ritual — bowls, cups, and jars
+          with celadon glaze and ash-clay bodies. No cart. You reserve a piece;
+          we fire your drop.
+        </p>
+        <p class="hero__actions">
+          <a class="btn" href="#collection">See the collection</a>
+          <a class="link-quiet" href="#drops">Next drop calendar</a>
+        </p>
+      </div>
+      <div class="hero__stage" aria-hidden="true">
+        <div class="vessel vessel--hero">
+          <span class="vessel__rim"></span>
+          <span class="vessel__body"></span>
+          <span class="vessel__foot"></span>
+          <span class="vessel__glaze"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="collection" id="collection" aria-labelledby="collection-title">
+      <div class="shell">
+        <header class="section-head reveal">
+          <p class="kicker">Lookbook</p>
+          <h2 id="collection-title">Current forms</h2>
+          <p class="section-lead">Six shapes in the kiln cycle. Tap a piece to hold it — demo inquire, not checkout.</p>
+        </header>
+
+        <ul class="pieces">
+          <li class="piece reveal">
+            <button type="button" class="piece__hit" data-piece="Ledge Bowl" data-price="$68" aria-controls="piece-panel">
+              <div class="piece__visual piece__visual--1" aria-hidden="true">
+                <span class="vessel vessel--bowl"><span class="vessel__glaze"></span></span>
+              </div>
+              <div class="piece__meta">
+                <h3 class="piece__name">Ledge Bowl</h3>
+                <p class="piece__glaze">Celadon mist</p>
+                <p class="piece__price">$68</p>
+              </div>
+            </button>
+          </li>
+          <li class="piece reveal">
+            <button type="button" class="piece__hit" data-piece="Morning Cup" data-price="$42" aria-controls="piece-panel">
+              <div class="piece__visual piece__visual--2" aria-hidden="true">
+                <span class="vessel vessel--cup"><span class="vessel__glaze"></span></span>
+              </div>
+              <div class="piece__meta">
+                <h3 class="piece__name">Morning Cup</h3>
+                <p class="piece__glaze">Ash slip</p>
+                <p class="piece__price">$42</p>
+              </div>
+            </button>
+          </li>
+          <li class="piece reveal">
+            <button type="button" class="piece__hit" data-piece="Tall Jar" data-price="$96" aria-controls="piece-panel">
+              <div class="piece__visual piece__visual--3" aria-hidden="true">
+                <span class="vessel vessel--jar"><span class="vessel__glaze"></span></span>
+              </div>
+              <div class="piece__meta">
+                <h3 class="piece__name">Tall Jar</h3>
+                <p class="piece__glaze">Iron speck</p>
+                <p class="piece__price">$96</p>
+              </div>
+            </button>
+          </li>
+          <li class="piece reveal">
+            <button type="button" class="piece__hit" data-piece="Nest Plate" data-price="$54" aria-controls="piece-panel">
+              <div class="piece__visual piece__visual--4" aria-hidden="true">
+                <span class="vessel vessel--plate"><span class="vessel__glaze"></span></span>
+              </div>
+              <div class="piece__meta">
+                <h3 class="piece__name">Nest Plate</h3>
+                <p class="piece__glaze">Bone gloss</p>
+                <p class="piece__price">$54</p>
+              </div>
+            </button>
+          </li>
+          <li class="piece reveal">
+            <button type="button" class="piece__hit" data-piece="Pourer" data-price="$78" aria-controls="piece-panel">
+              <div class="piece__visual piece__visual--5" aria-hidden="true">
+                <span class="vessel vessel--pourer"><span class="vessel__glaze"></span></span>
+              </div>
+              <div class="piece__meta">
+                <h3 class="piece__name">Pourer</h3>
+                <p class="piece__glaze">Sea foam</p>
+                <p class="piece__price">$78</p>
+              </div>
+            </button>
+          </li>
+          <li class="piece reveal">
+            <button type="button" class="piece__hit" data-piece="Keep Cup set" data-price="$110" aria-controls="piece-panel">
+              <div class="piece__visual piece__visual--6" aria-hidden="true">
+                <span class="vessel vessel--set"><span class="vessel__glaze"></span></span>
+              </div>
+              <div class="piece__meta">
+                <h3 class="piece__name">Keep Cup set</h3>
+                <p class="piece__glaze">Pair · celadon</p>
+                <p class="piece__price">$110</p>
+              </div>
+            </button>
+          </li>
+        </ul>
+
+        <aside class="piece-panel" id="piece-panel" hidden>
+          <div class="piece-panel__inner">
+            <p class="piece-panel__label">Holding</p>
+            <p class="piece-panel__name" id="piece-panel-name">—</p>
+            <p class="piece-panel__price" id="piece-panel-price">—</p>
+            <p class="piece-panel__note">Demo only — we’ll carry this into the inquire form below.</p>
+            <a class="btn btn--small" href="#inquire">Continue to inquire</a>
+            <button type="button" class="piece-panel__clear" id="piece-panel-clear">Clear</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="drops" id="drops" aria-labelledby="drops-title">
+      <div class="shell drops__grid">
+        <header class="section-head reveal">
+          <p class="kicker">Cadence</p>
+          <h2 id="drops-title">How pieces leave the studio</h2>
+          <p class="section-lead">
+            Mora doesn’t restock endlessly. Each firing is a short list.
+            Reserve early; pickup or ship after the cool-down.
+          </p>
+        </header>
+        <ol class="steps reveal">
+          <li>
+            <span class="steps__n">01</span>
+            <h3>Browse the lookbook</h3>
+            <p>Hold a form that fits your table — glaze and clay body listed per piece.</p>
+          </li>
+          <li>
+            <span class="steps__n">02</span>
+            <h3>Reserve in the drop</h3>
+            <p>We confirm by email within two days. No payment until the piece survives the kiln.</p>
+          </li>
+          <li>
+            <span class="steps__n">03</span>
+            <h3>Studio pickup or ship</h3>
+            <p>Local collectors visit Saturdays. Everyone else gets packed in rice-hull nests.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="studio" id="studio" aria-labelledby="studio-title">
+      <div class="shell studio__inner">
+        <div class="studio__copy reveal">
+          <p class="kicker">The room</p>
+          <h2 id="studio-title">A quiet kiln behind a cedar door.</h2>
+          <p>
+            Mora is a one-maker shop — wheel, glaze buckets, and a gas kiln that
+            runs overnight. Visits are by appointment on drop weekends so the
+            room stays a workshop, not a showroom.
+          </p>
+          <dl class="facts">
+            <div>
+              <dt>Hours</dt>
+              <dd>Sat 11–3 on drop weekends · weekdays by appt</dd>
+            </div>
+            <div>
+              <dt>Place</dt>
+              <dd>Fictional · “River Mill district” (demo address)</dd>
+            </div>
+            <div>
+              <dt>Care</dt>
+              <dd>Dishwasher-safe glaze · avoid thermal shock on the rims</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="studio__frame reveal" aria-hidden="true">
+          <div class="studio__window">
+            <span class="studio__beam"></span>
+            <span class="studio__shelf"></span>
+            <span class="studio__shelf studio__shelf--2"></span>
+            <span class="vessel vessel--shelf"><span class="vessel__glaze"></span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="inquire" id="inquire" aria-labelledby="inquire-title">
+      <div class="shell inquire__inner">
+        <header class="section-head reveal">
+          <p class="kicker">Reserve</p>
+          <h2 id="inquire-title">Hold a piece from the next firing.</h2>
+          <p class="section-lead">Demo form — nothing sends. On a real Mora site, this would email the maker.</p>
+        </header>
+
+        <form class="form reveal" id="inquire-form" novalidate>
+          <input type="hidden" name="piece" id="form-piece" value="">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field field--half">
+            <label for="interest">Piece of interest</label>
+            <select id="interest" name="interest">
+              <option value="">Any / not sure</option>
+              <option>Ledge Bowl</option>
+              <option>Morning Cup</option>
+              <option>Tall Jar</option>
+              <option>Nest Plate</option>
+              <option>Pourer</option>
+              <option>Keep Cup set</option>
+            </select>
+          </div>
+          <div class="field field--half">
+            <label for="fulfill">Fulfillment</label>
+            <select id="fulfill" name="fulfill">
+              <option>Studio pickup</option>
+              <option>Ship</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" rows="3" maxlength="600" placeholder="Gift wrap, glaze preference, questions…"></textarea>
+          </div>
+          <button class="btn btn--block" type="submit">Request a hold</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__inner">
+      <p class="footer__brand">Mora</p>
+      <p class="footer__fine">Fictional sample ceramics atelier for Josh.Menu demos. Not a real shop. Prices and pieces for illustration only.</p>
+      <p class="footer__demo">
+        Sample by
+        <a class="jm-credit" href="https://josh.menu" target="_blank" rel="noopener noreferrer">Josh.Menu</a>
+        — ask about a product-led site for your maker shop.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js?v=1" defer></script>
+  <script>
+    window.JM_DEMO_CHAT = {
+      brand: "Mora",
+      greeting: "Curious about a glaze or the next drop? Ask — this is a demo chat.",
+      reply: "This is a demo chat on a Josh.Menu sample maker shop — not a real studio inbox. It always replies the same way so you can feel the widget. Want one like this on a real site? Start a project at josh.menu.",
+      fabLabel: "Ask Mora",
+      delayMs: 2000
+    };
+  </script>
+  <script src="../demo-chat.js?v=1" defer></script>
+</body>
+</html>
