@@ -54,20 +54,26 @@ overriding, and update this block if it changes.**
   (`#e5544b`) is for form errors only, never decoration — otherwise
   green-as-healthy and green-as-brand contradict.
 - **Pitch (balanced):** focused sites *and* systems (chat, booking, intake,
-  payments). Don’t hammer the “kitchen” metaphor on every section — reserve it
-  for the Menu page tasting notes. Don’t claim a live scheduling product until
-  it exists; sell “we build booking for you” honestly.
-- **Hero + nav:** craft above the fold; primary CTA → **`/menu/`**. Slim nav:
-  Menu · Work · FAQ · About · Start. Homepage scroll: **samples first**, then
-  systems (“Beyond the page”), approach, Work rail. Menu metaphor stays classy
-  (tasting notes / courses) — never restaurant clipart.
+  payments). Don’t hammer the “kitchen” metaphor on the homepage. Don’t claim
+  a live scheduling product until it exists; sell “we build booking for you”
+  honestly.
+- **Hero + nav:** craft above the fold; primary CTA → **samples** (`#samples`).
+  Slim nav: Samples · Work · FAQ · About · Start. Homepage scroll: **samples
+  first**, then systems (“Beyond the page”), approach, Work rail.
+- **`/menu/` is backstage for now:** draft pricing + plates, `noindex`, off
+  primary nav / homepage / sitemap. Share the URL when ready; put it back in
+  nav only when Josh says so. Menu metaphor stays classy (tasting notes) —
+  never restaurant clipart.
 - **Pricing copy:** never promise blanket “no monthly fees.” Landers are
   usually one-time + handoff to hosting the client controls (often Cloudflare
   Pages). Care plans, Josh-hosted periods, or bigger systems may be monthly —
-  only when contracted. Prefer “not a website-builder subscription.”
+  only when contracted. Prefer “not a website-builder subscription.” Draft
+  numbers live on `/menu/` — treat them as starting points until Josh locks
+  them.
 - **SEO:** homepage meta + `#faq` / FAQPage target **systems + sites** (chat,
   booking, intake, landers/handoff) — not generic “web design agency” spam.
-  Individual `/samples/*/` demos stay `noindex`; `/samples/` + homepage indexable.
+  Individual `/samples/*/` demos stay `noindex`; `/samples/` + homepage
+  indexable. `/menu/` is `noindex` while off the front.
 - Motion budget, in full: mask reveals on the wordmark, the section-head
   cascade, the hero lander scroll/cursor/click loop (CSS keyframes, paused
   under `prefers-reduced-motion`), sample-card tallshot scroll previews

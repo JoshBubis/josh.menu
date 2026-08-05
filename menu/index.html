@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Menu — Josh.Menu</title>
     <meta name="description"
-        content="Open the Josh.Menu carte: playable sample sites across fields, the page shapes behind them, and systems like chat, booking, and forms.">
+        content="Josh.Menu pricing and sample plates — focused sites, systems, and add-ons. Draft carte; not linked from the homepage yet.">
+    <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://josh.menu/menu/">
     <meta name="theme-color" content="#080b0a">
     <meta property="og:type" content="website">
@@ -14,19 +15,19 @@
     <meta property="og:url" content="https://josh.menu/menu/">
     <meta property="og:title" content="The Menu — Josh.Menu">
     <meta property="og:description"
-        content="A curated menu of sample sites and systems — open a plate, feel the craft, then hire the studio to tailor yours.">
+        content="Draft pricing carte and sample plates — share the link when you’re ready.">
     <meta property="og:image" content="https://josh.menu/images/og.jpg?v=jm3">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="The Menu — Josh.Menu">
     <meta name="twitter:description"
-        content="A curated menu of sample sites and systems — open a plate, feel the craft, then hire the studio to tailor yours.">
+        content="Draft pricing carte and sample plates — share the link when you’re ready.">
     <meta name="twitter:image" content="https://josh.menu/images/og.jpg?v=jm3">
     <link rel="icon" href="/favicon.svg?v=jm4" type="image/svg+xml">
 
     <link rel="stylesheet" href="../fonts.css">
-    <link rel="stylesheet" href="../style.css?v=jm33">
+    <link rel="stylesheet" href="../style.css?v=jm34">
 </head>
 
 <body>
@@ -39,10 +40,9 @@
             <span></span><span></span><span></span>
         </button>
         <nav class="site-nav" id="site-nav" aria-label="Primary">
-            <a href="/menu/" aria-current="page">Menu</a>
+            <a href="/">Home</a>
+            <a href="/samples/">Samples</a>
             <a href="/#work">Work</a>
-            <a href="/#faq">FAQ</a>
-            <a href="/#about">About</a>
             <a href="/contact.html" class="nav-cta">Start a project</a>
         </nav>
     </header>
@@ -52,16 +52,65 @@
             <p class="menu-hero__mark"><span class="jm-mark"><span class="jm-mark__j">J</span><span class="jm-mark__m">M</span></span><span>The Menu</span></p>
             <h1 class="menu-hero__title">Order by feeling.<br><em>We’ll cook the real one.</em></h1>
             <p class="menu-hero__lead">
-                This isn’t a theme store. It’s a short carte of <strong>playable plates</strong> —
-                fictional businesses you can open — plus the systems we fold in
-                (chat, booking, intake, payments). Pick the closest plate; we tailor it to you.
+                Draft carte — pricing and playable plates. Not linked from the homepage yet;
+                share this URL when you’re ready. Numbers are starting points; the agreement
+                locks the real scope.
             </p>
         </header>
+
+        <section class="menu-pricing" aria-labelledby="pricing-title">
+            <div class="menu-pricing__head">
+                <h2 id="pricing-title">Prices</h2>
+                <p>Fixed-price builds. Deposit to start. A short polish window after launch, plus a functionality warranty if something we shipped breaks.</p>
+            </div>
+            <ul class="menu-pricing__grid">
+                <li class="menu-price">
+                    <p class="menu-price__kind">Focused lander</p>
+                    <h3 class="menu-price__name">Landing page</h3>
+                    <p class="menu-price__amount"><span class="menu-price__from">from</span> $600</p>
+                    <p class="menu-price__note">One sharp page — hero, offer, proof, contact. Handoff into hosting you control. Typical deposit $300.</p>
+                </li>
+                <li class="menu-price">
+                    <p class="menu-price__kind">Small business</p>
+                    <h3 class="menu-price__name">Site + intake</h3>
+                    <p class="menu-price__amount"><span class="menu-price__from">from</span> $1,200</p>
+                    <p class="menu-price__note">A few pages, services, FAQ, spam-resistant contact. Still a fixed price once we scope it.</p>
+                </li>
+                <li class="menu-price">
+                    <p class="menu-price__kind">Add-on</p>
+                    <h3 class="menu-price__name">Live chat</h3>
+                    <p class="menu-price__amount"><span class="menu-price__from">from</span> $400</p>
+                    <p class="menu-price__note">Proactive widget on your site, AI answers + escalate to you. Hosting/ops may be monthly if we run it for you.</p>
+                </li>
+                <li class="menu-price">
+                    <p class="menu-price__kind">Add-on</p>
+                    <h3 class="menu-price__name">Booking &amp; scheduling</h3>
+                    <p class="menu-price__amount"><span class="menu-price__from">from</span> $800</p>
+                    <p class="menu-price__note">Holds, consults, tables — built for your rhythm. Scoped per business; not a generic SaaS rent forever.</p>
+                </li>
+                <li class="menu-price">
+                    <p class="menu-price__kind">Systems</p>
+                    <h3 class="menu-price__name">Custom build</h3>
+                    <p class="menu-price__amount">Talk</p>
+                    <p class="menu-price__note">Payments, contracts, admin, APIs — when the page needs to behave like a product. Fixed quote after a short scope call.</p>
+                </li>
+                <li class="menu-price menu-price--note">
+                    <p class="menu-price__kind">Always</p>
+                    <h3 class="menu-price__name">After launch</h3>
+                    <p class="menu-price__amount">Included*</p>
+                    <p class="menu-price__note">*A short window for a few polish updates, and a functionality warranty if something we shipped breaks. Ongoing care only if we write it into the agreement.</p>
+                </li>
+            </ul>
+            <p class="menu-pricing__foot">
+                Want a number for your project?
+                <a href="/contact.html">Start a project</a>
+            </p>
+        </section>
 
         <section class="menu-plates" aria-labelledby="plates-title">
             <div class="menu-plates__head">
                 <h2 id="plates-title">Tonight’s plates</h2>
-                <p>Seven open demos. Different fields, different moods — same studio.</p>
+                <p>Seven open demos — shapes you can feel. Pick the closest; we tailor it.</p>
             </div>
             <ul class="menu-plates__grid">
                 <li>
@@ -151,86 +200,12 @@
             </ul>
         </section>
 
-        <section class="menu-carte" aria-labelledby="carte-title">
-            <div class="menu-carte__intro">
-                <h2 id="carte-title">Shapes &amp; sides</h2>
-                <p>How the plates are built — page shapes first, then systems we can fold in.</p>
-            </div>
-
-            <div class="menu-carte__cols">
-                <div class="menu-carte__col">
-                    <h3 class="menu-carte__col-title">Shapes</h3>
-                    <ul class="menu-carte__list">
-                        <li>
-                            <span class="menu-carte__dish">Browse board</span>
-                            <span class="menu-carte__dots" aria-hidden="true"></span>
-                            <span class="menu-carte__desc">Filter inventory above the fold</span>
-                        </li>
-                        <li>
-                            <span class="menu-carte__dish">Classic lander</span>
-                            <span class="menu-carte__dots" aria-hidden="true"></span>
-                            <span class="menu-carte__desc">Hero · services · form</span>
-                        </li>
-                        <li>
-                            <span class="menu-carte__dish">Lookbook + reserve</span>
-                            <span class="menu-carte__dots" aria-hidden="true"></span>
-                            <span class="menu-carte__desc">Product grid, then hold</span>
-                        </li>
-                        <li>
-                            <span class="menu-carte__dish">Editorial / advisory</span>
-                            <span class="menu-carte__dots" aria-hidden="true"></span>
-                            <span class="menu-carte__desc">Type-led trust, then book</span>
-                        </li>
-                        <li>
-                            <span class="menu-carte__dish">Catalog + inquire</span>
-                            <span class="menu-carte__dots" aria-hidden="true"></span>
-                            <span class="menu-carte__desc">Listings or SKUs, then talk</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="menu-carte__col">
-                    <h3 class="menu-carte__col-title">Sides</h3>
-                    <ul class="menu-carte__list">
-                        <li>
-                            <span class="menu-carte__dish">Proactive chat</span>
-                            <span class="menu-carte__dots" aria-hidden="true"></span>
-                            <span class="menu-carte__desc">Widget that says hi first</span>
-                        </li>
-                        <li>
-                            <span class="menu-carte__dish">Booking &amp; scheduling</span>
-                            <span class="menu-carte__dots" aria-hidden="true"></span>
-                            <span class="menu-carte__desc">Built for you — not rented forever</span>
-                        </li>
-                        <li>
-                            <span class="menu-carte__dish">Contact + Turnstile</span>
-                            <span class="menu-carte__dots" aria-hidden="true"></span>
-                            <span class="menu-carte__desc">Spam-resistant intake</span>
-                        </li>
-                        <li>
-                            <span class="menu-carte__dish">Stripe deposits</span>
-                            <span class="menu-carte__dots" aria-hidden="true"></span>
-                            <span class="menu-carte__desc">When the agreement needs it</span>
-                        </li>
-                        <li>
-                            <span class="menu-carte__dish">Handoff hosting</span>
-                            <span class="menu-carte__dots" aria-hidden="true"></span>
-                            <span class="menu-carte__desc">You keep the keys</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="menu-coming" aria-labelledby="coming-title">
-            <h2 id="coming-title">Still cooking</h2>
-            <p>Own scheduling product · wellness / trade · photographer · nonprofit · clinic · venue — tracked as Hub Goals on Josh.Menu.</p>
-        </section>
-
         <p class="menu-page__foot">
-            Prefer a plain grid?
             <a href="/samples/">All samples</a>
             ·
             <a href="/contact.html">Start a project</a>
+            ·
+            <a href="/">Back home</a>
         </p>
     </main>
 

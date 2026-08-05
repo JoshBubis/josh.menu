@@ -67,9 +67,10 @@ we agree” over absolute no-fees language.
   intake, payments, landers/handoff) — not generic “web design agency” spam.
 - Visible `#faq` + matching `FAQPage` schema; answers must stay aligned with
   the pricing caution above.
-- `sitemap.xml` lists crawl-worthy URLs (`/`, `/menu/`, `/samples/`). Contact is
+- `sitemap.xml` lists crawl-worthy URLs (`/`, `/samples/`). Contact is
   `noindex`; individual sample demos are `noindex,follow` so fictional
-  businesses don’t rank as real firms. `/menu/` and `/samples/` stay indexable.
+  businesses don’t rank as real firms. `/menu/` is draft (pricing + plates),
+  `noindex`, and off the homepage/nav until Josh promotes it.
 - Surname never appears in public markup (verify-live checks).
 
 ### Backend endpoints
