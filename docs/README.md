@@ -15,8 +15,8 @@ no **Source** links to `github.com/JoshBubis`. See `AGENTS.md`.
 
 ### Structure
 
-- `index.html` — hero (craft + stack pitch), then **Kitchen** (`#systems`), then sample **plates**, approach, **Work** rail, process, about, CTA. Pitch: kitchen is the product; landers are a course.
-- `menu/` — **kitchen first** (how it runs / how it looks), then visual **plates**. Classy menu metaphor — not restaurant kitsch. Indexable.
+- `index.html` — hero, then **samples**, then systems (“Beyond the page”), approach, **Work**, process, FAQ, about, CTA. Slim nav: Menu · Work · FAQ · About · Start.
+- `menu/` — visual **plates** first, then shapes & sides (systems as sides). Classy menu metaphor — not restaurant kitsch; don’t overuse “kitchen” sitewide. Indexable.
 - `samples/demo-chat.js` + `demo-chat.css` — proactive sample chat (no Turnstile, canned reply). Wired on Marlowe, Ridgewood, Elena Voss, Mora.
 - `samples/mora/` — small-batch ceramics maker (lookbook + reserve hold)
 - `samples/harbor-lane/` — browse-led cruise demo; also in `/Users/jbair/Projects/clients/harborlanetravel.com`

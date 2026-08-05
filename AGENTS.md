@@ -53,15 +53,13 @@ overriding, and update this block if it changes.**
   links, focus rings, and white→emerald hover on headings. `--danger`
   (`#e5544b`) is for form errors only, never decoration — otherwise
   green-as-healthy and green-as-brand contradict.
-- **Pitch hierarchy (Aug 2026):** the **kitchen is the product** — chat,
-  booking/scheduling, intake, payments, custom systems — tailored for anyone’s
-  business. Landers / Pages handoff remain a valid *course*, not the whole
-  offer. Don’t claim a live scheduling product until it exists; sell “we build
-  booking for you” honestly.
-- **The hero sells craft + the stack above the fold.** Two-column grid: copy
-  left, cartoon browser demo right. Primary CTA → **`/menu/`**. Homepage scroll:
-  **Kitchen (`#systems`) next**, then sample plates, then Work rail lower.
-  Menu page: kitchen notes first, plates second. Metaphor stays classy
+- **Pitch (balanced):** focused sites *and* systems (chat, booking, intake,
+  payments). Don’t hammer the “kitchen” metaphor on every section — reserve it
+  for the Menu page tasting notes. Don’t claim a live scheduling product until
+  it exists; sell “we build booking for you” honestly.
+- **Hero + nav:** craft above the fold; primary CTA → **`/menu/`**. Slim nav:
+  Menu · Work · FAQ · About · Start. Homepage scroll: **samples first**, then
+  systems (“Beyond the page”), approach, Work rail. Menu metaphor stays classy
   (tasting notes / courses) — never restaurant clipart.
 - **Pricing copy:** never promise blanket “no monthly fees.” Landers are
   usually one-time + handoff to hosting the client controls (often Cloudflare

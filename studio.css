@@ -225,10 +225,10 @@ body.is-lit .page-light {
 
 .site-nav {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-end;
-    gap: 0.35rem 1.35rem;
+    gap: 0.35rem 1.25rem;
 }
 
 .site-nav a {
@@ -945,8 +945,7 @@ body.is-nav-open {
 /* Sections separate with air + the eyebrow accent tick — not full-width
    hairlines (those read as page-break rules on this dark ground). */
 
-/* Kitchen (systems) leads under the hero — samples follow as “how it looks.” */
-.systems-section--lead,
+/* Samples lead under the hero; systems follow as depth. */
 .samples-section--lead {
     padding-top: clamp(2.75rem, 7vh, 4.5rem);
 }
