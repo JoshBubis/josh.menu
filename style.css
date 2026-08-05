@@ -1203,11 +1203,27 @@ body.is-nav-open {
     }
 
     .samples-grid .sample-card:nth-child(2) .sample-scroll__page {
-        animation-delay: -6s;
+        animation-delay: -3s;
     }
 
     .samples-grid .sample-card:nth-child(3) .sample-scroll__page {
+        animation-delay: -6s;
+    }
+
+    .samples-grid .sample-card:nth-child(4) .sample-scroll__page {
+        animation-delay: -9s;
+    }
+
+    .samples-grid .sample-card:nth-child(5) .sample-scroll__page {
         animation-delay: -12s;
+    }
+
+    .samples-grid .sample-card:nth-child(6) .sample-scroll__page {
+        animation-delay: -15s;
+    }
+
+    .samples-grid .sample-card:nth-child(7) .sample-scroll__page {
+        animation-delay: -2s;
     }
 
     .sample-card__link:hover .sample-scroll__page,

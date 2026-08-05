@@ -209,12 +209,6 @@ ul, ol { list-style: none; }
 .mast__nav a:hover { color: var(--bone); }
 .mast__cta { display: none; }
 
-@media (min-width: 820px) {
-  .mast__nav { display: flex; }
-  .mast__cta { display: inline-flex; }
-  .nav-toggle { display: none; }
-}
-
 .nav-toggle {
   width: 2.4rem;
   height: 2.4rem;
@@ -226,6 +220,7 @@ ul, ol { list-style: none; }
   align-items: center;
   gap: 5px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 .nav-toggle span {
   display: block;
@@ -247,6 +242,13 @@ ul, ol { list-style: none; }
   text-decoration: none;
   padding: 0.65rem 0;
   font-weight: 500;
+}
+
+/* After .nav-toggle base — later `display` must not undo desktop hide */
+@media (min-width: 820px) {
+  .mast__nav { display: flex; }
+  .mast__cta { display: inline-flex; }
+  .nav-toggle { display: none; }
 }
 
 /* —— Hero: one composition — copy + vessel stage —— */
