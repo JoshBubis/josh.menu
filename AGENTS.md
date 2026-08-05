@@ -3,6 +3,9 @@
 Static GitHub Pages **sales site** for the Josh Menu studio.
 `/Users/jbair/Projects/josh.menu`.
 
+Portfolio norms: `/Users/jbair/Projects/CLAUDE.md`. Creative companion:
+`/Users/jbair/Projects/hub/docs/companions/franz.md`.
+
 ## The brand rule that matters most
 
 This site is the studio's public face and it is **deliberately surname-free**.
@@ -132,8 +135,11 @@ edit **this** folder for sales-site UI. Do not merge the two repos unless Josh a
 - At ≤720px the header is a single row + hamburger (full-screen nav sheet). Keep
   `--header-offset` in sync with that bar height if you change header padding.
 - Nav jumps: `scroll-padding-top` only — never also `scroll-margin-top` on sections.
-- The chat widget is beta-gated (`BETA_GATE` in `chat.js`, `localStorage.jm_chat_beta`).
-  Don't flip it in the same change as anything else.
+- Concierge chat is **live** (`BETA_GATE = false` in `chat.js`). Don’t flip that
+  flag casually or in an unrelated change. The `localStorage.jm_chat_beta` gate
+  only matters if someone turns `BETA_GATE` back on.
+- **Docs match reality:** if this file (or portfolio `CLAUDE.md`) claims a state
+  that is outdated, update it in the same change.
 - Turnstile widgets are domain-scoped: this site's sitekey comes from Hub at
   runtime via `api.josh.menu/webhooks/contact/site_config`. Don't hardcode one.
 

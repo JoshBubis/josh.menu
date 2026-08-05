@@ -2,6 +2,9 @@
 
 Static GitHub Pages sales site for the **Josh.Menu** studio.
 
+**Portfolio norms:** `/Users/jbair/Projects/CLAUDE.md` (docs must match reality).
+Creative companion: Hub `docs/companions/franz.md`.
+
 **Hub hybrid:** public marketing lives here; Studio, contracts, contact verify,
 and Vault live in `/Users/jbair/Projects/hub`. See root [`AGENTS.md`](../AGENTS.md)
 and Hub [`AGENTS.md`](/Users/jbair/Projects/hub/AGENTS.md) § Sibling projects.
