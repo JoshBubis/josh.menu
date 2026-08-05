@@ -1,0 +1,89 @@
+(function () {
+  "use strict";
+
+  document.documentElement.classList.add("js-ready");
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reveals = document.querySelectorAll(".reveal");
+
+  /* Content always visible — IO only soft-animates. */
+  if (!reduce && "IntersectionObserver" in window) {
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-in");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -4% 0px", threshold: 0.01 }
+    );
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+
+  var toggle = document.getElementById("nav-toggle");
+  var menu = document.getElementById("mobile-menu");
+  if (toggle && menu) {
+    toggle.addEventListener("click", function () {
+      var open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!open));
+      toggle.setAttribute("aria-label", open ? "Open menu" : "Close menu");
+      menu.hidden = open;
+    });
+    menu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        menu.hidden = true;
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open menu");
+      });
+    });
+  }
+
+  /* FAQ accordion — single-open, keyboard-friendly via native button semantics. */
+  var accordion = document.getElementById("accordion");
+  if (accordion) {
+    var triggers = accordion.querySelectorAll(".accordion__trigger");
+    triggers.forEach(function (trigger) {
+      trigger.addEventListener("click", function () {
+        var panel = document.getElementById(trigger.getAttribute("aria-controls"));
+        var isOpen = trigger.getAttribute("aria-expanded") === "true";
+
+        triggers.forEach(function (other) {
+          if (other === trigger) return;
+          other.setAttribute("aria-expanded", "false");
+          var otherPanel = document.getElementById(other.getAttribute("aria-controls"));
+          if (otherPanel) otherPanel.hidden = true;
+        });
+
+        trigger.setAttribute("aria-expanded", String(!isOpen));
+        if (panel) panel.hidden = isOpen;
+      });
+    });
+  }
+
+  var form = document.getElementById("plan-form");
+  var status = document.getElementById("form-status");
+  if (!form || !status) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    status.hidden = false;
+    status.classList.remove("is-error");
+
+    var name = String((form.elements.namedItem("name") || {}).value || "").trim();
+    var email = String((form.elements.namedItem("email") || {}).value || "").trim();
+
+    if (!name || !email || email.indexOf("@") < 1) {
+      status.classList.add("is-error");
+      status.textContent = "Add your name and a valid email so we can reply.";
+      return;
+    }
+
+    /* Demo only — does not email. Point prospects at the real contact form. */
+    status.innerHTML =
+      "Got it — this is a demo form, so nothing was emailed. " +
+      '<a class="jm-credit" href="https://josh.menu/contact.html">Contact Josh.Menu →</a>';
+    form.reset();
+  });
+})();

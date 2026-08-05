@@ -51,10 +51,12 @@ overriding, and update this block if it changes.**
   (`#e5544b`) is for form errors only, never decoration — otherwise
   green-as-healthy and green-as-brand contradict.
 - **The hero sells the craft above the fold.** Two-column grid: copy left, a
-  cartoon browser lander demo right (scroll + click loop). **Sample landers
-  come next** (the cheap/easy get); live product shots stay on the work rail
-  **lower on the page** as depth proof — don't lead with Catamist/etc. unless
-  Josh asks. Dark ground keeps the demo reading as a lit frame.
+  cartoon browser lander demo right (scroll + click loop). Primary CTA points
+  at **`/menu/`** (the carte). **Sample landers come next** on the homepage;
+  live product shots stay on the work rail **lower on the page**. Don't lead
+  with Catamist/etc. unless Josh asks. Dark ground keeps the demo reading as
+  a lit frame. The Menu metaphor stays classy (tasting notes / courses) — never
+  restaurant clipart.
 - **Pricing copy:** never promise blanket “no monthly fees.” Landers are
   usually one-time + handoff to hosting the client controls (often Cloudflare
   Pages). Care plans, Josh-hosted periods, or bigger systems may be monthly —

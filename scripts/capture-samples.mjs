@@ -21,6 +21,9 @@ const samples = [
   { slug: "harbor-lane", path: "/samples/harbor-lane/", ready: ".board-panel" },
   { slug: "northline", path: "/samples/northline/", ready: "h1" },
   { slug: "holloway", path: "/samples/holloway/", ready: "h1" },
+  { slug: "marlowe", path: "/samples/marlowe/", ready: "h1" },
+  { slug: "ridgewood", path: "/samples/ridgewood/", ready: "h1" },
+  { slug: "elena-voss", path: "/samples/elena-voss/", ready: "h1" },
 ];
 
 const browser = await chromium.launch();

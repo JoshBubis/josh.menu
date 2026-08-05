@@ -2104,6 +2104,146 @@ body.is-nav-open {
     text-decoration: underline;
 }
 
+.samples-section__more {
+    margin-top: 1.75rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.samples-section__more a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.samples-section__more a:hover {
+    text-decoration: underline;
+}
+
+/* —— The Menu (/menu/) — tasting-carte layout, not restaurant kitsch —— */
+.menu-page {
+    min-height: 100vh;
+    padding: 7rem var(--pad) 4rem;
+    width: min(100%, 42rem);
+    margin: 0 auto;
+}
+
+.menu-page__head {
+    margin-bottom: 3rem;
+}
+
+.menu-page__head .section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.menu-page__head .section-lead {
+    max-width: 36rem;
+}
+
+.menu-course {
+    margin-bottom: 2.75rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--line);
+}
+
+.menu-course__label h2 {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+}
+
+.menu-course__label p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 1.35rem;
+    max-width: 32rem;
+}
+
+.menu-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+}
+
+.menu-item__row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.35rem;
+}
+
+.menu-item__name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+}
+
+.menu-item__meta {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--support);
+}
+
+.menu-item__note {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 0.35rem;
+}
+
+.menu-item__link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.menu-item__link:hover {
+    text-decoration: underline;
+}
+
+.menu-item--quiet .menu-item__name {
+    color: var(--muted);
+}
+
+.menu-item--quiet .menu-item__meta {
+    color: var(--support);
+    opacity: 0.85;
+}
+
+.menu-list--compact {
+    gap: 1.1rem;
+}
+
+.menu-page__foot {
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.menu-page__foot a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.menu-page__foot a:hover {
+    text-decoration: underline;
+}
+
 .contact-page {
     min-height: 100vh;
     padding: 7rem var(--pad) 4rem;

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample: Marlowe — Josh.Menu</title>
+  <meta name="description" content="Fictional neighborhood-restaurant demo by Josh.Menu — not a real business. Warm editorial shape you can hire the studio to tailor.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#161f18">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=1">
+  <link rel="canonical" href="https://josh.menu/samples/marlowe/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sample: Marlowe — Josh.Menu">
+  <meta property="og:description" content="Fictional demo by Josh.Menu — warm neighborhood-restaurant lander shape.">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <p class="demo-ribbon" role="note">
+    Sample site · Built by <a class="jm-credit" href="https://josh.menu" target="_blank" rel="noopener noreferrer">Josh.Menu</a>
+  </p>
+
+  <header class="mast" id="top">
+    <div class="shell mast__inner">
+      <a class="wordmark" href="#top">Marlowe</a>
+      <nav class="mast__nav" aria-label="Primary">
+        <a href="#hours">Hours</a>
+        <a href="#menu">Menu</a>
+        <a href="#story">Story</a>
+        <a href="#reserve">Reserve</a>
+      </nav>
+      <a class="btn btn--small text-cta" href="#reserve">Reserve a table</a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+    <div class="mast__hours">
+      <div class="shell mast__hours-inner">
+        <p class="mast__status" id="hours-status">
+          <span class="mast__dot" aria-hidden="true"></span>
+          <span id="hours-status-text">Checking tonight’s hours…</span>
+        </p>
+        <a class="mast__hours-link" href="#hours">Full hours &amp; week</a>
+      </div>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile" hidden>
+      <a href="#hours">Hours</a>
+      <a href="#menu">Menu</a>
+      <a href="#story">Story</a>
+      <a href="#reserve">Reserve</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- Typographic open — atmosphere via color/type, no stock food photography -->
+    <section class="hero" aria-label="Introduction">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="shell hero__inner">
+        <p class="hero__kicker reveal">Neighborhood restaurant · dinner nightly</p>
+        <h1 class="hero__title reveal">Dinner, cooked<br>like someone means it.</h1>
+        <p class="hero__deck reveal">
+          Wood-fired mains, a short list of very good wine, and a kitchen that
+          changes its mind when the market does. Ten tables, no printed
+          specials — first come, first served at the bar.
+        </p>
+        <p class="hero__actions reveal">
+          <a class="btn" href="#reserve">Reserve a table</a>
+          <a class="link-quiet" href="#menu">See tonight’s menu</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="hours" class="section hours">
+      <div class="shell hours__grid">
+        <header class="section-head reveal">
+          <p class="kicker">Hours</p>
+          <h2>When we’re open.</h2>
+          <p class="deck">
+            Reservations recommended Thursday through Saturday. The bar is
+            walk-in only, every night we’re open — no exceptions, no waitlist app.
+          </p>
+        </header>
+        <table class="hours-table reveal">
+          <caption class="sr-only">Weekly hours</caption>
+          <tbody>
+            <tr><th scope="row">Monday</th><td class="hours-table__closed">Closed</td></tr>
+            <tr><th scope="row">Tuesday</th><td>Dinner, 5 – 10pm</td></tr>
+            <tr><th scope="row">Wednesday</th><td>Dinner, 5 – 10pm</td></tr>
+            <tr><th scope="row">Thursday</th><td>Dinner, 5 – 10pm</td></tr>
+            <tr><th scope="row">Friday</th><td>Lunch 11:30am – 2pm · Dinner 5 – 11pm</td></tr>
+            <tr><th scope="row">Saturday</th><td>Lunch 11:30am – 2pm · Dinner 5 – 11pm</td></tr>
+            <tr><th scope="row">Sunday</th><td>Dinner, 5 – 9pm</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="menu" class="section menu">
+      <div class="shell">
+        <header class="section-head reveal">
+          <p class="kicker">On the menu tonight</p>
+          <h2>Short list. Everything’s good.</h2>
+          <p class="deck">
+            The kitchen rewrites this weekly against what showed up that
+            morning — this sample page shows the shape of it, tasting-notes
+            style, not a fixed menu.
+          </p>
+        </header>
+
+        <div class="menu-groups">
+          <div class="menu-group reveal">
+            <h3 class="menu-group__title">Starters</h3>
+            <dl class="menu-list">
+              <div class="menu-list__row">
+                <dt>Marinated olives &amp; Marcona almonds<span class="menu-list__price">$8</span></dt>
+                <dd>Citrus peel, chili, rosemary.</dd>
+              </div>
+              <div class="menu-list__row">
+                <dt>Charred bread &amp; cultured butter<span class="menu-list__price">$7</span></dt>
+                <dd>Smoked salt, wildflower honey.</dd>
+              </div>
+              <div class="menu-list__row">
+                <dt>Little gem salad<span class="menu-list__price">$12</span></dt>
+                <dd>Pecorino, toasted walnut, lemon vinaigrette.</dd>
+              </div>
+              <div class="menu-list__row">
+                <dt>Soup of the day<span class="menu-list__price">$9</span></dt>
+                <dd>Ask your server — it changes with the market.</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="menu-group reveal">
+            <h3 class="menu-group__title">Mains</h3>
+            <dl class="menu-list">
+              <div class="menu-list__row">
+                <dt>Roast chicken, for two<span class="menu-list__price">$46</span></dt>
+                <dd>Pan jus, market vegetables, crushed potatoes.</dd>
+              </div>
+              <div class="menu-list__row">
+                <dt>Pappardelle<span class="menu-list__price">$24</span></dt>
+                <dd>Braised short rib, rosemary, aged parmesan.</dd>
+              </div>
+              <div class="menu-list__row">
+                <dt>Whole grilled trout<span class="menu-list__price">$28</span></dt>
+                <dd>Brown butter, capers, charred lemon.</dd>
+              </div>
+              <div class="menu-list__row">
+                <dt>Seared scallops<span class="menu-list__price">$29</span></dt>
+                <dd>Sweet corn, brown butter, chili crisp.</dd>
+              </div>
+              <div class="menu-list__row">
+                <dt>Vegetable plate<span class="menu-list__price">$22</span></dt>
+                <dd>Whatever’s best this week, cooked simply.</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="menu-group reveal">
+            <h3 class="menu-group__title">Desserts</h3>
+            <dl class="menu-list">
+              <div class="menu-list__row">
+                <dt>Olive oil cake<span class="menu-list__price">$9</span></dt>
+                <dd>Crème fraîche, candied citrus.</dd>
+              </div>
+              <div class="menu-list__row">
+                <dt>Affogato<span class="menu-list__price">$8</span></dt>
+                <dd>Vanilla, espresso, amaretti crumb.</dd>
+              </div>
+              <div class="menu-list__row">
+                <dt>Seasonal fruit crostata<span class="menu-list__price">$9</span></dt>
+                <dd>Whatever’s ripe, a scoop of something cold.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="story" class="section story">
+      <div class="shell story__grid">
+        <div class="story__copy reveal">
+          <p class="kicker">The kitchen</p>
+          <h2>Ten tables. One pass. No shortcuts.</h2>
+          <p>
+            Marlowe opened on a quiet corner with a short lease, a wood-fired
+            oven, and a menu that changes when the walk-in says it should.
+            There’s no printer for specials — the kitchen tells the floor,
+            the floor tells you.
+          </p>
+          <p>
+            This is a fictional sample built by Josh.Menu to show what an
+            independent restaurant’s site can feel like: a real point of
+            view, not a template with a logo pasted on top.
+          </p>
+        </div>
+        <figure class="story__quote reveal">
+          <span class="story__mark" aria-hidden="true">”</span>
+          <blockquote>
+            <p>We cook what’s good that morning — not what’s easy to keep in stock.</p>
+          </blockquote>
+          <figcaption>The kitchen, most nights</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="reserve" class="section reserve">
+      <div class="shell reserve__grid">
+        <div class="reserve__copy reveal">
+          <p class="kicker">Reservations</p>
+          <h2>Save a table.</h2>
+          <p class="deck">
+            This sample form doesn’t book a real table — it’s here to show
+            the flow.
+            <a class="jm-credit" href="https://josh.menu/contact.html">Want a reservation flow like this? Contact Josh.Menu →</a>
+          </p>
+        </div>
+        <form class="form reveal" id="plan-form" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Alex Morgan">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="you@email.com">
+          </div>
+          <div class="field field--third">
+            <label for="party">Party size</label>
+            <select id="party" name="party">
+              <option>2</option>
+              <option>1</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6+</option>
+            </select>
+          </div>
+          <div class="field field--third">
+            <label for="date">Date</label>
+            <input id="date" name="date" type="date">
+          </div>
+          <div class="field field--third">
+            <label for="time">Time</label>
+            <select id="time" name="time">
+              <option>5:00pm</option>
+              <option>5:30pm</option>
+              <option>6:00pm</option>
+              <option>6:30pm</option>
+              <option>7:00pm</option>
+              <option>7:30pm</option>
+              <option>8:00pm</option>
+              <option>8:30pm</option>
+              <option>9:00pm</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="notes">Occasion or notes (optional)</label>
+            <textarea id="notes" name="notes" rows="3" maxlength="600" placeholder="Anniversary, allergies, high chair needed…"></textarea>
+          </div>
+          <button class="btn btn--block" type="submit">Request a table</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__inner">
+      <p class="footer__brand">Marlowe</p>
+      <p class="footer__fine">Fictional sample restaurant for Josh.Menu demos. Not a real restaurant. Menu, hours, and prices for illustration only.</p>
+      <p class="footer__demo">
+        Sample by
+        <a class="jm-credit" href="https://josh.menu" target="_blank" rel="noopener noreferrer">Josh.Menu</a>
+        — ask about a site like this for your restaurant.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js?v=1" defer></script>
+</body>
+</html>

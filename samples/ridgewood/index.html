@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample: Ridgewood Realty — Josh.Menu</title>
+  <meta name="description" content="Fictional boutique real-estate brokerage demo by Josh.Menu — not a real brokerage. Calm, photographic residential shape you can hire the studio to tailor.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#f6f1e6">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=1">
+  <link rel="canonical" href="https://josh.menu/samples/ridgewood/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sample: Ridgewood Realty — Josh.Menu">
+  <meta property="og:description" content="Fictional demo by Josh.Menu — calm, photographic boutique real-estate shape.">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <p class="demo-ribbon" role="note">
+    Sample site · Built by <a class="jm-credit" href="https://josh.menu" target="_blank" rel="noopener noreferrer">Josh.Menu</a>
+  </p>
+
+  <header class="mast" id="top">
+    <div class="shell mast__inner">
+      <a class="brand" href="#top" aria-label="Ridgewood Realty — home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        Ridgewood <em>Realty</em>
+      </a>
+      <nav class="mast__nav" aria-label="Primary">
+        <a href="#listings">Listings</a>
+        <a href="#how">How it works</a>
+        <a href="#about">About</a>
+        <a href="#inquire">Inquire</a>
+      </nav>
+      <a class="btn btn--primary mast__cta" href="#inquire">Inquire</a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile" hidden>
+      <a href="#listings">Listings</a>
+      <a href="#how">How it works</a>
+      <a href="#about">About</a>
+      <a href="#inquire">Inquire</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section class="hero" aria-label="Introduction">
+      <div class="shell hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow reveal">Boutique brokerage · Ridgewood &amp; nearby</p>
+          <h1 class="hero__title reveal">A calmer way to buy or sell a home.</h1>
+          <p class="hero__sub reveal">
+            Ridgewood Realty is small on purpose — one advisor from the first
+            tour to the closing table, straight numbers instead of hype, and a
+            short list of homes actually worth your Saturday.
+          </p>
+          <div class="hero__actions reveal">
+            <a class="btn btn--primary btn--lg" href="#inquire">Inquire about a home</a>
+            <a class="btn btn--ghost btn--lg" href="#inquire" id="hero-tour-cta">Schedule a tour</a>
+          </div>
+          <p class="hero__note reveal">Fictional sample brokerage — see the footer for details.</p>
+        </div>
+
+        <div class="hero__panel reveal" aria-hidden="true">
+          <div class="scape scape--1 hero__scape">
+            <span class="scape__ridge"></span>
+            <span class="scape__sun"></span>
+            <span class="scape__home"><span class="scape__windows"></span></span>
+          </div>
+          <div class="hero__panel-card">
+            <p class="hero__panel-kicker">Just listed</p>
+            <p class="hero__panel-addr">214 Aldergate Lane</p>
+            <p class="hero__panel-meta">Ridgewood Heights · $825,000</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust" aria-label="Why work with us">
+      <div class="shell trust__row">
+        <div class="trust__item reveal">
+          <span class="trust__num">01</span>
+          <h3>One advisor, start to close</h3>
+          <p>You work with the same person at the tour, the offer, and the closing table — not a rotating cast.</p>
+        </div>
+        <div class="trust__item reveal">
+          <span class="trust__num">02</span>
+          <h3>Numbers before excitement</h3>
+          <p>Comps, carrying costs, and resale math get explained before you fall for a kitchen.</p>
+        </div>
+        <div class="trust__item reveal">
+          <span class="trust__num">03</span>
+          <h3>Small list, real attention</h3>
+          <p>We take on a limited number of buyers and sellers each season so nothing gets rushed.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="listings" class="section listings">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Featured listings</p>
+          <h2 class="section-title">A short list, chosen on purpose.</h2>
+          <p class="section-lead">
+            Every home here has been walked, measured, and priced against real
+            comps — not just listed and hoped for. Filter by status, or ask
+            about any of them below.
+          </p>
+        </div>
+
+        <div class="filter-bar reveal">
+          <div class="chips" role="group" aria-label="Filter listings by status">
+            <button type="button" class="chip is-active" data-filter="all">All homes</button>
+            <button type="button" class="chip" data-filter="for-sale">For sale</button>
+            <button type="button" class="chip" data-filter="pending">Pending</button>
+            <button type="button" class="chip" data-filter="sold">Sold</button>
+          </div>
+          <p class="filter-bar__count" id="listing-count" aria-live="polite">Showing 6 of 6 homes</p>
+        </div>
+
+        <ul class="listings-grid">
+          <li class="listing reveal" data-status="for-sale">
+            <div class="listing__photo scape scape--1" aria-hidden="true">
+              <span class="scape__ridge"></span>
+              <span class="scape__sun"></span>
+              <span class="scape__home"><span class="scape__windows"></span></span>
+              <span class="listing__badge is-for-sale">For sale</span>
+            </div>
+            <div class="listing__body">
+              <div class="listing__top">
+                <p class="listing__neighborhood">Ridgewood Heights</p>
+                <p class="listing__price">$825,000</p>
+              </div>
+              <h3 class="listing__addr">214 Aldergate Lane</h3>
+              <p class="listing__meta">4 bd · 3 ba · 2,410 sqft</p>
+              <a class="listing__ask" href="#inquire" data-listing="214 Aldergate Lane — Ridgewood Heights ($825,000)">
+                Ask about this home <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </li>
+
+          <li class="listing reveal" data-status="for-sale">
+            <div class="listing__photo scape scape--2" aria-hidden="true">
+              <span class="scape__ridge"></span>
+              <span class="scape__sun"></span>
+              <span class="scape__home"><span class="scape__windows"></span></span>
+              <span class="listing__badge is-for-sale">For sale</span>
+            </div>
+            <div class="listing__body">
+              <div class="listing__top">
+                <p class="listing__neighborhood">Willow Crest</p>
+                <p class="listing__price">$612,000</p>
+              </div>
+              <h3 class="listing__addr">88 Willow Crest Road</h3>
+              <p class="listing__meta">3 bd · 2 ba · 1,860 sqft</p>
+              <a class="listing__ask" href="#inquire" data-listing="88 Willow Crest Road — Willow Crest ($612,000)">
+                Ask about this home <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </li>
+
+          <li class="listing reveal" data-status="pending">
+            <div class="listing__photo scape scape--3" aria-hidden="true">
+              <span class="scape__ridge"></span>
+              <span class="scape__sun"></span>
+              <span class="scape__home"><span class="scape__windows"></span></span>
+              <span class="listing__badge is-pending">Pending</span>
+            </div>
+            <div class="listing__body">
+              <div class="listing__top">
+                <p class="listing__neighborhood">Bellmere Park</p>
+                <p class="listing__price">$1,240,000</p>
+              </div>
+              <h3 class="listing__addr">5 Bellmere Park Court</h3>
+              <p class="listing__meta">5 bd · 4 ba · 3,920 sqft</p>
+              <a class="listing__ask" href="#inquire" data-listing="5 Bellmere Park Court — Bellmere Park ($1,240,000)">
+                Ask about this home <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </li>
+
+          <li class="listing reveal" data-status="for-sale">
+            <div class="listing__photo scape scape--4" aria-hidden="true">
+              <span class="scape__ridge"></span>
+              <span class="scape__sun"></span>
+              <span class="scape__home"><span class="scape__windows"></span></span>
+              <span class="listing__badge is-for-sale">For sale</span>
+            </div>
+            <div class="listing__body">
+              <div class="listing__top">
+                <p class="listing__neighborhood">Southbank</p>
+                <p class="listing__price">$459,000</p>
+              </div>
+              <h3 class="listing__addr">302 Southbank Avenue</h3>
+              <p class="listing__meta">2 bd · 2 ba · 1,180 sqft</p>
+              <a class="listing__ask" href="#inquire" data-listing="302 Southbank Avenue — Southbank ($459,000)">
+                Ask about this home <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </li>
+
+          <li class="listing reveal" data-status="pending">
+            <div class="listing__photo scape scape--5" aria-hidden="true">
+              <span class="scape__ridge"></span>
+              <span class="scape__sun"></span>
+              <span class="scape__home"><span class="scape__windows"></span></span>
+              <span class="listing__badge is-pending">Pending</span>
+            </div>
+            <div class="listing__body">
+              <div class="listing__top">
+                <p class="listing__neighborhood">Elmcourt</p>
+                <p class="listing__price">$895,000</p>
+              </div>
+              <h3 class="listing__addr">46 Elmcourt Terrace</h3>
+              <p class="listing__meta">4 bd · 3.5 ba · 2,980 sqft</p>
+              <a class="listing__ask" href="#inquire" data-listing="46 Elmcourt Terrace — Elmcourt ($895,000)">
+                Ask about this home <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </li>
+
+          <li class="listing reveal" data-status="sold">
+            <div class="listing__photo scape scape--6" aria-hidden="true">
+              <span class="scape__ridge"></span>
+              <span class="scape__sun"></span>
+              <span class="scape__home"><span class="scape__windows"></span></span>
+              <span class="listing__badge is-sold">Sold</span>
+            </div>
+            <div class="listing__body">
+              <div class="listing__top">
+                <p class="listing__neighborhood">Old Mill District</p>
+                <p class="listing__price">$735,000</p>
+              </div>
+              <h3 class="listing__addr">17 Old Mill Row</h3>
+              <p class="listing__meta">3 bd · 3 ba · 2,240 sqft</p>
+              <a class="listing__ask" href="#inquire" data-listing="17 Old Mill Row — Old Mill District (sold)">
+                Ask about a home like this <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="how" class="section how">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">How it works</p>
+          <h2 class="section-title">Simple on purpose.</h2>
+        </div>
+        <ol class="steps">
+          <li class="steps__item reveal">
+            <span class="steps__num">01</span>
+            <h3>Tour with intention</h3>
+            <p>We shortlist three to five homes that actually fit your must-haves — not thirty that waste a Saturday.</p>
+          </li>
+          <li class="steps__item reveal">
+            <span class="steps__num">02</span>
+            <h3>Offer with real numbers</h3>
+            <p>Comps, inspection risk, and negotiating room explained before you sign anything.</p>
+          </li>
+          <li class="steps__item reveal">
+            <span class="steps__num">03</span>
+            <h3>Close, then stay reachable</h3>
+            <p>Movers, contractors, the odd question six months later — you still have a person to call.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="shell about__grid">
+        <div class="about__copy reveal">
+          <p class="eyebrow">The team</p>
+          <h2 class="section-title">Small enough to know every listing by address.</h2>
+          <p>
+            Ridgewood Realty is a fictional boutique brokerage built as a
+            Josh.Menu sample — the kind of site a small, high-touch team would
+            use to look credible and turn curiosity into a real conversation,
+            without a corporate franchise shell around it.
+          </p>
+          <p>
+            On a live brokerage site, this is where your agents' faces,
+            license numbers, and the neighborhoods you actually work would go
+            — not stock bios.
+          </p>
+        </div>
+        <aside class="about__stats reveal" aria-label="Ridgewood Realty at a glance">
+          <div class="about__stats-band" aria-hidden="true"></div>
+          <dl class="stat-grid">
+            <div class="stat">
+              <dt>Years serving Ridgewood</dt>
+              <dd>12</dd>
+            </div>
+            <div class="stat">
+              <dt>Homes closed</dt>
+              <dd>340+</dd>
+            </div>
+            <div class="stat">
+              <dt>Avg. days on market</dt>
+              <dd>21</dd>
+            </div>
+            <div class="stat">
+              <dt>Client rating</dt>
+              <dd>4.9 / 5</dd>
+            </div>
+          </dl>
+          <p class="about__stats-fine">Sample figures for this demo — not real brokerage data.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="inquire" class="section inquire">
+      <div class="shell inquire__grid">
+        <div class="inquire__copy reveal">
+          <p class="eyebrow">Inquire</p>
+          <h2 class="section-title">Tell us what you're looking for.</h2>
+          <p class="section-lead">
+            A few lines are enough. This sample form does not email anyone —
+            it's here to show the flow.
+            Want a site like this for your brokerage?
+            <a class="jm-credit" href="https://josh.menu/contact.html">Contact Josh.Menu →</a>
+          </p>
+        </div>
+        <form class="form reveal" id="inquiry-form" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Alex Rivera">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="you@email.com">
+          </div>
+          <div class="field field--half">
+            <label for="phone">Phone (optional)</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="(555) 555-0100">
+          </div>
+          <div class="field field--half">
+            <label for="budget">Budget range</label>
+            <select id="budget" name="budget">
+              <option>Under $500,000</option>
+              <option>$500,000 – $800,000</option>
+              <option>$800,000 – $1,200,000</option>
+              <option>$1,200,000+</option>
+              <option>Selling, not buying</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="interest">Interested in</label>
+            <select id="interest" name="interest">
+              <option value="">Not sure yet — send me options</option>
+              <option>Schedule a private tour</option>
+              <option>214 Aldergate Lane — Ridgewood Heights ($825,000)</option>
+              <option>88 Willow Crest Road — Willow Crest ($612,000)</option>
+              <option>5 Bellmere Park Court — Bellmere Park ($1,240,000)</option>
+              <option>302 Southbank Avenue — Southbank ($459,000)</option>
+              <option>46 Elmcourt Terrace — Elmcourt ($895,000)</option>
+              <option>17 Old Mill Row — Old Mill District (sold)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="notes">Anything else</label>
+            <textarea id="notes" name="notes" rows="4" maxlength="800" placeholder="Timeline, must-haves, pre-approval status…"></textarea>
+          </div>
+          <button class="btn btn--primary btn--lg btn--block" type="submit">Send inquiry</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__inner">
+      <div>
+        <p class="footer__brand">Ridgewood Realty</p>
+        <p class="footer__fine">
+          Fictional sample brokerage for Josh.Menu demos. Not a licensed real
+          estate brokerage — no listings shown are real property for sale.
+        </p>
+      </div>
+      <p class="footer__demo">
+        Sample site by
+        <a class="jm-credit" href="https://josh.menu" target="_blank" rel="noopener noreferrer">Josh.Menu</a>
+        — ask about a site like this for your brokerage.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js?v=1" defer></script>
+</body>
+</html>

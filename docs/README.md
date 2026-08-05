@@ -12,11 +12,15 @@ no **Source** links to `github.com/JoshBubis`. See `AGENTS.md`.
 
 ### Structure
 
-- `index.html` — hero (two-column: copy left, cartoon browser lander demo right), then **Samples** first (easy lander get), approach, **Systems**, live **Work** rail lower (depth proof), process, about, CTA. Pitch is broader than “I build websites” without listing every capability.
-- `samples/harbor-lane/` — browse-led cruise demo (sailings board + Why Galveston split with caption bar, not a full-bleed photo quote); also in `/Users/jbair/Projects/clients/harborlanetravel.com`
-- `samples/northline/` — classic full-bleed GC lander (Unsplash stock, not Urban Contracting); also in `/Users/jbair/Projects/clients/northlinecontracting.com`
+- `index.html` — hero (two-column: copy left, cartoon browser lander demo right), then **From the Menu** samples, approach, **Systems**, live **Work** rail lower, process, about, CTA.
+- `menu/` — the **carte** (Starters / Mains / Sides / After): tasting notes for shapes, field demos, and add-ons. Classy menu metaphor — not restaurant kitsch. Indexable.
+- `samples/harbor-lane/` — browse-led cruise demo; also in `/Users/jbair/Projects/clients/harborlanetravel.com`
+- `samples/northline/` — classic full-bleed GC lander; also in `/Users/jbair/Projects/clients/northlinecontracting.com`
 - `samples/holloway/` — quiet type-led law/editorial demo; also in `/Users/jbair/Projects/clients/hollowaylaw.com`
-- Homepage `#samples` and `/samples/` directory — three deliberately different shapes (browse / classic / editorial), kept off the work rail
+- `samples/marlowe/` — neighborhood restaurant (hours strip + tasting menu + reserve)
+- `samples/ridgewood/` — boutique realty (listing chips + inquire)
+- `samples/elena-voss/` — independent consultant (authority + book a call)
+- Homepage `#samples`, `/menu/`, and `/samples/` — playable demos stay off the work rail. Wave B+ tracked as Hub Goals on project `josh-menu`.
 - Work rail order: Relayra → Catamist → HackyChat → CalledFrom → josh.finance (`npm run capture-work` refreshes JPEGs; includes josh-finance). The old GPU tracker that once lived on this domain is frozen as `beanspill` (candidate revive host `josh3.com` — Hub `docs/domains.md`); do not put it back on josh.menu
 - Root `404.html` — branded Pages 404 (GitHub’s stock page otherwise)
 - Security headers (CSP, HSTS, frame deny, nosniff) — set at Cloudflare edge via
@@ -58,9 +62,9 @@ we agree” over absolute no-fees language.
   sites / one-time handoff** — not generic “web design agency” spam.
 - Visible `#faq` + matching `FAQPage` schema; answers must stay aligned with
   the pricing caution above.
-- `sitemap.xml` lists only crawl-worthy URLs (`/` and `/samples/`). Contact is
+- `sitemap.xml` lists crawl-worthy URLs (`/`, `/menu/`, `/samples/`). Contact is
   `noindex`; individual sample demos are `noindex,follow` so fictional
-  businesses don’t rank as real firms. The `/samples/` index stays indexable.
+  businesses don’t rank as real firms. `/menu/` and `/samples/` stay indexable.
 - Surname never appears in public markup (verify-live checks).
 
 ### Backend endpoints
