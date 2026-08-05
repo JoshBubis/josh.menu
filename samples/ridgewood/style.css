@@ -321,24 +321,23 @@ ul, ol { list-style: none; }
 .hero__panel-addr { font-family: var(--display); font-size: 1.05rem; margin-bottom: 0.1rem; }
 .hero__panel-meta { font-size: 0.85rem; color: var(--muted); }
 
-/* —— Trust strip —— */
-.trust {
-  background: var(--paper-deep);
-  padding: 2.6rem 0;
-  border-block: 1px solid var(--line);
+/* Listings lead — no numbered trust strip (that shape lives on Elena). */
+.listings--lead {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
 }
-.trust__row { display: grid; gap: 1.5rem; }
-@media (min-width: 760px) { .trust__row { grid-template-columns: repeat(3, 1fr); } }
-.trust__num {
-  display: block;
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 1.6rem;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
+.listings--lead .section-title {
+  font-size: clamp(1.85rem, 4vw, 2.55rem);
 }
-.trust__item h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
-.trust__item p { color: var(--muted); font-size: 0.95rem; max-width: 26rem; }
+
+.demo-chat {
+  --demo-chat-bg: #1c242c;
+  --demo-chat-fg: #f6f1e6;
+  --demo-chat-muted: #9aa3ab;
+  --demo-chat-accent: #8eb4c9;
+  --demo-chat-user: #243039;
+  --demo-chat-bot: #222b33;
+}
 
 /* —— Sections —— */
 .section { padding: 4.5rem 0; }

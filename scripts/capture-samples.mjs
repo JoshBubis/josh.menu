@@ -75,7 +75,7 @@ for (const sample of samples) {
     await page.waitForSelector(sample.ready, { timeout: 15000 });
     // Hide demo ribbon so the scroll preview reads as the client site.
     await page.addStyleTag({
-      content: ".demo-ribbon { display: none !important; }",
+      content: ".demo-ribbon, .demo-chat, .sticky-book { display: none !important; }",
     });
     await warmImages(page);
     const out = path.join(outDir, `${sample.slug}.jpg`);

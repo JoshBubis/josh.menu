@@ -8,7 +8,8 @@
   <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#f5f2ea">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=1">
+  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="../demo-chat.css?v=1">
   <link rel="canonical" href="https://josh.menu/samples/elena-voss/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Sample: Elena Voss Advisory — Josh.Menu">
@@ -49,70 +50,33 @@
 
   <main id="main">
 
-    <section class="hero" aria-label="Introduction">
-      <div class="shell hero__grid">
-        <div class="hero__copy reveal">
-          <p class="kicker">Independent advisor · Strategy &amp; operations</p>
-          <h1 class="hero__title">Decisions get clearer with the right person across the table.</h1>
-          <p class="hero__deck">
-            I work alongside founders and owner-operators for a defined stretch —
-            naming what's actually slowing the business down, then building the
-            systems and habits that keep it moving once I leave.
-          </p>
-          <p class="hero__actions">
-            <a class="btn" href="#book">Book a 20-minute intro call</a>
-            <a class="link-quiet" href="#approach">See how engagements run</a>
-          </p>
-          <p class="hero__for">
-            For small-business owners and small teams (roughly 5–40 people) who
-            are past the scramble but before the org chart.
-          </p>
-        </div>
-
-        <aside class="snapshot reveal" aria-label="Engagement snapshot">
-          <p class="snapshot__label">Engagement snapshot</p>
-          <dl class="snapshot__facts">
-            <div>
-              <dt>Length</dt>
-              <dd>6–12 weeks, most engagements</dd>
-            </div>
-            <div>
-              <dt>Cadence</dt>
-              <dd>Weekly working sessions + async</dd>
-            </div>
-            <div>
-              <dt>Focus</dt>
-              <dd>Ops · pricing · team design · systems</dd>
-            </div>
-          </dl>
-          <blockquote class="snapshot__quote">
-            <p>“She asked the question we'd been avoiding for a year.”</p>
-            <cite>— Operator, 14-person services firm <span class="snapshot__fn">(fictional, for this sample)</span></cite>
-          </blockquote>
-        </aside>
+    <section class="hero hero--editorial" aria-label="Introduction">
+      <div class="shell hero__column reveal">
+        <p class="kicker">Independent advisor · Strategy &amp; operations</p>
+        <h1 class="hero__title">Decisions get clearer with the right person across the table.</h1>
+        <p class="hero__deck">
+          I work alongside founders and owner-operators for a defined stretch —
+          naming what's actually slowing the business down, then building the
+          systems and habits that keep it moving once I leave.
+        </p>
+        <p class="hero__for">
+          For owners of teams roughly 5–40 people — past the scramble, before
+          the org chart hardens the wrong habits.
+        </p>
+        <p class="hero__actions">
+          <a class="btn" href="#book">Book a 20-minute intro call</a>
+          <a class="link-quiet" href="#approach">See how engagements run</a>
+        </p>
       </div>
     </section>
 
-    <section class="proof" aria-label="Track record">
-      <div class="shell proof__row">
-        <div class="proof__item reveal">
-          <p class="proof__num">40+</p>
-          <p class="proof__cap">Founders and operators advised since 2019</p>
-        </div>
-        <div class="proof__item reveal">
-          <p class="proof__num">6 wks</p>
-          <p class="proof__cap">Median time to a working 90-day plan</p>
-        </div>
-        <div class="proof__item reveal">
-          <p class="proof__num">3 of 4</p>
-          <p class="proof__cap">Clients who return for a second engagement</p>
-        </div>
-        <div class="proof__item reveal">
-          <p class="proof__num">12</p>
-          <p class="proof__cap">Industries served, clinics to creative studios</p>
-        </div>
+    <section class="pull" aria-label="Client voice">
+      <div class="shell pull__inner reveal">
+        <blockquote>
+          <p>“She asked the question we'd been avoiding for a year — then stayed long enough to help us answer it.”</p>
+          <cite>Operator, 14-person services firm <span class="pull__fn">(fictional, for this sample)</span></cite>
+        </blockquote>
       </div>
-      <p class="shell proof__fine">Illustrative figures for this sample — a live engagement page would cite specific, verifiable outcomes, not composites.</p>
     </section>
 
     <section id="services" class="section services">
@@ -366,6 +330,21 @@
     </div>
   </footer>
 
-  <script src="script.js?v=1" defer></script>
+  <div class="sticky-book" role="region" aria-label="Book a call">
+    <p class="sticky-book__text">Intro calls are 20 minutes — no deck required.</p>
+    <a class="sticky-book__cta" href="#book">Book a call</a>
+  </div>
+
+  <script src="script.js?v=2" defer></script>
+  <script>
+    window.JM_DEMO_CHAT = {
+      brand: "Elena Voss",
+      greeting: "Wondering if an engagement would fit? Ask — or jump to the intro-call form.",
+      reply: "This is a demo chat on a Josh.Menu sample advisory site — not Elena (she’s fictional). Same reply every time so you can feel the widget. Want this on a real site? Start a project at josh.menu.",
+      fabLabel: "Chat",
+      delayMs: 2800
+    };
+  </script>
+  <script src="../demo-chat.js?v=1" defer></script>
 </body>
 </html>

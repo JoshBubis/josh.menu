@@ -251,6 +251,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* —— Hero —— */
 .hero { padding: 3.5rem 0 3rem; border-bottom: 1px solid var(--line); }
+.hero--editorial { padding-bottom: 2.5rem; }
+.hero__column { max-width: 38rem; }
 .hero__grid { display: grid; gap: 2.25rem; }
 @media (min-width: 900px) {
   .hero__grid { grid-template-columns: 1.25fr 1fr; align-items: start; gap: 3rem; }
@@ -345,6 +347,70 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .snapshot__fn { display: block; margin-top: 0.15rem; font-size: 0.72rem; color: rgba(245, 242, 234, 0.42); }
 
 /* —— Proof strip —— */
+.pull {
+  padding: 0 0 3.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.pull__inner {
+  max-width: 34rem;
+  border-left: 3px solid var(--accent);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+}
+.pull blockquote p {
+  font-family: var(--display);
+  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+.pull cite {
+  font-style: normal;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.pull__fn { opacity: 0.75; }
+
+.sticky-book {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--ink);
+  color: var(--paper);
+  border-top: 1px solid rgba(245, 242, 234, 0.12);
+}
+.sticky-book__text {
+  font-size: 0.9rem;
+  color: rgba(245, 242, 234, 0.78);
+}
+.sticky-book__cta {
+  flex-shrink: 0;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+}
+.sticky-book__cta:hover { background: var(--accent-soft); color: #fff; }
+
+.demo-chat {
+  --demo-chat-bg: #16233a;
+  --demo-chat-fg: #f5f2ea;
+  --demo-chat-muted: #9aa3b0;
+  --demo-chat-accent: #c9a06a;
+  --demo-chat-user: #1f3350;
+  --demo-chat-bot: #1a2a42;
+  bottom: 3.6rem; /* clear sticky book bar */
+}
+
 .proof { padding: 2.75rem 0; background: var(--paper-2); border-bottom: 1px solid var(--line); }
 .proof__row {
   display: grid;

@@ -13,7 +13,8 @@ no **Source** links to `github.com/JoshBubis`. See `AGENTS.md`.
 ### Structure
 
 - `index.html` — hero (two-column: copy left, cartoon browser lander demo right), then **From the Menu** samples, approach, **Systems**, live **Work** rail lower, process, about, CTA.
-- `menu/` — the **carte** (Starters / Mains / Sides / After): tasting notes for shapes, field demos, and add-ons. Classy menu metaphor — not restaurant kitsch. Indexable.
+- `menu/` — visual **plates** (demo tallshots) + kitchen-note carte (shapes / sides). Classy menu metaphor — not restaurant kitsch. Indexable.
+- `samples/demo-chat.js` + `demo-chat.css` — proactive sample chat (no Turnstile, canned reply). Wired on Marlowe, Ridgewood, Elena Voss.
 - `samples/harbor-lane/` — browse-led cruise demo; also in `/Users/jbair/Projects/clients/harborlanetravel.com`
 - `samples/northline/` — classic full-bleed GC lander; also in `/Users/jbair/Projects/clients/northlinecontracting.com`
 - `samples/holloway/` — quiet type-led law/editorial demo; also in `/Users/jbair/Projects/clients/hollowaylaw.com`

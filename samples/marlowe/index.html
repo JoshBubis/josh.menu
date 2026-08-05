@@ -8,7 +8,8 @@
   <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#161f18">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=1">
+  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="../demo-chat.css?v=1">
   <link rel="canonical" href="https://josh.menu/samples/marlowe/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Sample: Marlowe — Josh.Menu">
@@ -69,6 +70,17 @@
           <a class="btn" href="#reserve">Reserve a table</a>
           <a class="link-quiet" href="#menu">See tonight’s menu</a>
         </p>
+      </div>
+    </section>
+
+    <section class="tonight" aria-label="Tonight’s feature">
+      <div class="shell tonight__band">
+        <p class="tonight__label">Tonight</p>
+        <div class="tonight__copy">
+          <h2 class="tonight__dish">Wood-fired trout, for two</h2>
+          <p class="tonight__note">Brown butter, capers, charred lemon — when the fish is good enough, we let it lead.</p>
+        </div>
+        <a class="tonight__cta" href="#reserve">Hold a table</a>
       </div>
     </section>
 
@@ -279,6 +291,16 @@
     </div>
   </footer>
 
-  <script src="script.js?v=1" defer></script>
+  <script src="script.js?v=2" defer></script>
+  <script>
+    window.JM_DEMO_CHAT = {
+      brand: "Marlowe",
+      greeting: "Looking for a table tonight? I can point you at hours or the reserve form.",
+      reply: "This is a demo chat on a Josh.Menu sample restaurant — not a real host stand. It always replies the same way so you can feel the widget. Want one like this on a real site? Start a project at josh.menu.",
+      fabLabel: "Ask us",
+      delayMs: 1800
+    };
+  </script>
+  <script src="../demo-chat.js?v=1" defer></script>
 </body>
 </html>

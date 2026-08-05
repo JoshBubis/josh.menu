@@ -598,6 +598,64 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 #hours, #menu, #story, #reserve { scroll-margin-top: 8rem; }
 
+/* Feature band — denser, kitchen-ticket energy (not a second hero) */
+.tonight {
+  background: var(--ink-3);
+  border-block: 1px solid var(--line);
+  padding: 1.1rem 0;
+}
+.tonight__band {
+  display: grid;
+  gap: 0.75rem 1.5rem;
+  align-items: center;
+}
+@media (min-width: 760px) {
+  .tonight__band {
+    grid-template-columns: auto 1fr auto;
+  }
+}
+.tonight__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.tonight__dish {
+  font-family: var(--display);
+  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+  font-weight: 500;
+  color: var(--paper);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.2rem;
+}
+.tonight__note {
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 36rem;
+}
+.tonight__cta {
+  justify-self: start;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--ink-3);
+  background: var(--gold);
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+.tonight__cta:hover { background: var(--gold-hi); }
+
+/* Demo chat theme — bottle green room */
+.demo-chat {
+  --demo-chat-bg: #121a14;
+  --demo-chat-fg: #faf1e0;
+  --demo-chat-muted: #a89878;
+  --demo-chat-accent: #cb9a3d;
+  --demo-chat-user: #1c2820;
+  --demo-chat-bot: #1a231c;
+}
+
 @media (max-width: 640px) {
   .shell { width: min(100% - 1.5rem, var(--shell)); }
   .mast__hours-inner { font-size: 0.76rem; }
