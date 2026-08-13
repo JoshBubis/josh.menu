@@ -18,7 +18,7 @@
   var POLL_ACTIVE_MS = 2500;
   var POLL_IDLE_MS = 8000;
   var IDLE_AFTER_MS = 60000;
-  var MAX_LEN = 2000;
+  var MAX_LEN = 600000; /* ~100k words; Hub ChatMessage::MAX_BODY */
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

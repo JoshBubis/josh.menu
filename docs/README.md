@@ -1,5 +1,8 @@
 # josh.menu
 
+
+**Cloudflare / Turnstile / purge (portfolio):** [`shared_docs/CLOUDFLARE.md`](../../shared_docs/CLOUDFLARE.md) — Hub owns the API token; 401 on purge ≠ rotate Vault.
+
 Static GitHub Pages sales site for the **Josh.Menu** studio.
 
 **Portfolio norms:** `/Users/jbair/Projects/CLAUDE.md` (docs must match reality).
@@ -31,7 +34,7 @@ no **Source** links to `github.com/JoshBubis`. See `AGENTS.md`.
 - Security headers (CSP, HSTS, frame deny, nosniff) — set at Cloudflare edge via
   Hub `bin/rails cloudflare:static_security_headers` (Pages cannot set them)
 - `contact.html` + `contact.js` — form UI → Hub `/webhooks/contact` on `api.josh.menu`
-- `chat.js` — concierge chat widget → Hub `/webhooks/chat` (polling). Public (`BETA_GATE = false`). `[data-open-chat]` anywhere opens the panel (used by Systems CTA)
+- `chat.js` — concierge chat widget → Hub `/webhooks/chat` (polling). Public (`BETA_GATE = false`). `[data-open-chat]` anywhere opens the panel (used by Systems CTA). Per-message cap is ~100k words (`MAX_LEN` / Hub `ChatMessage::MAX_BODY`) so pasted transcripts aren’t rejected.
 - `style.css` / `studio.css` — keep `studio.css` a copy of `style.css`. Design tokens are the `:root` block at the top; the visual direction they encode is documented in [`AGENTS.md`](../AGENTS.md) § Design language. No film-grain overlay (read as monitor smudge); atmosphere is cursor light + lander demo.
 - `script.js` — reveals (hero + section-head cascades), work-rail scroll/dots/drag (prev/next wrap at ends; drag scrollLeft clamped; `overscroll-behavior-x: contain` so trackpads can’t rubber-band into a blank tail), page-wide cursor light, parallax on `[data-parallax]` (work rail if present). Hero lander demo is CSS-only keyframes in `style.css`. Motion extras: nav/footer sliding underlines, approach/process stagger, process-num scale, button press, white→emerald heading hover — all under `prefers-reduced-motion`
 - `scripts/verify-live.mjs` — pre-flight sweep (desktop/mobile/reduced-motion; surname, overflow, JS errors). Pass a local origin to run it before pushing; the `api.josh.menu` assertions are skipped off the live origin
