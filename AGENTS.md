@@ -24,6 +24,11 @@ employment, so treat these as bugs, not style preferences:
 Selected work). This sales site stays surname-free and does **not** link to the
 résumé — clients shouldn’t land on employment branding.
 
+## Shared portfolio ops
+
+- Cloudflare / Turnstile / edge purge: `/Users/jbair/Projects/shared_docs/CLOUDFLARE.md`
+  (Hub owns the only API token; Turnstile ≠ CDN purge; **401 on purge ≠ rotate Vault**).
+
 ## Design language
 
 Split deliberately, because the previous single-sentence rule ("paper-and-ink,
