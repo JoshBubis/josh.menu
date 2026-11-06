@@ -75,6 +75,7 @@ we agree” over absolute no-fees language.
   businesses don’t rank as real firms. `/menu/` is draft (pricing + plates),
   `noindex`, and off the homepage/nav until Josh promotes it.
 - Surname never appears in public markup (verify-live checks).
+- `/.well-known/josh` is a static Joshternet participation file (`{"version": 1}` only). It does not declare Josh identity, load a script, or call joshternet.org. Do not add their embed (`joshternet-button.js`) or any other remote script to this site.
 
 ### Backend endpoints
 
