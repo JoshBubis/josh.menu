@@ -1,9 +1,11 @@
 # AGENTS.md — josh.menu
+This file defers to `/Users/jbair/Projects/MAP.md`. Read that first.
+
 
 Static GitHub Pages **sales site** for the Josh Menu studio.
 `/Users/jbair/Projects/josh.menu`.
 
-Portfolio norms: `/Users/jbair/Projects/CLAUDE.md`. Creative companion:
+Portfolio norms: `/Users/jbair/Projects/MAP.md`. Creative companion:
 `/Users/jbair/Projects/hub/docs/companions/franz.md`.
 
 ## The brand rule that matters most
@@ -147,7 +149,7 @@ edit **this** folder for sales-site UI. Do not merge the two repos unless Josh a
 - Concierge chat is **live** (`BETA_GATE = false` in `chat.js`). Don’t flip that
   flag casually or in an unrelated change. The `localStorage.jm_chat_beta` gate
   only matters if someone turns `BETA_GATE` back on.
-- **Docs match reality:** if this file (or portfolio `CLAUDE.md`) claims a state
+- **Docs match reality:** if this file (or portfolio `MAP.md`) claims a state
   that is outdated, update it in the same change.
 - Turnstile widgets are domain-scoped: this site's sitekey comes from Hub at
   runtime via `api.josh.menu/webhooks/contact/site_config`. Don't hardcode one.

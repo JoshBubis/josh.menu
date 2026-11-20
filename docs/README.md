@@ -5,7 +5,7 @@
 
 Static GitHub Pages sales site for the **Josh.Menu** studio.
 
-**Portfolio norms:** `/Users/jbair/Projects/CLAUDE.md` (docs must match reality).
+**Portfolio norms:** `/Users/jbair/Projects/MAP.md` (docs must match reality).
 Creative companion: Hub `docs/companions/franz.md`.
 
 **Hub hybrid:** public marketing lives here; Studio, contracts, contact verify,
