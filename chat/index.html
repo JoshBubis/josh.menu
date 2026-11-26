@@ -10,12 +10,17 @@
     <link rel="icon" href="/favicon.svg?v=jm4" type="image/svg+xml">
     <link rel="stylesheet" href="../fonts.css">
     <link rel="stylesheet" href="../style.css?v=jm34">
+    <link rel="stylesheet" href="signup.css?v=2">
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page-light" aria-hidden="true"></div>
     <header class="site-header">
         <a class="wordmark" href="/">Josh<span class="wordmark__dot">.</span>Menu</a>
-        <nav class="site-nav" aria-label="Primary">
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
             <a href="/#samples">Samples</a>
             <a href="/contact.html" class="nav-cta">Start a project</a>
         </nav>
@@ -25,10 +30,10 @@
             <p class="eyebrow">Live chat</p>
             <h1 class="contact-page-title">A chat widget for your site</h1>
             <p class="contact-lead">Pick a plan. You get a snippet immediately. No card. Visitors can write after the homepage carries a small verification tag. On Start, you reply from this page. On Answer, the widget can reply on its own.</p>
-            <div id="chat-alert" class="contact-alert" hidden></div>
+            <div id="chat-alert" class="contact-alert" hidden aria-live="polite"></div>
             <form id="chat-signup" class="contact-form">
-                <fieldset class="field" style="border:0;padding:0;display:grid;gap:0.5rem">
-                    <legend style="margin-bottom:0.35rem">Plan</legend>
+                <fieldset class="chat-plans">
+                    <legend>Plan</legend>
                     <label><input type="radio" name="plan" value="start" checked> Start — widget and inbox. You reply yourself.</label>
                     <label><input type="radio" name="plan" value="answer"> Answer — the widget can reply on its own.</label>
                     <label><input type="radio" name="plan" value="desk"> Desk — same chat, for more than one domain later.</label>
@@ -36,25 +41,41 @@
                 <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email"></label>
                 <label class="field"><span>Site name</span><input type="text" name="name" maxlength="80" autocomplete="organization"></label>
                 <label class="field"><span>Domain</span><input type="text" name="domain" required placeholder="example.com" inputmode="url"></label>
-                <button type="submit" class="btn btn-primary">Get the snippet</button>
+                <button type="submit" class="btn btn-primary" id="chat-submit">Get the snippet</button>
             </form>
-            <section id="chat-ready" hidden>
+            <section id="chat-ready" class="chat-ready" hidden>
                 <h2>Install</h2>
                 <p>Paste this where the widget should appear.</p>
-                <pre id="chat-snippet" style="white-space:pre-wrap;word-break:break-all"></pre>
+                <pre id="chat-snippet" class="chat-code"></pre>
+                <div class="chat-actions">
+                    <button type="button" class="btn btn-ghost" id="chat-copy-snippet">Copy snippet</button>
+                </div>
                 <p>Add this tag to the homepage, then verify. Keep this page. The link is your inbox.</p>
-                <pre id="chat-tag" style="white-space:pre-wrap;word-break:break-all"></pre>
-                <button type="button" id="chat-verify" class="btn btn-primary">Verify domain</button>
+                <pre id="chat-tag" class="chat-code"></pre>
+                <div id="chat-verify-alert" class="contact-alert" hidden aria-live="polite"></div>
+                <div class="chat-actions">
+                    <button type="button" class="btn btn-ghost" id="chat-copy-tag">Copy tag</button>
+                    <button type="button" id="chat-verify" class="btn btn-primary">Verify domain</button>
+                </div>
                 <h2>Inbox</h2>
-                <ul id="chat-inbox" style="list-style:none;padding:0;display:grid;gap:0.5rem"></ul>
-                <form id="chat-reply">
-                    <label class="field"><span>Reply</span><input type="text" name="message" required></label>
+                <ul id="chat-inbox" class="chat-inbox" aria-label="Visitors"></ul>
+                <p id="chat-reply-target" class="chat-reply-target">Pick a visitor to reply.</p>
+                <form id="chat-reply" class="contact-form chat-reply">
+                    <div id="chat-reply-alert" class="contact-alert" hidden aria-live="polite"></div>
+                    <label class="field"><span>Reply</span><textarea name="message" required rows="4" placeholder="Write a reply. Enter sends it. Shift+Enter adds a line."></textarea></label>
                     <input type="hidden" name="conversation" id="chat-conversation">
-                    <button type="submit" class="btn btn-primary">Send reply</button>
+                    <button type="submit" class="btn btn-primary" id="chat-reply-submit" disabled>Send reply</button>
                 </form>
             </section>
         </section>
     </main>
+    <footer class="site-footer">
+        <span>© <span id="year"></span> <span class="jm-name">Josh.Menu</span></span>
+        <div class="footer-links">
+            <a href="mailto:josh@josh.menu">josh@josh.menu</a>
+        </div>
+    </footer>
+    <script src="../script.js?v=jm9"></script>
     <script>
     (function () {
         var API = "https://api.josh.menu/webhooks/chat/signups";
@@ -62,66 +83,202 @@
         var form = document.getElementById("chat-signup");
         var ready = document.getElementById("chat-ready");
         var alertBox = document.getElementById("chat-alert");
-        function showError(text) { alertBox.hidden = !text; alertBox.textContent = text || ""; }
+        var verifyAlert = document.getElementById("chat-verify-alert");
+        var replyAlert = document.getElementById("chat-reply-alert");
+        var replyForm = document.getElementById("chat-reply");
+        var replyTarget = document.getElementById("chat-reply-target");
+        var conversationField = document.getElementById("chat-conversation");
+        var replyButton = document.getElementById("chat-reply-submit");
+        var poll;
+        var sending = false;
+
+        function showAlert(text, kind) {
+            paintAlert(alertBox, text, kind);
+        }
+
+        function showVerifyAlert(text, kind) {
+            paintAlert(verifyAlert, text, kind);
+        }
+
+        function showReplyAlert(text, kind) {
+            paintAlert(replyAlert, text, kind);
+        }
+
+        function paintAlert(box, text, kind) {
+            box.hidden = !text;
+            box.textContent = text || "";
+            box.classList.toggle("contact-alert--ok", kind === "ok");
+            box.classList.toggle("contact-alert--err", kind === "err");
+        }
+
+        function readJson(response) {
+            return response.json().catch(function () { return {}; }).then(function (data) {
+                if (!response.ok) throw new Error(data.error || "Something went wrong. Try again.");
+                return data;
+            });
+        }
+
+        function setBusy(button, busy, label) {
+            if (!button.dataset.label) button.dataset.label = button.textContent;
+            button.disabled = busy;
+            button.textContent = busy ? label : button.dataset.label;
+        }
+
+        function preview(row) {
+            var who = row.role === "visitor" ? "Visitor" : "You";
+            var text = (row.last || "").trim() || "(empty)";
+            return who + ": " + text;
+        }
+
+        function markSelection() {
+            var current = conversationField.value;
+            document.querySelectorAll("#chat-inbox button").forEach(function (button) {
+                button.setAttribute("aria-pressed", button.dataset.token === current ? "true" : "false");
+            });
+        }
+
+        function selectRow(row) {
+            conversationField.value = row.token;
+            replyTarget.textContent = "Replying to " + preview(row);
+            replyButton.disabled = false;
+            markSelection();
+        }
+
         function showReady(data) {
             token = data.manage_token || token;
+            showAlert("");
             form.hidden = true;
             ready.hidden = false;
-            document.getElementById("chat-snippet").textContent = data.snippet;
-            document.getElementById("chat-tag").textContent = data.verify_tag;
-            history.replaceState(null, "", "?token=" + encodeURIComponent(token));
+            document.getElementById("chat-snippet").textContent = data.snippet || "";
+            document.getElementById("chat-tag").textContent = data.verify_tag || "";
+            if (token) history.replaceState(null, "", "?token=" + encodeURIComponent(token));
             loadInbox();
+            if (poll) clearInterval(poll);
+            poll = setInterval(loadInbox, 15000);
         }
+
         function loadInbox() {
             if (!token) return;
-            fetch(API + "/" + encodeURIComponent(token) + "/inbox", { headers: { Accept: "application/json" } }).then(function (r) { return r.json(); }).then(function (data) {
-                var box = document.getElementById("chat-inbox");
-                var rows = data.conversations || [];
-                var current = document.getElementById("chat-conversation").value;
-                box.replaceChildren();
-                if (!rows.length) {
-                    var empty = document.createElement("li");
-                    empty.textContent = "No visitors yet.";
-                    box.appendChild(empty);
-                    return;
-                }
-                rows.forEach(function (row) {
-                    var item = document.createElement("li");
-                    var button = document.createElement("button");
-                    button.type = "button";
-                    button.textContent = (row.role === "visitor" ? "Visitor: " : "You: ") + (row.last || "(empty)");
-                    button.addEventListener("click", function () {
-                        document.getElementById("chat-conversation").value = row.token;
+            fetch(API + "/" + encodeURIComponent(token) + "/inbox", { headers: { Accept: "application/json" } })
+                .then(readJson)
+                .then(function (data) {
+                    var box = document.getElementById("chat-inbox");
+                    var rows = data.conversations || [];
+                    var current = conversationField.value;
+                    box.replaceChildren();
+                    if (!rows.length) {
+                        var empty = document.createElement("li");
+                        empty.className = "chat-inbox__empty";
+                        empty.textContent = "No visitors yet.";
+                        box.appendChild(empty);
+                        if (!current) {
+                            replyTarget.textContent = "No visitors yet. A reply waits until someone writes.";
+                            replyButton.disabled = true;
+                        }
+                        return;
+                    }
+                    rows.forEach(function (row) {
+                        var item = document.createElement("li");
+                        var button = document.createElement("button");
+                        button.type = "button";
+                        button.dataset.token = row.token;
+                        button.textContent = preview(row);
+                        button.setAttribute("aria-pressed", "false");
+                        button.addEventListener("click", function () { selectRow(row); });
+                        item.appendChild(button);
+                        box.appendChild(item);
                     });
-                    item.appendChild(button);
-                    box.appendChild(item);
-                });
-                if (!current && rows[0]) document.getElementById("chat-conversation").value = rows[0].token;
-            }).catch(function () { showError("The inbox didn't load."); });
+                    var chosen = rows.filter(function (row) { return row.token === current; })[0];
+                    if (chosen) selectRow(chosen);
+                    else if (!current) selectRow(rows[0]);
+                    else markSelection();
+                })
+                .catch(function () { showReplyAlert("The inbox didn't load. The reply you typed is still here.", "err"); });
         }
+
+        function copyText(text, button) {
+            var write = navigator.clipboard && navigator.clipboard.writeText
+                ? navigator.clipboard.writeText(text)
+                : Promise.reject();
+            write.then(function () {
+                if (!button.dataset.label) button.dataset.label = button.textContent;
+                button.textContent = "Copied";
+                setTimeout(function () { button.textContent = button.dataset.label; }, 1600);
+            }).catch(function () {
+                showVerifyAlert("Select the text and copy it.", "err");
+            });
+        }
+
         form.addEventListener("submit", function (event) {
             event.preventDefault();
+            var button = document.getElementById("chat-submit");
             var body = Object.fromEntries(new FormData(form).entries());
+            setBusy(button, true, "Getting the snippet…");
+            showAlert("");
             fetch(API, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(body) })
-                .then(function (r) { return r.json().then(function (data) { if (!r.ok) throw new Error(data.error || "Signup failed"); return data; }); })
-                .then(showReady).catch(function (error) { showError(error.message); });
+                .then(readJson)
+                .then(showReady)
+                .catch(function (error) { showAlert(error.message, "err"); })
+                .then(function () { setBusy(button, false); });
         });
+
+        document.getElementById("chat-copy-snippet").addEventListener("click", function () {
+            copyText(document.getElementById("chat-snippet").textContent, this);
+        });
+        document.getElementById("chat-copy-tag").addEventListener("click", function () {
+            copyText(document.getElementById("chat-tag").textContent, this);
+        });
+
         document.getElementById("chat-verify").addEventListener("click", function () {
+            var button = this;
+            setBusy(button, true, "Checking…");
             fetch(API + "/" + encodeURIComponent(token) + "/verify", { method: "POST", headers: { Accept: "application/json" } })
-                .then(function (r) { return r.json().then(function (data) { if (!r.ok) throw new Error(data.error || "Not verified yet"); return data; }); })
-                .then(function () { showError(""); alertBox.hidden = false; alertBox.textContent = "Domain verified. The widget can talk to visitors."; })
-                .catch(function (error) { showError(error.message); });
+                .then(readJson)
+                .then(function () { showVerifyAlert("Domain verified. The widget can talk to visitors.", "ok"); })
+                .catch(function (error) { showVerifyAlert(error.message, "err"); })
+                .then(function () { setBusy(button, false); });
         });
-        document.getElementById("chat-reply").addEventListener("submit", function (event) {
+
+        replyForm.elements.message.addEventListener("keydown", function (event) {
+            if (event.key !== "Enter" || event.shiftKey || event.isComposing) return;
             event.preventDefault();
-            var body = Object.fromEntries(new FormData(event.target).entries());
-            fetch(API + "/" + encodeURIComponent(token) + "/reply", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(body) })
-                .then(function (r) { return r.json().then(function (data) { if (!r.ok) throw new Error(data.error || "Reply didn't send"); }); })
-                .then(function () { event.target.elements.message.value = ""; showError(""); loadInbox(); })
-                .catch(function (error) { showError(error.message); });
+            if (typeof replyForm.requestSubmit === "function") replyForm.requestSubmit();
         });
-        setInterval(loadInbox, 15000);
-        if (token) fetch(API + "/" + encodeURIComponent(token), { headers: { Accept: "application/json" } }).then(function (r) { return r.json(); }).then(showReady);
+
+        replyForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            if (sending) return;
+            if (!conversationField.value) {
+                showReplyAlert("Pick a visitor first. The reply stays in the box.", "err");
+                return;
+            }
+            var body = Object.fromEntries(new FormData(event.target).entries());
+            sending = true;
+            setBusy(replyButton, true, "Sending…");
+            fetch(API + "/" + encodeURIComponent(token) + "/reply", {
+                method: "POST",
+                headers: { "Content-Type": "application/json", Accept: "application/json" },
+                body: JSON.stringify(body)
+            })
+                .then(readJson)
+                .then(function () {
+                    event.target.elements.message.value = "";
+                    showReplyAlert("");
+                    loadInbox();
+                })
+                .catch(function (error) { showReplyAlert(error.message, "err"); })
+                .then(function () {
+                    sending = false;
+                    setBusy(replyButton, false);
+                });
+        });
+
+        if (token) {
+            fetch(API + "/" + encodeURIComponent(token), { headers: { Accept: "application/json" } })
+                .then(readJson)
+                .then(showReady)
+                .catch(function (error) { showAlert(error.message, "err"); });
+        }
     })();
     </script>
 </body>

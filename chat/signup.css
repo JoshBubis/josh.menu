@@ -1,0 +1,125 @@
+/* Signup only. The sales site's style.css stays the source of the shared chrome. */
+
+.chat-plans {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.chat-plans legend {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    padding: 0;
+    margin-bottom: 0.15rem;
+}
+
+.chat-plans label {
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+    padding: 0.8rem 0.85rem;
+    border: 1px solid var(--line);
+    background: var(--surface-high);
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+.chat-plans label:has(input:checked) {
+    border-color: var(--accent);
+}
+
+.contact-form .chat-plans input {
+    width: auto;
+    margin-top: 0.2rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    accent-color: var(--accent);
+}
+
+.chat-ready h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    letter-spacing: -0.03em;
+    margin: 2.25rem 0 0.45rem;
+}
+
+.chat-ready h2:first-child {
+    margin-top: 0.25rem;
+}
+
+.chat-ready > p,
+.chat-reply-target {
+    color: var(--muted);
+}
+
+.chat-code {
+    margin: 0.55rem 0 0.75rem;
+    padding: 0.85rem 0.9rem;
+    border: 1px solid var(--line);
+    background: var(--surface-high);
+    color: var(--ink);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.chat-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 0.25rem;
+}
+
+.chat-ready .contact-alert {
+    margin-top: 0.85rem;
+}
+
+.chat-inbox {
+    list-style: none;
+    margin: 0.7rem 0 1rem;
+    padding: 0;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.chat-inbox button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--ink);
+    background: var(--surface-high);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 0.75rem 0.85rem;
+    cursor: pointer;
+}
+
+.chat-inbox button[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.chat-inbox__empty {
+    color: var(--muted);
+    padding: 0.15rem 0 0.35rem;
+}
+
+.chat-reply-target {
+    margin: 0 0 0.85rem;
+    font-size: 0.95rem;
+}
+
+.chat-reply textarea {
+    min-height: 6.5rem;
+    resize: vertical;
+}
