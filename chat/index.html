@@ -24,7 +24,7 @@
         <section class="contact-form-section">
             <p class="eyebrow">Live chat</p>
             <h1 class="contact-page-title">A chat widget for your site</h1>
-            <p class="contact-lead">Pick a plan. You get a snippet immediately. No card. The widget starts answering visitors after your homepage carries a small verification tag.</p>
+            <p class="contact-lead">Pick a plan. You get a snippet immediately. No card. Visitors can write after the homepage carries a small verification tag. On Start, you reply from this page. On Answer, the widget can reply on its own.</p>
             <div id="chat-alert" class="contact-alert" hidden></div>
             <form id="chat-signup" class="contact-form">
                 <fieldset class="field" style="border:0;padding:0;display:grid;gap:0.5rem">
@@ -46,7 +46,7 @@
                 <pre id="chat-tag" style="white-space:pre-wrap;word-break:break-all"></pre>
                 <button type="button" id="chat-verify" class="btn btn-primary">Verify domain</button>
                 <h2>Inbox</h2>
-                <div id="chat-inbox"></div>
+                <ul id="chat-inbox" style="list-style:none;padding:0;display:grid;gap:0.5rem"></ul>
                 <form id="chat-reply">
                     <label class="field"><span>Reply</span><input type="text" name="message" required></label>
                     <input type="hidden" name="conversation" id="chat-conversation">
@@ -73,12 +73,31 @@
             loadInbox();
         }
         function loadInbox() {
-            fetch(API + "/" + encodeURIComponent(token) + "/inbox").then(function (r) { return r.json(); }).then(function (data) {
+            if (!token) return;
+            fetch(API + "/" + encodeURIComponent(token) + "/inbox", { headers: { Accept: "application/json" } }).then(function (r) { return r.json(); }).then(function (data) {
                 var box = document.getElementById("chat-inbox");
                 var rows = data.conversations || [];
-                box.textContent = rows.length ? rows.map(function (row) { return row.last || "(empty)"; }).join("\n") : "No visitors yet.";
-                if (rows[0]) document.getElementById("chat-conversation").value = rows[0].token;
-            });
+                var current = document.getElementById("chat-conversation").value;
+                box.replaceChildren();
+                if (!rows.length) {
+                    var empty = document.createElement("li");
+                    empty.textContent = "No visitors yet.";
+                    box.appendChild(empty);
+                    return;
+                }
+                rows.forEach(function (row) {
+                    var item = document.createElement("li");
+                    var button = document.createElement("button");
+                    button.type = "button";
+                    button.textContent = (row.role === "visitor" ? "Visitor: " : "You: ") + (row.last || "(empty)");
+                    button.addEventListener("click", function () {
+                        document.getElementById("chat-conversation").value = row.token;
+                    });
+                    item.appendChild(button);
+                    box.appendChild(item);
+                });
+                if (!current && rows[0]) document.getElementById("chat-conversation").value = rows[0].token;
+            }).catch(function () { showError("The inbox didn't load."); });
         }
         form.addEventListener("submit", function (event) {
             event.preventDefault();
@@ -97,8 +116,11 @@
             event.preventDefault();
             var body = Object.fromEntries(new FormData(event.target).entries());
             fetch(API + "/" + encodeURIComponent(token) + "/reply", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(body) })
-                .then(function () { event.target.reset(); loadInbox(); });
+                .then(function (r) { return r.json().then(function (data) { if (!r.ok) throw new Error(data.error || "Reply didn't send"); }); })
+                .then(function () { event.target.elements.message.value = ""; showError(""); loadInbox(); })
+                .catch(function (error) { showError(error.message); });
         });
+        setInterval(loadInbox, 15000);
         if (token) fetch(API + "/" + encodeURIComponent(token), { headers: { Accept: "application/json" } }).then(function (r) { return r.json(); }).then(showReady);
     })();
     </script>
