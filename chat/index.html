@@ -27,11 +27,11 @@
             <p class="contact-lead">Pick a plan. You get a snippet immediately. No card. The widget starts answering visitors after your homepage carries a small verification tag.</p>
             <div id="chat-alert" class="contact-alert" hidden></div>
             <form id="chat-signup" class="contact-form">
-                <fieldset class="field">
-                    <legend>Plan</legend>
-                    <label><input type="radio" name="plan" value="start" checked> Start — widget and inbox</label>
-                    <label><input type="radio" name="plan" value="answer"> Answer — adds automatic replies</label>
-                    <label><input type="radio" name="plan" value="desk"> Desk — same chat, ready for more than one domain later</label>
+                <fieldset class="field" style="border:0;padding:0;display:grid;gap:0.5rem">
+                    <legend style="margin-bottom:0.35rem">Plan</legend>
+                    <label><input type="radio" name="plan" value="start" checked> Start — widget and inbox. You reply yourself.</label>
+                    <label><input type="radio" name="plan" value="answer"> Answer — the widget can reply on its own.</label>
+                    <label><input type="radio" name="plan" value="desk"> Desk — same chat, for more than one domain later.</label>
                 </fieldset>
                 <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email"></label>
                 <label class="field"><span>Site name</span><input type="text" name="name" maxlength="80" autocomplete="organization"></label>
@@ -41,9 +41,9 @@
             <section id="chat-ready" hidden>
                 <h2>Install</h2>
                 <p>Paste this where the widget should appear.</p>
-                <pre id="chat-snippet"></pre>
-                <p>Add this tag to the homepage, then verify.</p>
-                <pre id="chat-tag"></pre>
+                <pre id="chat-snippet" style="white-space:pre-wrap;word-break:break-all"></pre>
+                <p>Add this tag to the homepage, then verify. Keep this page. The link is your inbox.</p>
+                <pre id="chat-tag" style="white-space:pre-wrap;word-break:break-all"></pre>
                 <button type="button" id="chat-verify" class="btn btn-primary">Verify domain</button>
                 <h2>Inbox</h2>
                 <div id="chat-inbox"></div>
