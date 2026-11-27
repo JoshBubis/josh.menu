@@ -11,7 +11,7 @@
     <link rel="icon" href="/favicon.svg?v=jm4" type="image/svg+xml">
     <link rel="stylesheet" href="../fonts.css">
     <link rel="stylesheet" href="../style.css?v=jm34">
-    <link rel="stylesheet" href="signup.css?v=6">
+    <link rel="stylesheet" href="signup.css?v=7">
     <script>
         if (/[?&]token=/.test(location.search) || /^#inbox=/.test(location.hash))
             document.documentElement.classList.add("has-chat-token");
@@ -97,6 +97,7 @@
                         <button type="button" class="btn btn-ghost" id="chat-load-older" hidden>Load earlier messages</button>
                         <ol id="chat-transcript" class="chat-transcript" aria-label="Messages" tabindex="0"></ol>
                         <p id="chat-thread-status" class="chat-thread-status" role="status"></p>
+                        <button type="button" class="btn btn-ghost" id="chat-retry-transcript" hidden>Retry loading messages</button>
                         <form id="chat-reply" class="contact-form chat-reply">
                             <div id="chat-reply-alert" class="contact-alert" hidden aria-live="polite"></div>
                             <label class="field"><span>Reply</span><textarea name="message" required rows="4" placeholder="Enter sends. Shift+Enter adds a line."></textarea></label>
@@ -163,6 +164,7 @@
         var transcript = document.getElementById("chat-transcript");
         var threadStatus = document.getElementById("chat-thread-status");
         var olderButton = document.getElementById("chat-load-older");
+        var retryTranscript = document.getElementById("chat-retry-transcript");
         var poll;
         var sending = false;
         var inboxRequest;
@@ -271,6 +273,7 @@
             thread.hidden = false;
             transcript.replaceChildren();
             olderButton.hidden = true;
+            retryTranscript.hidden = true;
             replyButton.disabled = false;
             showReplyAlert("");
             markSelection();
@@ -387,7 +390,7 @@
             return item;
         }
 
-        async function loadTranscript(older) {
+        async function loadTranscript(older = false) {
             var current = activeThread;
             if (!current || document.hidden || (older && !current.olderBefore)) return;
             if (current.loading) {
@@ -396,6 +399,7 @@
             }
             current.loading = true;
             olderButton.disabled = true;
+            retryTranscript.disabled = true;
             if (!current.loaded || older) threadStatus.textContent = "Loading messages…";
             var cursor = older ? "?before=" + current.olderBefore : current.latestId ? "?after=" + current.latestId : "";
             var url = API + "/" + encodeURIComponent(token) + "/inbox/" + encodeURIComponent(current.token);
@@ -422,14 +426,23 @@
                 if (older || !cursor) current.olderBefore = data.older_before;
                 olderButton.hidden = !current.olderBefore;
                 current.loaded = true;
-                threadStatus.textContent = transcript.children.length ? "" : "No messages in this conversation yet.";
+                if (current.retryOlder === older || current.retryOlder === undefined) {
+                    current.retryOlder = undefined;
+                    if (document.activeElement === retryTranscript) transcript.focus({ preventScroll: true });
+                    retryTranscript.hidden = true;
+                    threadStatus.textContent = transcript.children.length ? "" : "No messages in this conversation yet.";
+                }
             } catch (error) {
-                if (error.name !== "AbortError" && current === activeThread)
-                    threadStatus.textContent = "Messages didn’t load. Try again.";
+                if (error.name !== "AbortError" && current === activeThread) {
+                    current.retryOlder = current.retryOlder === true || older === true;
+                    retryTranscript.hidden = false;
+                    threadStatus.textContent = current.retryOlder ? "Earlier messages didn’t load." : "Messages didn’t load.";
+                }
             } finally {
                 current.loading = false;
                 if (current === activeThread) {
                     olderButton.disabled = false;
+                    retryTranscript.disabled = false;
                     if (current.refreshAgain) {
                         current.refreshAgain = false;
                         loadTranscript();
@@ -498,6 +511,7 @@
         });
 
         olderButton.addEventListener("click", function () { loadTranscript(true); });
+        retryTranscript.addEventListener("click", function () { loadTranscript(activeThread.retryOlder); });
         document.addEventListener("visibilitychange", function () {
             if (document.hidden) {
                 clearInterval(poll);
