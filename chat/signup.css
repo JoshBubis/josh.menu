@@ -10,12 +10,17 @@
 
 .chat-layout {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
     align-items: start;
 }
 
 .chat-preview {
     order: -1;
+}
+
+.chat-page.is-managing .chat-preview {
+    order: 0;
 }
 
 @media (min-width: 960px) {
@@ -65,6 +70,7 @@
 .chat-preview__title {
     margin: 0;
     font-weight: 700;
+    overflow-wrap: anywhere;
 }
 
 .chat-preview__x {
@@ -136,9 +142,12 @@
     animation: chat-panel-in 0.45s var(--ease) 0.08s both;
 }
 
-.chat-preview.is-live .chat-preview__status,
-.chat-preview__status.is-live {
+.chat-preview.is-live .chat-preview__status {
     color: var(--accent);
+}
+
+.chat-preview.is-live .chat-preview__pill {
+    animation: chat-confirm 0.4s var(--ease) both;
 }
 
 .chat-plans {
@@ -234,8 +243,46 @@
     margin: 2.25rem 0 0.45rem;
 }
 
-.chat-ready h2:first-child {
-    margin-top: 0.25rem;
+.chat-ready > p.chat-domain-status {
+    color: var(--ink);
+    font-weight: 600;
+    margin: 0 0 1rem;
+}
+
+.chat-domain-status.is-live::before {
+    content: "";
+    display: inline-block;
+    width: 0.45em;
+    height: 0.45em;
+    margin-inline-end: 0.55em;
+    vertical-align: 0.12em;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: chat-confirm 0.4s var(--ease) both;
+}
+
+.chat-install {
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--line);
+}
+
+.chat-install summary {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.chat-install__steps {
+    padding-inline-start: 1.35rem;
+    margin: 0.8rem 0 0;
+}
+
+.chat-install__steps li + li {
+    margin-top: 1.2rem;
+}
+
+.chat-install__steps p {
+    margin: 0;
+    color: var(--muted);
 }
 
 .chat-ready > p,
@@ -263,9 +310,18 @@
     margin-bottom: 0.25rem;
 }
 
-.chat-actions .btn.is-copied {
+.chat-inbox-link {
+    width: 100%;
+}
+
+.chat-ready > h2 + p {
+    margin: 0 0 0.75rem;
+}
+
+.chat-ready .btn.is-copied {
     border-color: var(--accent);
     color: var(--accent);
+    animation: chat-confirm 0.25s var(--ease) both;
 }
 
 .chat-ready .contact-alert {
@@ -288,6 +344,7 @@
     display: block;
     width: 100%;
     text-align: left;
+    overflow-wrap: anywhere;
     font: inherit;
     font-size: 0.95rem;
     line-height: 1.4;
@@ -340,9 +397,24 @@ html.has-chat-token #chat-signup {
     }
 }
 
+@keyframes chat-confirm {
+    from {
+        opacity: 0.7;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .chat-preview.is-awake .chat-preview__msg,
     .chat-preview.is-ready .chat-preview__panel,
+    .chat-preview.is-live .chat-preview__pill,
+    .chat-domain-status.is-live::before,
+    .chat-ready .btn.is-copied,
     #chat-ready.is-entering,
     .chat-inbox button.is-new,
     .chat-page .contact-alert:not([hidden]) {

@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live chat — Josh.Menu</title>
     <meta name="description" content="Add a live chat widget to your site. Pick a plan, copy the snippet, and reply from your inbox. No card required.">
+    <meta name="referrer" content="no-referrer">
     <link rel="canonical" href="https://josh.menu/chat/">
     <meta name="theme-color" content="#080b0a">
     <link rel="icon" href="/favicon.svg?v=jm4" type="image/svg+xml">
     <link rel="stylesheet" href="../fonts.css">
     <link rel="stylesheet" href="../style.css?v=jm34">
-    <link rel="stylesheet" href="signup.css?v=4">
+    <link rel="stylesheet" href="signup.css?v=5">
     <script>
-        if (/[?&]token=/.test(location.search) || location.hash.indexOf("inbox=") !== -1)
+        if (/[?&]token=/.test(location.search) || /^#inbox=/.test(location.hash))
             document.documentElement.classList.add("has-chat-token");
     </script>
 </head>
@@ -29,11 +30,11 @@
             <a href="/contact.html" class="nav-cta">Start a project</a>
         </nav>
     </header>
-    <main id="main" class="contact-page chat-page">
+    <main id="main" class="contact-page chat-page" tabindex="-1">
         <section class="contact-form-section">
-            <p class="eyebrow">Live chat</p>
-            <h1 class="contact-page-title">A chat widget for your site</h1>
-            <p class="contact-lead">Pick a plan. You get a snippet immediately. No card. Visitors can write after the homepage carries a small verification tag. On Start, you reply from this page. On Answer, the widget can reply on its own.</p>
+            <p class="eyebrow">J chat</p>
+            <h1 class="contact-page-title" id="chat-title">A chat widget for your site</h1>
+            <p class="contact-lead" id="chat-lead">Add chat to your site and reply from a private inbox. Pick a plan to get your install code. No card required.</p>
             <div class="chat-layout">
             <div class="chat-column">
             <div id="chat-alert" class="contact-alert" hidden aria-live="polite"></div>
@@ -54,25 +55,39 @@
                     </label>
                 </fieldset>
                 <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email"></label>
-                <label class="field"><span>Site name</span><input type="text" name="name" maxlength="80" autocomplete="organization"></label>
+                <label class="field"><span>Site name (optional)</span><input type="text" name="name" maxlength="80" autocomplete="organization"></label>
                 <label class="field"><span>Domain</span><input type="text" name="domain" required placeholder="example.com" inputmode="url"></label>
                 <button type="submit" class="btn btn-primary" id="chat-submit">Get the snippet</button>
             </form>
             <section id="chat-ready" class="chat-ready" hidden>
-                <h2>Install</h2>
-                <p>Paste this where the widget should appear.</p>
-                <pre id="chat-snippet" class="chat-code"></pre>
+                <p id="chat-domain-status" class="chat-domain-status"></p>
+                <details id="chat-install" class="chat-install" open>
+                    <summary>Install the widget</summary>
+                    <ol class="chat-install__steps">
+                        <li>
+                            <p>Add this script before the closing <code>&lt;/body&gt;</code> tag on each page where you want chat.</p>
+                            <pre id="chat-snippet" class="chat-code"></pre>
+                            <button type="button" class="btn btn-ghost" id="chat-copy-snippet">Copy widget script</button>
+                        </li>
+                        <li>
+                            <p>Add this tag inside the <code>&lt;head&gt;</code> of your homepage. Publish your changes, then verify your domain.</p>
+                            <pre id="chat-tag" class="chat-code"></pre>
+                            <div class="chat-actions">
+                                <button type="button" class="btn btn-ghost" id="chat-copy-tag">Copy verification tag</button>
+                                <button type="button" id="chat-verify" class="btn btn-primary">Verify domain</button>
+                            </div>
+                        </li>
+                    </ol>
+                    <div id="chat-install-copy-alert" class="contact-alert" hidden aria-live="polite"></div>
+                    <div id="chat-verify-alert" class="contact-alert" hidden aria-live="polite"></div>
+                </details>
+                <h2>Visitor inbox</h2>
+                <p>Save this private link to open your inbox again. Anyone with the link can read messages and reply.</p>
                 <div class="chat-actions">
-                    <button type="button" class="btn btn-ghost" id="chat-copy-snippet">Copy snippet</button>
+                    <button type="button" class="btn btn-ghost" id="chat-copy-inbox">Copy private inbox link</button>
                 </div>
-                <p>Add this tag to the homepage, then verify. Keep this page. The link is your inbox.</p>
-                <pre id="chat-tag" class="chat-code"></pre>
-                <div id="chat-verify-alert" class="contact-alert" hidden aria-live="polite"></div>
-                <div class="chat-actions">
-                    <button type="button" class="btn btn-ghost" id="chat-copy-tag">Copy tag</button>
-                    <button type="button" id="chat-verify" class="btn btn-primary">Verify domain</button>
-                </div>
-                <h2>Inbox</h2>
+                <input id="chat-inbox-link" class="chat-code chat-inbox-link" type="text" aria-label="Private inbox link" readonly hidden>
+                <div id="chat-inbox-copy-alert" class="contact-alert" hidden aria-live="polite"></div>
                 <ul id="chat-inbox" class="chat-inbox" aria-label="Visitors"></ul>
                 <p id="chat-reply-target" class="chat-reply-target">Pick a visitor to reply.</p>
                 <form id="chat-reply" class="contact-form chat-reply">
@@ -119,9 +134,12 @@
     <script>
     (function () {
         var API = "https://api.josh.menu/webhooks/chat/signups";
-        var token = new URLSearchParams(location.search).get("token") || (location.hash.split("inbox=")[1] || "");
+        var token = new URLSearchParams(location.search).get("token") || new URLSearchParams(location.hash.slice(1)).get("inbox");
         var form = document.getElementById("chat-signup");
         var ready = document.getElementById("chat-ready");
+        var install = document.getElementById("chat-install");
+        var domainStatus = document.getElementById("chat-domain-status");
+        var inboxLink = document.getElementById("chat-inbox-link");
         var alertBox = document.getElementById("chat-alert");
         var verifyAlert = document.getElementById("chat-verify-alert");
         var replyAlert = document.getElementById("chat-reply-alert");
@@ -201,15 +219,18 @@
             return planNotes[(selected && selected.value) || "start"];
         }
 
-        function armPreview(verified) {
+        function updateDomainStatus(data) {
+            var live = data.verified && data.enabled;
+            var status = live ? "Domain verified. The widget is enabled."
+                : data.verified ? "Domain verified. The widget is disabled."
+                : "Waiting for domain verification.";
+            domainStatus.textContent = status;
+            domainStatus.classList.toggle("is-live", live);
             syncPreview();
             preview.classList.add("is-ready");
-            preview.classList.toggle("is-live", !!verified);
-            previewStatus.textContent = verified ? "Live" : "Waiting on your homepage";
-            previewStatus.classList.toggle("is-live", !!verified);
-            previewNote.textContent = verified
-                ? "The widget can talk to visitors."
-                : "Add the tag, then verify. Visitors can write after that.";
+            preview.classList.toggle("is-live", live);
+            previewStatus.textContent = live ? "Live" : data.verified ? "Disabled" : "Awaiting verification";
+            previewNote.textContent = status;
         }
 
         function selectRow(row) {
@@ -221,6 +242,7 @@
         }
 
         function showReady(data) {
+            var returning = document.documentElement.classList.contains("has-chat-token");
             token = data.manage_token || token;
             showAlert("");
             if (data.plan === "start" || data.plan === "answer" || data.plan === "desk") {
@@ -229,14 +251,21 @@
             }
             document.getElementById("chat-snippet").textContent = data.snippet || "";
             document.getElementById("chat-tag").textContent = data.verify_tag || "";
-            if (token) history.replaceState(null, "", "?token=" + encodeURIComponent(token));
-            armPreview(!!data.verified);
-            var arriving = document.documentElement.classList.contains("has-chat-token") || form.hidden || reduce;
+            history.replaceState(null, "", location.pathname + "#inbox=" + encodeURIComponent(token));
+            inboxLink.value = location.href;
+            install.open = !returning || !data.verified || !data.enabled;
+            preview.hidden = returning;
+            updateDomainStatus(data);
+            var arriving = returning || reduce;
             var reveal = function () {
                 form.hidden = true;
                 form.classList.remove("is-leaving");
+                document.getElementById("chat-title").textContent = "Manage your chat";
+                document.getElementById("chat-lead").hidden = true;
+                ready.closest(".chat-page").classList.add("is-managing");
                 ready.hidden = false;
-                if (!reduce) ready.classList.add("is-entering");
+                if (!returning) install.querySelector("summary").focus({ preventScroll: true });
+                if (!arriving) ready.classList.add("is-entering");
                 document.documentElement.classList.remove("has-chat-token");
                 loadInbox();
                 if (poll) clearInterval(poll);
@@ -293,21 +322,33 @@
                 .catch(function () { showReplyAlert("The inbox didn't load. The reply you typed is still here.", "err"); });
         }
 
-        function copyText(text, button) {
-            var write = navigator.clipboard && navigator.clipboard.writeText
-                ? navigator.clipboard.writeText(text)
-                : Promise.reject();
-            write.then(function () {
+        async function copyText(source, button, feedback) {
+            var isLink = source === inboxLink;
+            paintAlert(feedback, "");
+            try {
+                await navigator.clipboard.writeText(isLink ? source.value : source.textContent);
+                if (isLink) source.hidden = true;
                 if (!button.dataset.label) button.dataset.label = button.textContent;
                 button.textContent = "Copied";
                 button.classList.add("is-copied");
-                setTimeout(function () {
+                clearTimeout(button.copyTimer);
+                button.copyTimer = setTimeout(function () {
                     button.textContent = button.dataset.label;
                     button.classList.remove("is-copied");
                 }, 1600);
-            }).catch(function () {
-                showVerifyAlert("Select the text and copy it.", "err");
-            });
+            } catch {
+                if (isLink) {
+                    source.hidden = false;
+                    source.focus();
+                    source.select();
+                } else {
+                    var range = document.createRange();
+                    range.selectNodeContents(source);
+                    window.getSelection().removeAllRanges();
+                    window.getSelection().addRange(range);
+                }
+                paintAlert(feedback, "Copy the selected text.");
+            }
         }
 
         form.addEventListener("submit", function (event) {
@@ -324,20 +365,25 @@
         });
 
         document.getElementById("chat-copy-snippet").addEventListener("click", function () {
-            copyText(document.getElementById("chat-snippet").textContent, this);
+            copyText(document.getElementById("chat-snippet"), this, document.getElementById("chat-install-copy-alert"));
         });
         document.getElementById("chat-copy-tag").addEventListener("click", function () {
-            copyText(document.getElementById("chat-tag").textContent, this);
+            copyText(document.getElementById("chat-tag"), this, document.getElementById("chat-install-copy-alert"));
+        });
+
+        document.getElementById("chat-copy-inbox").addEventListener("click", function () {
+            copyText(inboxLink, this, document.getElementById("chat-inbox-copy-alert"));
         });
 
         document.getElementById("chat-verify").addEventListener("click", function () {
             var button = this;
             setBusy(button, true, "Checking…");
+            showVerifyAlert("");
             fetch(API + "/" + encodeURIComponent(token) + "/verify", { method: "POST", headers: { Accept: "application/json" } })
                 .then(readJson)
-                .then(function () {
-                    showVerifyAlert("Domain verified. The widget can talk to visitors.", "ok");
-                    armPreview(true);
+                .then(function (data) {
+                    updateDomainStatus(data);
+                    showVerifyAlert(domainStatus.textContent, data.enabled ? "ok" : undefined);
                 })
                 .catch(function (error) { showVerifyAlert(error.message, "err"); })
                 .then(function () { setBusy(button, false); });
@@ -384,6 +430,15 @@
             if (event.target.name === "plan" && !preview.classList.contains("is-ready"))
                 previewNote.textContent = planNote();
         });
+        document.querySelector(".skip-link").addEventListener("click", function (event) {
+            if (ready.hidden) return;
+            event.preventDefault();
+            document.getElementById("main").focus();
+        });
+        window.addEventListener("hashchange", function () {
+            var nextToken = new URLSearchParams(location.hash.slice(1)).get("inbox");
+            if (nextToken && nextToken !== token) location.reload();
+        });
         if (!document.documentElement.classList.contains("has-chat-token")) {
             requestAnimationFrame(function () { preview.classList.add("is-awake"); });
         }
@@ -395,6 +450,8 @@
                     document.documentElement.classList.remove("has-chat-token");
                     showAlert(error.message, "err");
                 });
+        } else {
+            document.documentElement.classList.remove("has-chat-token");
         }
     })();
     </script>
