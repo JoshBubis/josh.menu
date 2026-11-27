@@ -10,7 +10,11 @@
     <link rel="icon" href="/favicon.svg?v=jm4" type="image/svg+xml">
     <link rel="stylesheet" href="../fonts.css">
     <link rel="stylesheet" href="../style.css?v=jm34">
-    <link rel="stylesheet" href="signup.css?v=2">
+    <link rel="stylesheet" href="signup.css?v=4">
+    <script>
+        if (/[?&]token=/.test(location.search) || location.hash.indexOf("inbox=") !== -1)
+            document.documentElement.classList.add("has-chat-token");
+    </script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -25,18 +29,29 @@
             <a href="/contact.html" class="nav-cta">Start a project</a>
         </nav>
     </header>
-    <main id="main" class="contact-page">
+    <main id="main" class="contact-page chat-page">
         <section class="contact-form-section">
             <p class="eyebrow">Live chat</p>
             <h1 class="contact-page-title">A chat widget for your site</h1>
             <p class="contact-lead">Pick a plan. You get a snippet immediately. No card. Visitors can write after the homepage carries a small verification tag. On Start, you reply from this page. On Answer, the widget can reply on its own.</p>
+            <div class="chat-layout">
+            <div class="chat-column">
             <div id="chat-alert" class="contact-alert" hidden aria-live="polite"></div>
             <form id="chat-signup" class="contact-form">
                 <fieldset class="chat-plans">
                     <legend>Plan</legend>
-                    <label><input type="radio" name="plan" value="start" checked> Start — widget and inbox. You reply yourself.</label>
-                    <label><input type="radio" name="plan" value="answer"> Answer — the widget can reply on its own.</label>
-                    <label><input type="radio" name="plan" value="desk"> Desk — same chat, for more than one domain later.</label>
+                    <label>
+                        <input type="radio" name="plan" value="start" checked>
+                        <span class="chat-plan__copy"><strong>Start</strong><span>Widget and inbox. You reply yourself.</span></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="plan" value="answer">
+                        <span class="chat-plan__copy"><strong>Answer</strong><span>The widget can reply on its own.</span></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="plan" value="desk">
+                        <span class="chat-plan__copy"><strong>Desk</strong><span>Same chat, for more than one domain later.</span></span>
+                    </label>
                 </fieldset>
                 <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email"></label>
                 <label class="field"><span>Site name</span><input type="text" name="name" maxlength="80" autocomplete="organization"></label>
@@ -67,6 +82,31 @@
                     <button type="submit" class="btn btn-primary" id="chat-reply-submit" disabled>Send reply</button>
                 </form>
             </section>
+            </div>
+            <aside class="chat-preview" id="chat-preview" aria-hidden="true">
+                <div class="work-plate__label">
+                    <span class="jm-mark"><span class="jm-mark__j">J</span><span class="jm-mark__m">M</span></span>
+                    <span class="work-plate__domain" id="chat-preview-host">your site</span>
+                </div>
+                <div class="chat-preview__stage">
+                    <div class="chat-preview__panel" id="chat-preview-panel">
+                        <div class="chat-preview__head">
+                            <p class="chat-preview__title" id="chat-preview-title">Chat</p>
+                            <span class="chat-preview__x" aria-hidden="true">×</span>
+                        </div>
+                        <p class="chat-preview__status" id="chat-preview-status">Preview</p>
+                        <div class="chat-preview__log">
+                            <div class="chat-preview__msg">
+                                <span class="chat-preview__who">Chat</span>
+                                <p id="chat-preview-line">Ask a question. A person can join anytime.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-preview__pill">Chat</div>
+                </div>
+                <p class="chat-preview__note" id="chat-preview-note">You reply from this page.</p>
+            </aside>
+            </div>
         </section>
     </main>
     <footer class="site-footer">
@@ -91,6 +131,18 @@
         var replyButton = document.getElementById("chat-reply-submit");
         var poll;
         var sending = false;
+        var seen = {};
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var preview = document.getElementById("chat-preview");
+        var previewHost = document.getElementById("chat-preview-host");
+        var previewTitle = document.getElementById("chat-preview-title");
+        var previewStatus = document.getElementById("chat-preview-status");
+        var previewNote = document.getElementById("chat-preview-note");
+        var planNotes = {
+            start: "You reply from this page.",
+            answer: "The widget can reply on its own.",
+            desk: "Same chat, for more than one domain later."
+        };
 
         function showAlert(text, kind) {
             paintAlert(alertBox, text, kind);
@@ -124,7 +176,7 @@
             button.textContent = busy ? label : button.dataset.label;
         }
 
-        function preview(row) {
+        function visitorLine(row) {
             var who = row.role === "visitor" ? "Visitor" : "You";
             var text = (row.last || "").trim() || "(empty)";
             return who + ": " + text;
@@ -137,24 +189,64 @@
             });
         }
 
+        function syncPreview() {
+            var domain = (form.elements.domain.value || "").trim().replace(/^https?:\/\//i, "").split("/")[0];
+            var name = (form.elements.name.value || "").trim();
+            previewHost.textContent = domain || "your site";
+            previewTitle.textContent = name || "Chat";
+        }
+
+        function planNote() {
+            var selected = form.querySelector("input[name='plan']:checked");
+            return planNotes[(selected && selected.value) || "start"];
+        }
+
+        function armPreview(verified) {
+            syncPreview();
+            preview.classList.add("is-ready");
+            preview.classList.toggle("is-live", !!verified);
+            previewStatus.textContent = verified ? "Live" : "Waiting on your homepage";
+            previewStatus.classList.toggle("is-live", !!verified);
+            previewNote.textContent = verified
+                ? "The widget can talk to visitors."
+                : "Add the tag, then verify. Visitors can write after that.";
+        }
+
         function selectRow(row) {
             conversationField.value = row.token;
-            replyTarget.textContent = "Replying to " + preview(row);
+            replyTarget.textContent = "Replying to " + visitorLine(row);
             replyButton.disabled = false;
+            if (replyAlert.textContent === "Pick a visitor first. The reply stays in the box.") showReplyAlert("");
             markSelection();
         }
 
         function showReady(data) {
             token = data.manage_token || token;
             showAlert("");
-            form.hidden = true;
-            ready.hidden = false;
+            if (data.plan === "start" || data.plan === "answer" || data.plan === "desk") {
+                var radio = form.querySelector("input[name='plan'][value='" + data.plan + "']");
+                if (radio) radio.checked = true;
+            }
             document.getElementById("chat-snippet").textContent = data.snippet || "";
             document.getElementById("chat-tag").textContent = data.verify_tag || "";
             if (token) history.replaceState(null, "", "?token=" + encodeURIComponent(token));
-            loadInbox();
-            if (poll) clearInterval(poll);
-            poll = setInterval(loadInbox, 15000);
+            armPreview(!!data.verified);
+            var arriving = document.documentElement.classList.contains("has-chat-token") || form.hidden || reduce;
+            var reveal = function () {
+                form.hidden = true;
+                form.classList.remove("is-leaving");
+                ready.hidden = false;
+                if (!reduce) ready.classList.add("is-entering");
+                document.documentElement.classList.remove("has-chat-token");
+                loadInbox();
+                if (poll) clearInterval(poll);
+                poll = setInterval(loadInbox, 15000);
+            };
+            if (arriving) reveal();
+            else {
+                form.classList.add("is-leaving");
+                setTimeout(reveal, 160);
+            }
         }
 
         function loadInbox() {
@@ -177,13 +269,18 @@
                         }
                         return;
                     }
-                    rows.forEach(function (row) {
+                    rows.forEach(function (row, index) {
                         var item = document.createElement("li");
                         var button = document.createElement("button");
                         button.type = "button";
                         button.dataset.token = row.token;
-                        button.textContent = preview(row);
+                        button.textContent = visitorLine(row);
                         button.setAttribute("aria-pressed", "false");
+                        if (!seen[row.token]) {
+                            button.classList.add("is-new");
+                            if (!reduce) button.style.animationDelay = Math.min(index, 4) * 40 + "ms";
+                            seen[row.token] = true;
+                        }
                         button.addEventListener("click", function () { selectRow(row); });
                         item.appendChild(button);
                         box.appendChild(item);
@@ -203,7 +300,11 @@
             write.then(function () {
                 if (!button.dataset.label) button.dataset.label = button.textContent;
                 button.textContent = "Copied";
-                setTimeout(function () { button.textContent = button.dataset.label; }, 1600);
+                button.classList.add("is-copied");
+                setTimeout(function () {
+                    button.textContent = button.dataset.label;
+                    button.classList.remove("is-copied");
+                }, 1600);
             }).catch(function () {
                 showVerifyAlert("Select the text and copy it.", "err");
             });
@@ -234,7 +335,10 @@
             setBusy(button, true, "Checking…");
             fetch(API + "/" + encodeURIComponent(token) + "/verify", { method: "POST", headers: { Accept: "application/json" } })
                 .then(readJson)
-                .then(function () { showVerifyAlert("Domain verified. The widget can talk to visitors.", "ok"); })
+                .then(function () {
+                    showVerifyAlert("Domain verified. The widget can talk to visitors.", "ok");
+                    armPreview(true);
+                })
                 .catch(function (error) { showVerifyAlert(error.message, "err"); })
                 .then(function () { setBusy(button, false); });
         });
@@ -273,11 +377,24 @@
                 });
         });
 
+        form.addEventListener("input", function (event) {
+            if (event.target.name === "name" || event.target.name === "domain") syncPreview();
+        });
+        form.addEventListener("change", function (event) {
+            if (event.target.name === "plan" && !preview.classList.contains("is-ready"))
+                previewNote.textContent = planNote();
+        });
+        if (!document.documentElement.classList.contains("has-chat-token")) {
+            requestAnimationFrame(function () { preview.classList.add("is-awake"); });
+        }
         if (token) {
             fetch(API + "/" + encodeURIComponent(token), { headers: { Accept: "application/json" } })
                 .then(readJson)
                 .then(showReady)
-                .catch(function (error) { showAlert(error.message, "err"); });
+                .catch(function (error) {
+                    document.documentElement.classList.remove("has-chat-token");
+                    showAlert(error.message, "err");
+                });
         }
     })();
     </script>
