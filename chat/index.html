@@ -11,7 +11,7 @@
     <link rel="icon" href="/favicon.svg?v=jm4" type="image/svg+xml">
     <link rel="stylesheet" href="../fonts.css">
     <link rel="stylesheet" href="../style.css?v=jm34">
-    <link rel="stylesheet" href="signup.css?v=5">
+    <link rel="stylesheet" href="signup.css?v=6">
     <script>
         if (/[?&]token=/.test(location.search) || /^#inbox=/.test(location.hash))
             document.documentElement.classList.add("has-chat-token");
@@ -85,17 +85,26 @@
                 <p>Save this private link to open your inbox again. Anyone with the link can read messages and reply.</p>
                 <div class="chat-actions">
                     <button type="button" class="btn btn-ghost" id="chat-copy-inbox">Copy private inbox link</button>
+                    <button type="button" class="btn btn-ghost" id="chat-refresh-inbox">Refresh inbox</button>
                 </div>
                 <input id="chat-inbox-link" class="chat-code chat-inbox-link" type="text" aria-label="Private inbox link" readonly hidden>
                 <div id="chat-inbox-copy-alert" class="contact-alert" hidden aria-live="polite"></div>
-                <ul id="chat-inbox" class="chat-inbox" aria-label="Visitors"></ul>
-                <p id="chat-reply-target" class="chat-reply-target">Pick a visitor to reply.</p>
-                <form id="chat-reply" class="contact-form chat-reply">
-                    <div id="chat-reply-alert" class="contact-alert" hidden aria-live="polite"></div>
-                    <label class="field"><span>Reply</span><textarea name="message" required rows="4" placeholder="Write a reply. Enter sends it. Shift+Enter adds a line."></textarea></label>
-                    <input type="hidden" name="conversation" id="chat-conversation">
-                    <button type="submit" class="btn btn-primary" id="chat-reply-submit" disabled>Send reply</button>
-                </form>
+                <div id="chat-inbox-alert" class="contact-alert" hidden aria-live="polite"></div>
+                <div class="chat-inbox-workspace">
+                    <ul id="chat-inbox" class="chat-inbox" aria-label="Visitors"></ul>
+                    <section id="chat-thread" class="chat-thread" aria-labelledby="chat-reply-target" hidden>
+                        <h3 id="chat-reply-target" class="chat-reply-target">Conversation</h3>
+                        <button type="button" class="btn btn-ghost" id="chat-load-older" hidden>Load earlier messages</button>
+                        <ol id="chat-transcript" class="chat-transcript" aria-label="Messages" tabindex="0"></ol>
+                        <p id="chat-thread-status" class="chat-thread-status" role="status"></p>
+                        <form id="chat-reply" class="contact-form chat-reply">
+                            <div id="chat-reply-alert" class="contact-alert" hidden aria-live="polite"></div>
+                            <label class="field"><span>Reply</span><textarea name="message" required rows="4" placeholder="Enter sends. Shift+Enter adds a line."></textarea></label>
+                            <input type="hidden" name="conversation" id="chat-conversation">
+                            <button type="submit" class="btn btn-primary" id="chat-reply-submit" disabled>Send reply</button>
+                        </form>
+                    </section>
+                </div>
             </section>
             </div>
             <aside class="chat-preview" id="chat-preview" aria-hidden="true">
@@ -144,12 +153,25 @@
         var verifyAlert = document.getElementById("chat-verify-alert");
         var replyAlert = document.getElementById("chat-reply-alert");
         var replyForm = document.getElementById("chat-reply");
+        var replyInput = replyForm.elements.message;
         var replyTarget = document.getElementById("chat-reply-target");
         var conversationField = document.getElementById("chat-conversation");
         var replyButton = document.getElementById("chat-reply-submit");
+        var inbox = document.getElementById("chat-inbox");
+        var inboxAlert = document.getElementById("chat-inbox-alert");
+        var thread = document.getElementById("chat-thread");
+        var transcript = document.getElementById("chat-transcript");
+        var threadStatus = document.getElementById("chat-thread-status");
+        var olderButton = document.getElementById("chat-load-older");
         var poll;
         var sending = false;
-        var seen = {};
+        var inboxRequest;
+        var activeThread;
+        var inboxButtons = new Map();
+        var drafts = new Map();
+        var emptyInbox = document.createElement("li");
+        emptyInbox.className = "chat-inbox__empty";
+        emptyInbox.textContent = "No visitors yet.";
         var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         var preview = document.getElementById("chat-preview");
         var previewHost = document.getElementById("chat-preview-host");
@@ -194,10 +216,13 @@
             button.textContent = busy ? label : button.dataset.label;
         }
 
+        function roleLabel(role) {
+            return { visitor: "Visitor", josh: "You", assistant: "Assistant", system: "System" }[role] || "Chat";
+        }
+
         function visitorLine(row) {
-            var who = row.role === "visitor" ? "Visitor" : "You";
             var text = (row.last || "").trim() || "(empty)";
-            return who + ": " + text;
+            return roleLabel(row.role) + ": " + text;
         }
 
         function markSelection() {
@@ -234,11 +259,22 @@
         }
 
         function selectRow(row) {
+            if (sending || conversationField.value === row.token) return;
+            if (activeThread) {
+                drafts.set(activeThread.token, replyInput.value);
+                activeThread.controller.abort();
+            }
+            activeThread = { token: row.token, latestId: null, olderBefore: null, loaded: false, controller: new AbortController() };
             conversationField.value = row.token;
-            replyTarget.textContent = "Replying to " + visitorLine(row);
+            replyInput.value = drafts.get(row.token) || "";
+            replyTarget.textContent = visitorLine(row);
+            thread.hidden = false;
+            transcript.replaceChildren();
+            olderButton.hidden = true;
             replyButton.disabled = false;
-            if (replyAlert.textContent === "Pick a visitor first. The reply stays in the box.") showReplyAlert("");
+            showReplyAlert("");
             markSelection();
+            loadTranscript();
         }
 
         function showReady(data) {
@@ -263,13 +299,12 @@
                 document.getElementById("chat-title").textContent = "Manage your chat";
                 document.getElementById("chat-lead").hidden = true;
                 ready.closest(".chat-page").classList.add("is-managing");
+                ready.closest(".chat-page").classList.toggle("is-returning", returning);
                 ready.hidden = false;
                 if (!returning) install.querySelector("summary").focus({ preventScroll: true });
                 if (!arriving) ready.classList.add("is-entering");
                 document.documentElement.classList.remove("has-chat-token");
-                loadInbox();
-                if (poll) clearInterval(poll);
-                poll = setInterval(loadInbox, 15000);
+                resumeInbox();
             };
             if (arriving) reveal();
             else {
@@ -278,48 +313,129 @@
             }
         }
 
+        function renderVisitors(rows) {
+            var items = [];
+            var nextButtons = new Map();
+            rows.forEach(function (row, index) {
+                var button = inboxButtons.get(row.token);
+                if (!button) {
+                    var item = document.createElement("li");
+                    button = document.createElement("button");
+                    button.type = "button";
+                    button.dataset.token = row.token;
+                    button.classList.add("is-new");
+                    if (!reduce) button.style.animationDelay = Math.min(index, 4) * 40 + "ms";
+                    button.addEventListener("click", function () { selectRow(row); });
+                    item.appendChild(button);
+                }
+                var label = visitorLine(row);
+                if (button.textContent !== label) button.textContent = label;
+                nextButtons.set(row.token, button);
+                items.push(button.parentNode);
+            });
+            inboxButtons = nextButtons;
+            if (!items.length) items.push(emptyInbox);
+
+            var children = Array.from(inbox.children);
+            if (children.length !== items.length || items.some(function (item, index) { return item !== children[index]; })) {
+                var focus = document.activeElement;
+                inbox.replaceChildren(...items);
+                if (inbox.contains(focus)) focus.focus({ preventScroll: true });
+            }
+            markSelection();
+        }
+
         function loadInbox() {
-            if (!token) return;
-            fetch(API + "/" + encodeURIComponent(token) + "/inbox", { headers: { Accept: "application/json" } })
+            if (!token || document.hidden) return Promise.resolve();
+            if (inboxRequest) return inboxRequest;
+            inboxRequest = fetch(API + "/" + encodeURIComponent(token) + "/inbox?compact=1", {
+                headers: { Accept: "application/json" }
+            })
                 .then(readJson)
                 .then(function (data) {
-                    var box = document.getElementById("chat-inbox");
                     var rows = data.conversations || [];
-                    var current = conversationField.value;
-                    box.replaceChildren();
-                    if (!rows.length) {
-                        var empty = document.createElement("li");
-                        empty.className = "chat-inbox__empty";
-                        empty.textContent = "No visitors yet.";
-                        box.appendChild(empty);
-                        if (!current) {
-                            replyTarget.textContent = "No visitors yet. A reply waits until someone writes.";
-                            replyButton.disabled = true;
-                        }
-                        return;
+                    paintAlert(inboxAlert, "");
+                    renderVisitors(rows);
+                    if (!activeThread && rows.length) {
+                        selectRow(rows[0]);
+                    } else if (activeThread) {
+                        var current = rows.find(function (row) { return row.token === activeThread.token; });
+                        if (!activeThread.loaded || (current && current.last_id > activeThread.latestId)) loadTranscript();
                     }
-                    rows.forEach(function (row, index) {
-                        var item = document.createElement("li");
-                        var button = document.createElement("button");
-                        button.type = "button";
-                        button.dataset.token = row.token;
-                        button.textContent = visitorLine(row);
-                        button.setAttribute("aria-pressed", "false");
-                        if (!seen[row.token]) {
-                            button.classList.add("is-new");
-                            if (!reduce) button.style.animationDelay = Math.min(index, 4) * 40 + "ms";
-                            seen[row.token] = true;
-                        }
-                        button.addEventListener("click", function () { selectRow(row); });
-                        item.appendChild(button);
-                        box.appendChild(item);
-                    });
-                    var chosen = rows.filter(function (row) { return row.token === current; })[0];
-                    if (chosen) selectRow(chosen);
-                    else if (!current) selectRow(rows[0]);
-                    else markSelection();
                 })
-                .catch(function () { showReplyAlert("The inbox didn't load. The reply you typed is still here.", "err"); });
+                .catch(function () { paintAlert(inboxAlert, "The inbox didn’t load. Try Refresh inbox.", "err"); })
+                .finally(function () { inboxRequest = null; });
+            return inboxRequest;
+        }
+
+        function resumeInbox() {
+            if (document.hidden || ready.hidden) return;
+            loadInbox();
+            if (!poll) poll = setInterval(loadInbox, 15000);
+        }
+
+        function messageItem(message, animate) {
+            var item = document.createElement("li");
+            item.className = "chat-message";
+            item.classList.toggle("is-owner", message.role === "josh");
+            item.classList.toggle("is-new", animate);
+            var role = document.createElement("strong");
+            role.textContent = roleLabel(message.role);
+            var body = document.createElement("p");
+            body.textContent = message.body;
+            item.append(role, body);
+            return item;
+        }
+
+        async function loadTranscript(older) {
+            var current = activeThread;
+            if (!current || document.hidden || (older && !current.olderBefore)) return;
+            if (current.loading) {
+                if (!older) current.refreshAgain = true;
+                return;
+            }
+            current.loading = true;
+            olderButton.disabled = true;
+            if (!current.loaded || older) threadStatus.textContent = "Loading messages…";
+            var cursor = older ? "?before=" + current.olderBefore : current.latestId ? "?after=" + current.latestId : "";
+            var url = API + "/" + encodeURIComponent(token) + "/inbox/" + encodeURIComponent(current.token);
+            try {
+                var response = await fetch(url + cursor, {
+                    signal: current.controller.signal, headers: { Accept: "application/json" }
+                });
+                var data = await readJson(response);
+                if (current !== activeThread) return;
+
+                var messages = data.messages || [];
+                var scrollTop = transcript.scrollTop;
+                var scrollHeight = transcript.scrollHeight;
+                var atEnd = scrollHeight - transcript.clientHeight - scrollTop < 32;
+                var items = messages.map(function (message) { return messageItem(message, current.loaded && !older); });
+                if (older) {
+                    transcript.prepend(...items);
+                    transcript.scrollTop = scrollTop + (transcript.scrollHeight - scrollHeight);
+                } else {
+                    transcript.append(...items);
+                    if (messages.length) current.latestId = messages[messages.length - 1].id;
+                    if (!current.loaded || atEnd) transcript.scrollTop = transcript.scrollHeight;
+                }
+                if (older || !cursor) current.olderBefore = data.older_before;
+                olderButton.hidden = !current.olderBefore;
+                current.loaded = true;
+                threadStatus.textContent = transcript.children.length ? "" : "No messages in this conversation yet.";
+            } catch (error) {
+                if (error.name !== "AbortError" && current === activeThread)
+                    threadStatus.textContent = "Messages didn’t load. Try again.";
+            } finally {
+                current.loading = false;
+                if (current === activeThread) {
+                    olderButton.disabled = false;
+                    if (current.refreshAgain) {
+                        current.refreshAgain = false;
+                        loadTranscript();
+                    }
+                }
+            }
         }
 
         async function copyText(source, button, feedback) {
@@ -375,6 +491,22 @@
             copyText(inboxLink, this, document.getElementById("chat-inbox-copy-alert"));
         });
 
+        document.getElementById("chat-refresh-inbox").addEventListener("click", function () {
+            var button = this;
+            setBusy(button, true, "Refreshing…");
+            loadInbox().finally(function () { setBusy(button, false); });
+        });
+
+        olderButton.addEventListener("click", function () { loadTranscript(true); });
+        document.addEventListener("visibilitychange", function () {
+            if (document.hidden) {
+                clearInterval(poll);
+                poll = null;
+            } else {
+                resumeInbox();
+            }
+        });
+
         document.getElementById("chat-verify").addEventListener("click", function () {
             var button = this;
             setBusy(button, true, "Checking…");
@@ -389,7 +521,7 @@
                 .then(function () { setBusy(button, false); });
         });
 
-        replyForm.elements.message.addEventListener("keydown", function (event) {
+        replyInput.addEventListener("keydown", function (event) {
             if (event.key !== "Enter" || event.shiftKey || event.isComposing) return;
             event.preventDefault();
             if (typeof replyForm.requestSubmit === "function") replyForm.requestSubmit();
@@ -404,6 +536,7 @@
             }
             var body = Object.fromEntries(new FormData(event.target).entries());
             sending = true;
+            replyInput.readOnly = true;
             setBusy(replyButton, true, "Sending…");
             fetch(API + "/" + encodeURIComponent(token) + "/reply", {
                 method: "POST",
@@ -412,13 +545,16 @@
             })
                 .then(readJson)
                 .then(function () {
-                    event.target.elements.message.value = "";
-                    showReplyAlert("");
+                    drafts.delete(body.conversation);
+                    replyInput.value = "";
+                    showReplyAlert("Reply sent.", "ok");
+                    loadTranscript();
                     loadInbox();
                 })
                 .catch(function (error) { showReplyAlert(error.message, "err"); })
-                .then(function () {
+                .finally(function () {
                     sending = false;
+                    replyInput.readOnly = false;
                     setBusy(replyButton, false);
                 });
         });
