@@ -31,7 +31,7 @@
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=jm2">
 
     <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="style.css?v=jm34">
+    <link rel="stylesheet" href="style.css?v=jm35">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -80,7 +80,7 @@
               "name": "What do you actually build?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Focused sites and the systems behind them when you need more than a page — live chat, booking, intake, payments, contracts, custom admin. A lander with handoff is still a great fit when that’s enough. Either way, you’re working with the person who builds it."
+                "text": "Focused sites and the systems behind them when you need more than a page — live chat, booking, intake, payments, contracts, custom admin. The chat widget can be installed on its own at josh.menu/chat. A lander with handoff is still a great fit when that’s enough. Either way, you’re working with the person who builds it."
               }
             },
             {
@@ -372,9 +372,15 @@
             </div>
 
             <ul class="systems-grid">
-                <li class="systems-card reveal" data-reveal>
-                    <h3 class="systems-name">Live chat + AI concierge</h3>
-                    <p class="systems-desc">A visitor chat that answers scoping questions and can escalate to you in Slack — same stack that powers this page.</p>
+                <li class="systems-card systems-card--chat reveal" data-reveal>
+                    <div>
+                        <h3 class="systems-name"><span class="status-dots" aria-hidden="true"><i></i></span>Live chat</h3>
+                        <p class="systems-desc">A visitor chat that answers scoping questions and can escalate to you in Slack — same stack that powers this page. You can install the widget on your own site. No card to start.</p>
+                    </div>
+                    <p class="systems-card__actions">
+                        <a href="/chat/">Add it to your site</a>
+                        <button type="button" class="systems-chat-link" data-open-chat>Ask about it here</button>
+                    </p>
                 </li>
                 <li class="systems-card reveal" data-reveal>
                     <h3 class="systems-name">Booking &amp; scheduling</h3>
@@ -395,7 +401,9 @@
             </ul>
 
             <p class="systems-foot reveal" data-reveal>
-                <button type="button" class="systems-chat-link" data-open-chat>Ask about live chat</button>
+                <a href="/chat/">Add live chat</a>
+                <span class="systems-foot__sep" aria-hidden="true">·</span>
+                <button type="button" class="systems-chat-link" data-open-chat>Ask about it here</button>
                 <span class="systems-foot__sep" aria-hidden="true">·</span>
                 <a href="contact.html">Start a project</a>
             </p>
@@ -619,7 +627,7 @@
             <div class="faq-list reveal" data-reveal>
                 <details class="faq-item">
                     <summary>What do you actually build?</summary>
-                    <p>Focused sites and the systems behind them when you need more than a page — live chat, booking, intake, payments, contracts, custom admin. A lander with handoff is still a great fit when that’s enough. Either way, you’re working with the person who builds it.</p>
+                    <p>Focused sites and the systems behind them when you need more than a page — live chat, booking, intake, payments, contracts, custom admin. The chat widget can be installed on its own — <a href="/chat/">add it to your site</a>. A lander with handoff is still a great fit when that’s enough. Either way, you’re working with the person who builds it.</p>
                 </details>
                 <details class="faq-item">
                     <summary>Is a focused landing page a one-time project?</summary>
@@ -663,6 +671,7 @@
     <footer class="site-footer">
         <span>© <span id="year"></span> <span class="jm-name">Josh.Menu</span></span>
         <div class="footer-links">
+            <a href="/chat/">Live chat</a>
             <a href="mailto:josh@josh.menu">josh@josh.menu</a>
         </div>
     </footer>
